@@ -9,7 +9,7 @@
     
     <title>
         
-            2021-03-29周总结 |
+            测试文章 |
         
         zzal&#39;s Blog
     </title>
@@ -150,7 +150,7 @@
     <div class="article-content-container">
 
         <div class="article-title">
-            <span class="title-hover-animation">2021-03-29周总结</span>
+            <span class="title-hover-animation">测试文章</span>
         </div>
 
         
@@ -169,8 +169,8 @@
                         <div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fas fa-edit"></i>&nbsp;
-        <span class="pc">2022-06-29 16:00:28</span>
-        <span class="mobile">2022-06-29 16:00</span>
+        <span class="pc">2022-09-09 14:29:52</span>
+        <span class="mobile">2022-09-09 14:29</span>
     </span>
     
         <span class="article-categories article-meta-item">
@@ -178,7 +178,7 @@
             <ul>
                 
                     <li>
-                        <a href="/categories/%E6%88%91%E7%9A%84%E6%80%BB%E7%BB%93/">我的总结</a>&nbsp;
+                        <a href="/categories/web/">web</a>&nbsp;
                     </li>
                 
             </ul>
@@ -190,7 +190,11 @@
             <ul>
                 
                     <li>
-                        <a href="/tags/%E6%88%91%E7%9A%84%E6%80%BB%E7%BB%93/">我的总结</a>&nbsp;
+                        <a href="/tags/jdk/">jdk</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">环境配置</a>&nbsp;
                     </li>
                 
             </ul>
@@ -213,11 +217,17 @@
         
 
         <div class="article-content markdown-body">
-            <h1 id="周总结"><a href="#周总结" class="headerlink" title="周总结"></a>周总结</h1><p>由于我们的学习进度比较慢，所以考核时间也推迟了一周，在这推迟的一周里，我学到了很多东西，以前学过的东西也开始融会贯通了。</p>
-<h2 id="1-本周感悟"><a href="#1-本周感悟" class="headerlink" title="1.本周感悟"></a>1.本周感悟</h2><p>推迟考核的一周里，大家都在努力的赶项目进度，压力的氛围下，我能感受到我的进步速度很快，果然，小组的氛围还是能够让人奋发向上的，大家每天在一起，进入状态后敲代码的速度也提升了很多。</p>
-<p>这周的主要任务就是完善项目进度，由于我的基础可能比较差，所以项目都是参考着b站上的web项目视频做的，写一遍一遍的功，我还是学到了不少东西，而且对于web项目的大致结构已有了更深层次的理解，希望在下一阶段，我可以完善考核项目，然后练好算法题，蓝桥杯也算是我的一种历练吧。</p>
-<h2 id="2-小组团建"><a href="#2-小组团建" class="headerlink" title="2.小组团建"></a>2.小组团建</h2><p>本周周日，我们举行了第一次小组团建，大家一起去了新乡八里沟游玩，虽然大家平时在小组里只是埋头学习，但是我感受到了属于未来小组的团结，属于学长学姐的友好，还有我们好兄弟之间的友谊，边看美景，边相互沟通，我相信在未来的日子里，未来会因为我们而更加美好！</p>
-<p>未来人，应当拥有更好的未来！加油！</p>
+            <p>@<a href="jdk-8u301-windows-x64%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE">TOC</a></p>
+<h1 id="1、下载jdk"><a href="#1、下载jdk" class="headerlink" title="1、下载jdk"></a>1、下载jdk</h1><p>这里使用的jdk-8u301-windows-x64版本，下载可以去官网。</p>
+<h1 id="2、安装"><a href="#2、安装" class="headerlink" title="2、安装"></a>2、安装</h1><p>因为jdk8版本的安装需要分别安装jdk和jre，所以这里我们提前创建好目录，我们先创建一个<code>java</code>文件夹，里面再新建两个文件夹，分别是<code>jdk</code>和<code>jre</code>，如图<br><img src="https://img-blog.csdnimg.cn/86ca647edb374803a950654ed51f4059.png" alt="在这里插入图片描述"><br>然后我们就开始进行安装，双击<code>jdk-8u301-windows-x64.exe</code>。<br><img src="https://img-blog.csdnimg.cn/742af16f88b0490e909eec2c1cea711e.png" alt="在这里插入图片描述"><br>我们必须要保证电脑上之前没有安装过jdk或者是完全卸载了jdk，如果有，可以通过控制面板进行卸载。<br>这里我们点击下一步。<br><img src="https://img-blog.csdnimg.cn/80b741723e5d447aa27c306db675ecff.png" alt="在这里插入图片描述"><br>然后我们更改默认的安装目录，更改为我们创建的<code>java</code>文件夹中的<code>jdk</code>文件夹。<br><img src="https://img-blog.csdnimg.cn/57d9658297a4433ca03e14b9a05460a3.png" alt="在这里插入图片描述"><br>然后点击下一步，等待安装。<br><img src="https://img-blog.csdnimg.cn/b9d79079564c42b48fba8fb0073c8b2f.png" alt="在这里插入图片描述"><br>jdk安装好之后，会自动弹出一个弹窗，这就是安装jre的程序，如图，更改默认的安装路径之后，点击下一步。<br><img src="https://img-blog.csdnimg.cn/dbebfbec16224c9082da8639102465a0.png" alt="在这里插入图片描述"><br>等待安装完成即可。<br><img src="https://img-blog.csdnimg.cn/4208ea9609f448dd9cffd80b00d25201.png" alt="在这里插入图片描述"><br>如图，安装完成!<br><img src="https://img-blog.csdnimg.cn/61ac5537276c400ca3f75ffcfd664623.png" alt="在这里插入图片描述"></p>
+<h1 id="3、配置环境变量"><a href="#3、配置环境变量" class="headerlink" title="3、配置环境变量"></a>3、配置环境变量</h1><p>jdk和jre安装完成之后，我们就需要来配置环境变量了，不过这里我们使用更加简便的方法进行配置。</p>
+<p>我们进入jdk的安装目录，如图<br><img src="https://img-blog.csdnimg.cn/9a68811f4b174b909462ff6a719ef913.png" alt="在这里插入图片描述"><br>我这里是<code>C:\App\java\jdk</code>，记录一下该路径，一会配置环境需要用到。</p>
+<p>然后我们在桌面上新建一个文本文档，将以下内容复制粘贴进去。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">%<span class="number">1</span> mshta vbscript:CreateObject(<span class="string">&quot;Shell.Application&quot;</span>).ShellExecute(<span class="string">&quot;cmd.exe&quot;</span>,<span class="string">&quot;/c %~s0 ::&quot;</span>,<span class="string">&quot;&quot;</span>,<span class="string">&quot;runas&quot;</span>,<span class="number">1</span>)(window.close)&amp;&amp;exit</span><br><span class="line">cd /d <span class="string">&quot;%~dp0&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@echo</span> off</span><br><span class="line">echo  请输入jdk安装目录</span><br><span class="line">set /p answer=  </span><br><span class="line">wmic ENVIRONMENT create name=<span class="string">&quot;JAVA_HOME&quot;</span>,username=<span class="string">&quot;&lt;system&gt;&quot;</span>,VariableValue=<span class="string">&quot;%answer%&quot;</span></span><br><span class="line">wmic ENVIRONMENT create name=<span class="string">&quot;CLASSPATH&quot;</span>,username=<span class="string">&quot;&lt;system&gt;&quot;</span>,VariableValue=<span class="string">&quot;.;%%JAVA_HOME%%\lib;%%JAVA_HOME%%\lib\tools.jar&quot;</span></span><br><span class="line">wmic ENVIRONMENT where <span class="string">&quot;name=&#x27;PATH&#x27; and username=&#x27;&lt;system&gt;&#x27;&quot;</span> set VariableValue=<span class="string">&quot;%path%;%%JAVA_HOME%%\bin;%%JAVA_HOME%%\jre\bin;&quot;</span></span><br><span class="line">echo 设置完成 按下任意键退出</span><br><span class="line">pause</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>然后点击文件，选择另存为<br><img src="https://img-blog.csdnimg.cn/d13ff831ee2e4419a38d73f72f4572e6.png" alt="在这里插入图片描述"><br>编码这里选择 ANSI，要不然会显示乱码。<br><img src="https://img-blog.csdnimg.cn/6a55de60cf81473d89c8cbf3b2a53c25.png" alt="在这里插入图片描述"><br>然后将文件的后缀名改为 <code>.bat</code>，选择是即可。<img src="https://img-blog.csdnimg.cn/ed3fd2bc6d0a47daa5dc99a73b7b8bd7.png" alt="在这里插入图片描述"><br>更改好之后如下图<br><img src="https://img-blog.csdnimg.cn/4e61a4cedb1443878b6afabad784681c.png" alt="在这里插入图片描述"></p>
+<p>然后双击执行，然后粘贴刚才的jdk安装路径，回车即可，等待程序执行完成。</p>
+<p><img src="https://img-blog.csdnimg.cn/6bd6573e803e46f49fa908fd70731c19.png" alt="在这里插入图片描述"><br>执行完成之后如下图，如果执行出现错误了，那就关闭，右键选择以管理员身份运行即再次尝试。<br><img src="https://img-blog.csdnimg.cn/606b62252efa4935b54bb33b9e42bae9.png" alt="在这里插入图片描述"><br>到这里jdk的安装与配置就已经完成了，我们使用·<code>win + R </code>快捷键打开cmd，输入<code>java -version</code>来检测是否安装成功。<br>出现版本号即代表jdk安装成功!<br><img src="https://img-blog.csdnimg.cn/08f1aafcba61436192292460872c31cf.png" alt="在这里插入图片描述"></p>
 
         </div>
 
@@ -225,11 +235,11 @@
             <div class="post-copyright-info">
                 <div class="article-copyright-info-container">
     <ul>
-        <li>Post title：2021-03-29周总结</li>
+        <li>Post title：测试文章</li>
         <li>Post author：zal</li>
-        <li>Create time：2022-06-29 16:00:28</li>
+        <li>Create time：2022-09-09 14:29:52</li>
         <li>
-            Post link：https://xiaoaozz.github.io/2022/06/29/21.03.29周总结/
+            Post link：https://xiaoaozz.github.io/2022/09/09/jdk-8u301-windows-x64的安装与配置/
         </li>
         <li>
             Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
@@ -244,7 +254,11 @@
             <ul class="post-tags-box">
                 
                     <li class="tag-item">
-                        <a href="/tags/%E6%88%91%E7%9A%84%E6%80%BB%E7%BB%93/">#我的总结</a>&nbsp;
+                        <a href="/tags/jdk/">#jdk</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">#环境配置</a>&nbsp;
                     </li>
                 
             </ul>
@@ -253,21 +267,21 @@
         
             <div class="article-nav">
                 
-                    <div class="article-prev">
-                        <a class="prev"
-                           rel="prev"
-                           href="/2022/09/09/jdk-8u301-windows-x64%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/"
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2022/06/29/21.03.29%E5%91%A8%E6%80%BB%E7%BB%93/"
                         >
-                            <span class="left arrow-icon flex-center">
-                              <i class="fas fa-chevron-left"></i>
-                            </span>
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">测试文章</span>
-                                <span class="post-nav-item">Prev posts</span>
+                                <span class="post-nav-title-item">2021-03-29周总结</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
                             </span>
                         </a>
                     </div>
-                
                 
             </div>
         
@@ -408,7 +422,7 @@
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%91%A8%E6%80%BB%E7%BB%93"><span class="nav-number">1.</span> <span class="nav-text">周总结</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E6%9C%AC%E5%91%A8%E6%84%9F%E6%82%9F"><span class="nav-number">1.1.</span> <span class="nav-text">1.本周感悟</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%B0%8F%E7%BB%84%E5%9B%A2%E5%BB%BA"><span class="nav-number">1.2.</span> <span class="nav-text">2.小组团建</span></a></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1%E3%80%81%E4%B8%8B%E8%BD%BDjdk"><span class="nav-number">1.</span> <span class="nav-text">1、下载jdk</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2%E3%80%81%E5%AE%89%E8%A3%85"><span class="nav-number">2.</span> <span class="nav-text">2、安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3%E3%80%81%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="nav-number">3.</span> <span class="nav-text">3、配置环境变量</span></a></li></ol>
     </div>
 </div>
         </aside>
