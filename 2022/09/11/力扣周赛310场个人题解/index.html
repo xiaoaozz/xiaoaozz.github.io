@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="zal">
+    
+    <title>
+        
+            力扣周赛310场个人题解 |
+        
+        zzal&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/xiaoao-avatar.png">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"zh-CN","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/xiaoao-avatar.png","favicon":"/images/xiaoao-avatar.png","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"请保持热爱，来奔赴下一场山和海！"},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":true}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.5"};
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+  </script>
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                zzal&#39;s Blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                分类
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                标签
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">分类</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">标签</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">力扣周赛310场个人题解</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/xiaoao-avatar.png">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">zal</span>
+                        
+                            <span class="author-label">Lv1</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2022-09-11 15:55:49</span>
+        <span class="mobile">2022-09-11 15:55</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E7%AE%97%E6%B3%95/">算法</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E5%8A%9B%E6%89%A3/">力扣</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E9%A2%98%E8%A7%A3/">题解</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>今天参加了力扣的第310场周赛，也是感觉到了这周的题的一个难度，有些题有想法，但是实际上让我去写的时候还是不知道该怎么下手，这周也算是对算法练习的一个总结吧，确实，赛场时间段内没AC出来一道，但是当下午自己再做的时候，很容易就AC了两道，剩下两道也是有点难度，正在研究，那今天就先分享两道吧，加油！</p>
+<hr>
+<h1 id="6176-出现最频繁的偶数元素"><a href="#6176-出现最频繁的偶数元素" class="headerlink" title="6176. 出现最频繁的偶数元素"></a>6176. 出现最频繁的偶数元素</h1><p>给你一个整数数组 nums ，返回出现最频繁的偶数元素。</p>
+<p>如果存在多个满足条件的元素，只需要返回 最小 的一个。如果不存在这样的元素，返回 -1 。</p>
+<p>示例 1：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">4</span>,<span class="number">1</span>]</span><br><span class="line">输出：<span class="number">2</span></span><br><span class="line">解释：</span><br><span class="line">数组中的偶数元素为 <span class="number">0</span>、<span class="number">2</span> 和 <span class="number">4</span> ，在这些元素中，<span class="number">2</span> 和 <span class="number">4</span> 出现次数最多。</span><br><span class="line">返回最小的那个，即返回 <span class="number">2</span> 。</span><br></pre></td></tr></table></figure>
+
+<p>示例 2：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [<span class="number">4</span>,<span class="number">4</span>,<span class="number">4</span>,<span class="number">9</span>,<span class="number">2</span>,<span class="number">4</span>]</span><br><span class="line">输出：<span class="number">4</span></span><br><span class="line">解释：<span class="number">4</span> 是出现最频繁的偶数元素。</span><br></pre></td></tr></table></figure>
+
+<p>示例 3：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [<span class="number">29</span>,<span class="number">47</span>,<span class="number">21</span>,<span class="number">41</span>,<span class="number">13</span>,<span class="number">37</span>,<span class="number">25</span>,<span class="number">7</span>]</span><br><span class="line">输出：<span class="number">-1</span></span><br><span class="line">解释：不存在偶数元素。</span><br></pre></td></tr></table></figure>
+
+<p>提示：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> &lt;= nums.length &lt;= <span class="number">2000</span></span><br><span class="line"><span class="number">0</span> &lt;= nums[i] &lt;= <span class="number">105</span></span><br></pre></td></tr></table></figure>
+
+
+<p>来源：力扣（LeetCode）<br>链接：<a class="link"   target="_blank" rel="noopener" href="https://leetcode.cn/problems/most-frequent-even-element" >https://leetcode.cn/problems/most-frequent-even-element<i class="fas fa-external-link-alt"></i></a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
+<blockquote>
+<p>解法：排序 + HashMap<br>排序，使数组有序，就算出现相同次数的偶数，返回的也是前面的，只需要比较出现的次数，如果相同就返回最小的即可。<br>使用Map来记录偶数出现的次数，同时也可以过滤奇数。最后筛选只需要使用map中的元素即可。</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line">    public <span class="type">int</span> <span class="title function_">mostFrequentEven</span><span class="params">(<span class="type">int</span>[] nums)</span> &#123;</span><br><span class="line">        Arrays.sort(nums); <span class="comment">// 排序</span></span><br><span class="line">        Map&lt;Integer,Integer&gt; <span class="built_in">map</span> = new HashMap&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i : nums) &#123;</span><br><span class="line">            <span class="keyword">if</span>(i % <span class="number">2</span> == <span class="number">0</span>) &#123;  <span class="comment">// 过滤掉所有奇数</span></span><br><span class="line">                <span class="built_in">map</span>.put(i, <span class="built_in">map</span>.getOrDefault(i, <span class="number">0</span>) + <span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> res = <span class="number">-1</span>,max = Integer.MIN_VALUE;</span><br><span class="line">        <span class="keyword">for</span> (Integer key : <span class="built_in">map</span>.keySet()) &#123;</span><br><span class="line">            <span class="type">int</span> value = <span class="built_in">map</span>.get(key);</span><br><span class="line">            <span class="keyword">if</span> (value &gt; max) &#123; </span><br><span class="line">            	<span class="comment">// 如果出现次数大于前一个出现的次数</span></span><br><span class="line">            	<span class="comment">// 更新记录</span></span><br><span class="line">                max = value;</span><br><span class="line">                res = key;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (value == max) &#123;</span><br><span class="line">            	<span class="comment">// 如果出现次数相等，那么取最小的元素</span></span><br><span class="line">                res = Math.min(res,key);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="6177-子字符串的最优划分"><a href="#6177-子字符串的最优划分" class="headerlink" title="6177. 子字符串的最优划分"></a>6177. 子字符串的最优划分</h1><p>给你一个字符串 s ，请你将该字符串划分成一个或多个 子字符串 ，并满足每个子字符串中的字符都是 唯一 的。也就是说，在单个子字符串中，字母的出现次数都不超过 一次 。<br>满足题目要求的情况下，返回 最少 需要划分多少个子字符串。<br>注意，划分后，原字符串中的每个字符都应该恰好属于一个子字符串。<br>示例 1：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入：s = <span class="string">&quot;abacaba&quot;</span></span><br><span class="line">输出：<span class="number">4</span></span><br><span class="line">解释：</span><br><span class="line">两种可行的划分方法分别是 (<span class="string">&quot;a&quot;</span>,<span class="string">&quot;ba&quot;</span>,<span class="string">&quot;cab&quot;</span>,<span class="string">&quot;a&quot;</span>) 和 (<span class="string">&quot;ab&quot;</span>,<span class="string">&quot;a&quot;</span>,<span class="string">&quot;ca&quot;</span>,<span class="string">&quot;ba&quot;</span>) 。</span><br><span class="line">可以证明最少需要划分 <span class="number">4</span> 个子字符串。</span><br></pre></td></tr></table></figure>
+
+<p>示例 2：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入：s = <span class="string">&quot;ssssss&quot;</span></span><br><span class="line">输出：<span class="number">6</span></span><br><span class="line">解释：</span><br><span class="line">只存在一种可行的划分方法 (<span class="string">&quot;s&quot;</span>,<span class="string">&quot;s&quot;</span>,<span class="string">&quot;s&quot;</span>,<span class="string">&quot;s&quot;</span>,<span class="string">&quot;s&quot;</span>,<span class="string">&quot;s&quot;</span>) 。</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">提示：</span><br><span class="line"><span class="number">1</span> &lt;= s.length &lt;= <span class="number">105</span></span><br><span class="line">s 仅由小写英文字母组成</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>解法一：Set集合 + 一次遍历<br>我们可以使用Set集合来决定一个子串是否含有重复的字符。</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line">    public <span class="type">int</span> <span class="title function_">partitionString</span><span class="params">(String s)</span> &#123;</span><br><span class="line">        <span class="type">char</span>[] chars = s.toCharArray();</span><br><span class="line">        Set&lt;Character&gt; <span class="built_in">set</span> = new HashSet&lt;&gt;();</span><br><span class="line">        <span class="comment">// 这里初始化为1是因为，如果最后一次没有重复的字符的话</span></span><br><span class="line">        <span class="comment">// 不会执行if里面的逻辑</span></span><br><span class="line">        <span class="type">int</span> count = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; chars.length; i++) &#123;</span><br><span class="line">            <span class="comment">// 如果添加失败，说明重复</span></span><br><span class="line">            <span class="keyword">if</span>(!<span class="built_in">set</span>.add(chars[i])) &#123;</span><br><span class="line">                <span class="comment">// 清空set集合</span></span><br><span class="line">                <span class="built_in">set</span>.clear();</span><br><span class="line">                <span class="comment">// 将当前字符加入set集合</span></span><br><span class="line">                <span class="built_in">set</span>.add(chars[i]);</span><br><span class="line">                <span class="comment">// 次数 + 1</span></span><br><span class="line">                count++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> count;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>本文标题：力扣周赛310场个人题解</li>
+        <li>本文作者：zal</li>
+        <li>创建时间：2022-09-11 15:55:49</li>
+        <li>
+            本文链接：https://xiaoaozz.github.io/2022/09/11/力扣周赛310场个人题解/
+        </li>
+        <li>
+            版权声明：本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/%E5%8A%9B%E6%89%A3/">#力扣</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/%E9%A2%98%E8%A7%A3/">#题解</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2022/09/10/spring%E7%9A%84%E6%B3%A8%E8%A7%A3-Bean/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">spring的注解@Bean</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+            <div class="comment-container">
+                <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments">&nbsp;评论</i>
+    </div>
+    
+
+        
+            
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2020</span>
+              -
+            
+            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">zal</a>
+        </div>
+        
+            <script async  src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.5</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6176-%E5%87%BA%E7%8E%B0%E6%9C%80%E9%A2%91%E7%B9%81%E7%9A%84%E5%81%B6%E6%95%B0%E5%85%83%E7%B4%A0"><span class="nav-number">2.</span> <span class="nav-text">6176. 出现最频繁的偶数元素</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6177-%E5%AD%90%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E6%9C%80%E4%BC%98%E5%88%92%E5%88%86"><span class="nav-number">3.</span> <span class="nav-text">6177. 子字符串的最优划分</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+
+</body>
+</html>
