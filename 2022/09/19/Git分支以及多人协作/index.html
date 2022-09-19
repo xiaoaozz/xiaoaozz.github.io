@@ -9,7 +9,7 @@
     
     <title>
         
-            Git基础命令使用 |
+            Git分支以及多人协作 |
         
         zzal&#39;s Blog
     </title>
@@ -150,7 +150,7 @@
     <div class="article-content-container">
 
         <div class="article-title">
-            <span class="title-hover-animation">Git基础命令使用</span>
+            <span class="title-hover-animation">Git分支以及多人协作</span>
         </div>
 
         
@@ -169,8 +169,8 @@
                         <div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fas fa-edit"></i>&nbsp;
-        <span class="pc">2022-09-18 17:41:14</span>
-        <span class="mobile">2022-09-18 17:41</span>
+        <span class="pc">2022-09-19 22:05:58</span>
+        <span class="mobile">2022-09-19 22:05</span>
     </span>
     
         <span class="article-categories article-meta-item">
@@ -197,6 +197,10 @@
                         | <a href="/tags/%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/">版本控制</a>&nbsp;
                     </li>
                 
+                    <li>
+                        | <a href="/tags/%E5%A4%9A%E4%BA%BA%E5%8D%8F%E4%BD%9C/">多人协作</a>&nbsp;
+                    </li>
+                
             </ul>
         </span>
     
@@ -217,27 +221,45 @@
         
 
         <div class="article-content markdown-body">
-            <h1 id="创建版本库"><a href="#创建版本库" class="headerlink" title="创建版本库"></a>创建版本库</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init  <span class="comment">// 将当前目录变为Git可以管理的仓库</span></span><br></pre></td></tr></table></figure>
+            <h1 id="分支"><a href="#分支" class="headerlink" title="分支"></a>分支</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b dev  创建并切换到dev分支</span><br><span class="line">	git branch dev 创建dev分支</span><br><span class="line">	git checkout dev 切换到dev分支</span><br><span class="line">git <span class="keyword">switch</span> -c dev 创建并切换到dev分支</span><br><span class="line">	git <span class="keyword">switch</span> master 直接切换到master分支</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git add text.java <span class="comment">// 将text.java文件添加到仓库</span></span><br><span class="line">git commit -m <span class="string">&quot;提示信息&quot;</span>  <span class="comment">// 将文件提交到仓库</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git branch 查看当前分支</span><br><span class="line">git merge dev 将dev分支合并到master分支</span><br><span class="line">git branch -d dev 删除dev分支</span><br></pre></td></tr></table></figure>
 
 
-<h1 id="版本回退"><a href="#版本回退" class="headerlink" title="版本回退"></a>版本回退</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git status 查看当前仓库的状态</span><br><span class="line">git diff  查看当前修改内容</span><br></pre></td></tr></table></figure>
-<p><img src="https://img-blog.csdnimg.cn/6855be631b39415bb6c3ee110cadef35.png#pic_center" alt="在这里插入图片描述"><br>)]</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git log  查看历史提交记录</span><br><span class="line">	--pretty=oneline  查看简略的历史记录</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git reset --hard HEAD~  回退到上一个版本</span><br><span class="line">git reset --hard commit_id 回退到指定提交id的版本</span><br></pre></td></tr></table></figure>
+<h1 id="解决冲突"><a href="#解决冲突" class="headerlink" title="解决冲突"></a>解决冲突</h1><p><img src="https://img-blog.csdnimg.cn/4ddc08a2997340b1b1b444e5bf7c609d.png#pic_center" alt="在这里插入图片描述"></p>
+<h1 id="分支管理策略"><a href="#分支管理策略" class="headerlink" title="分支管理策略"></a>分支管理策略</h1><p>通常，合并分支时，如果可能，Git会用<code>Fast forward</code>模式，但这种模式下，删除分支后，会丢掉分支信息。</p>
+<p>如果要强制禁用<code>Fast forward</code>模式，Git就会在merge时生成一个新的commit，这样，从分支历史上就可以看出分支信息。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git merge --no-ff -m <span class="string">&quot;merge with no-ff&quot;</span> dev 禁用fast forward模式合并分支</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reflog 记录每次操作的命令</span><br></pre></td></tr></table></figure>
-<p><img src="https://img-blog.csdnimg.cn/3ed5842571234be4850ced83050d393e.png#pic_center" alt="在这里插入图片描述"></p>
-<h1 id="撤销修改"><a href="#撤销修改" class="headerlink" title="撤销修改"></a>撤销修改</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git checkout -- readme.txt 放弃readme.txt文件工作区的修改（未add或者commit）</span><br><span class="line">git reset HEAD readme.txt 把暂存区回退到工作区（已经add或者commit）</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git log --graph --pretty=oneline --abbrev-commit  以图的方式查看分支合并历史</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://img-blog.csdnimg.cn/773e9a2bb59d4220957130d8a2ff8340.png#pic_center" alt="在这里插入图片描述"></p>
-<h1 id="删除文件"><a href="#删除文件" class="headerlink" title="删除文件"></a>删除文件</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git rm readme.txt 删除文件</span><br><span class="line">	小提示：先手动删除文件，然后使用git rm &lt;file&gt;和git add&lt;file&gt;效果是一样的。</span><br></pre></td></tr></table></figure>
+<ul>
+<li>首先，master分支应该是非常稳定的，也就是仅仅用来发布新的版本，平时不能在上面操作。</li>
+<li>开发应该都在dev上，dev分支是不稳定的</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/033af3da898e485f9df507a4c51744c8.png#pic_center" alt="在这里插入图片描述"></p>
+<h1 id="Bug分支"><a href="#Bug分支" class="headerlink" title="Bug分支"></a>Bug分支</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git stash 保存当前改动	</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">误删除文件</span><br><span class="line">git checkout -- readme.txt</span><br><span class="line">	注意：从来没有被添加到版本库就被删除的文件，是无法恢复的！</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git stash list 查看保存改动列表</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://img-blog.csdnimg.cn/7a3c7b9b514e4632bbe0f5361de7adf6.png#pic_center" alt="在这里插入图片描述"></p>
+<ul>
+<li>恢复后不删除之前的改动保存</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git stash apply 恢复改动，但不删除保存</span><br><span class="line">	git stash drop 删除之前保存的改动场景</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>恢复的同时删除之前的改动保存</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git stash pop 恢复改动的同时把保存的改动场景删除</span><br></pre></td></tr></table></figure>
+
+<h1 id="Feature分支"><a href="#Feature分支" class="headerlink" title="Feature分支"></a>Feature分支</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch -D feature 强行删除没有被合并的feature分支</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/4571588c818145658526cc57f9594d7a.png#pic_center" alt="在这里插入图片描述"></p>
+<h1 id="多人协作"><a href="#多人协作" class="headerlink" title="多人协作"></a>多人协作</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git remote 查看远程仓库的信息</span><br><span class="line">git remote -v 查看远程仓库详细信息</span><br></pre></td></tr></table></figure>
+
+<h2 id="推送分支"><a href="#推送分支" class="headerlink" title="推送分支"></a>推送分支</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push origin master 推送master分支到远程仓库对应的远程分支上</span><br></pre></td></tr></table></figure>
+
+<h2 id="抓取分支"><a href="#抓取分支" class="headerlink" title="抓取分支"></a>抓取分支</h2><p><img src="https://img-blog.csdnimg.cn/1185d4a69b4e474aae3ea2da240116b5.png#pic_center" alt="在这里插入图片描述"></p>
 
         </div>
 
@@ -245,11 +267,11 @@
             <div class="post-copyright-info">
                 <div class="article-copyright-info-container">
     <ul>
-        <li>本文标题：Git基础命令使用</li>
+        <li>本文标题：Git分支以及多人协作</li>
         <li>本文作者：zal</li>
-        <li>创建时间：2022-09-18 17:41:14</li>
+        <li>创建时间：2022-09-19 22:05:58</li>
         <li>
-            本文链接：https://xiaoaozz.github.io/2022/09/18/Git基础命令使用/
+            本文链接：https://xiaoaozz.github.io/2022/09/19/Git分支以及多人协作/
         </li>
         <li>
             版权声明：本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -271,35 +293,24 @@
                         <a href="/tags/%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/">#版本控制</a>&nbsp;
                     </li>
                 
+                    <li class="tag-item">
+                        <a href="/tags/%E5%A4%9A%E4%BA%BA%E5%8D%8F%E4%BD%9C/">#多人协作</a>&nbsp;
+                    </li>
+                
             </ul>
         
 
         
             <div class="article-nav">
                 
-                    <div class="article-prev">
-                        <a class="prev"
-                           rel="prev"
-                           href="/2022/09/19/Git%E5%88%86%E6%94%AF%E4%BB%A5%E5%8F%8A%E5%A4%9A%E4%BA%BA%E5%8D%8F%E4%BD%9C/"
-                        >
-                            <span class="left arrow-icon flex-center">
-                              <i class="fas fa-chevron-left"></i>
-                            </span>
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">Git分支以及多人协作</span>
-                                <span class="post-nav-item">上一篇</span>
-                            </span>
-                        </a>
-                    </div>
-                
                 
                     <div class="article-next">
                         <a class="next"
                            rel="next"
-                           href="/2022/09/14/%E7%94%B5%E8%84%91%E7%89%88QQ%E6%9B%B4%E6%8D%A2%E9%80%8F%E6%98%8E%E8%83%8C%E6%99%AF%E6%95%99%E7%A8%8B%EF%BC%88%E7%9C%9F%E7%9A%84%E9%80%8F%E6%98%8E%EF%BC%89/"
+                           href="/2022/09/18/Git%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4%E4%BD%BF%E7%94%A8/"
                         >
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">电脑版QQ更换透明背景教程（真的透明）</span>
+                                <span class="post-nav-title-item">Git基础命令使用</span>
                                 <span class="post-nav-item">下一篇</span>
                             </span>
                             <span class="right arrow-icon flex-center">
@@ -447,7 +458,7 @@
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E7%89%88%E6%9C%AC%E5%BA%93"><span class="nav-number">1.</span> <span class="nav-text">创建版本库</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%89%88%E6%9C%AC%E5%9B%9E%E9%80%80"><span class="nav-number">2.</span> <span class="nav-text">版本回退</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%92%A4%E9%94%80%E4%BF%AE%E6%94%B9"><span class="nav-number">3.</span> <span class="nav-text">撤销修改</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6"><span class="nav-number">4.</span> <span class="nav-text">删除文件</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%86%E6%94%AF"><span class="nav-number">1.</span> <span class="nav-text">分支</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E5%86%B2%E7%AA%81"><span class="nav-number">2.</span> <span class="nav-text">解决冲突</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86%E7%AD%96%E7%95%A5"><span class="nav-number">3.</span> <span class="nav-text">分支管理策略</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Bug%E5%88%86%E6%94%AF"><span class="nav-number">4.</span> <span class="nav-text">Bug分支</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Feature%E5%88%86%E6%94%AF"><span class="nav-number">5.</span> <span class="nav-text">Feature分支</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A4%9A%E4%BA%BA%E5%8D%8F%E4%BD%9C"><span class="nav-number">6.</span> <span class="nav-text">多人协作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8E%A8%E9%80%81%E5%88%86%E6%94%AF"><span class="nav-number">6.1.</span> <span class="nav-text">推送分支</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8A%93%E5%8F%96%E5%88%86%E6%94%AF"><span class="nav-number">6.2.</span> <span class="nav-text">抓取分支</span></a></li></ol></li></ol>
     </div>
 </div>
         </aside>
