@@ -9,7 +9,7 @@
     
     <title>
         
-            初识MQ |
+            有趣的位操作 |
         
         zzal&#39;s Blog
     </title>
@@ -150,7 +150,7 @@
     <div class="article-content-container">
 
         <div class="article-title">
-            <span class="title-hover-animation">初识MQ</span>
+            <span class="title-hover-animation">有趣的位操作</span>
         </div>
 
         
@@ -169,8 +169,8 @@
                         <div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fas fa-edit"></i>&nbsp;
-        <span class="pc">2022-09-24 22:02:53</span>
-        <span class="mobile">2022-09-24 22:02</span>
+        <span class="pc">2022-09-25 21:24:52</span>
+        <span class="mobile">2022-09-25 21:24</span>
     </span>
     
         <span class="article-categories article-meta-item">
@@ -178,7 +178,7 @@
             <ul>
                 
                     <li>
-                        <a href="/categories/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97MQ/">消息队列MQ</a>&nbsp;
+                        <a href="/categories/%E4%BD%8D%E6%93%8D%E4%BD%9C/">位操作</a>&nbsp;
                     </li>
                 
             </ul>
@@ -190,11 +190,15 @@
             <ul>
                 
                     <li>
-                        <a href="/tags/MQ%E6%A6%82%E8%BF%B0/">MQ概述</a>&nbsp;
+                        <a href="/tags/%E4%BA%8C%E8%BF%9B%E5%88%B6/">二进制</a>&nbsp;
                     </li>
                 
                     <li>
-                        | <a href="/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/">消息队列</a>&nbsp;
+                        | <a href="/tags/%E4%BD%8D%E6%93%8D%E4%BD%9C/">位操作</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E7%AE%97%E6%B3%95/">算法</a>&nbsp;
                     </li>
                 
             </ul>
@@ -217,51 +221,54 @@
         
 
         <div class="article-content markdown-body">
-            <h2 id="1、同步通讯和异步通讯"><a href="#1、同步通讯和异步通讯" class="headerlink" title="1、同步通讯和异步通讯"></a>1、同步通讯和异步通讯</h2><h3 id="（1）同步调用"><a href="#（1）同步调用" class="headerlink" title="（1）同步调用"></a>（1）同步调用</h3><p>同步通讯相当于打电话，两者通讯之间，不能有第三个人加入。</p>
-<p>异步通讯就相当于发微信，能多线操作，但时效性不如同步通讯。</p>
-<p>微服务之间基于Feign的调用就属于同步方式，存在一些的问题。</p>
-<p><img src="https://img-blog.csdnimg.cn/81769b6790b241eab99e160b52a9e251.png#pic_center" alt="在这里插入图片描述"></p>
-<h3 id="（2）总结"><a href="#（2）总结" class="headerlink" title="（2）总结"></a>（2）总结</h3><p>同步调用的优点：<br>*	时效性较强，可以立即得到结果</p>
-<p>同步调用的问题：<br>*	耦合度高<br>*	性能和吞吐能力下降<br>*	有额外的资源消耗<br>*	有级联失败问题</p>
-<h3 id="（3）异步调用"><a href="#（3）异步调用" class="headerlink" title="（3）异步调用"></a>（3）异步调用</h3><p>异步调用常见的实现就是<strong>事件驱动模式</strong>。</p>
-<p><img src="https://img-blog.csdnimg.cn/a36f304c52bb45b79efc13b0333acaf1.png#pic_center" alt="在这里插入图片描述"></p>
-<h2 id="2、什么是MQ？"><a href="#2、什么是MQ？" class="headerlink" title="2、什么是MQ？"></a>2、什么是MQ？</h2><p>MQ（MessageQueue），中文是消息队列，字面来看就是存放消息的队列。也就是事件驱动架构中的Broker。</p>
-<p><img src="https://img-blog.csdnimg.cn/b205234b9fcd4f318fa3983c5483bb74.png#pic_center" alt="在这里插入图片描述"></p>
-<h2 id="3、RabbitMQ概述"><a href="#3、RabbitMQ概述" class="headerlink" title="3、RabbitMQ概述"></a>3、RabbitMQ概述</h2><p>RabbitMQ是基于Erlang语言开发的开源消息通信中间件。</p>
-<h3 id="（1）RabbitMQ安装"><a href="#（1）RabbitMQ安装" class="headerlink" title="（1）RabbitMQ安装"></a>（1）RabbitMQ安装</h3><p>下载镜像：</p>
-<p>方式一：在线拉取</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull rabbitmq:3-management</span><br></pre></td></tr></table></figure>
+            <hr>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>位操作是我们在某一部分算法题中使用较多的知识点，由于位操作比较简单，且效率较高，所以今天博主来分享一些有趣的位操作以及一些在算法题中的应用。</p>
+<hr>
+<h1 id="位操作基本知识点"><a href="#位操作基本知识点" class="headerlink" title="位操作基本知识点"></a>位操作基本知识点</h1><p>我们在算法题中常用的位操作一般有三种，即<strong>与</strong>、<strong>或</strong>、<strong>异或</strong>这三种，所以我们先介绍一下基本的用法。</p>
+<h2 id="与运算（-amp-）"><a href="#与运算（-amp-）" class="headerlink" title="与运算（&amp;）"></a>与运算（&amp;）</h2><p>参加运算的两个数据，按二进制位进行“与”运算。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">运算规则：0&amp;0=0;   0&amp;1=0;    1&amp;0=0;     1&amp;1=1;</span><br></pre></td></tr></table></figure>
 
-<p>方式二：从本地加载</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker load -i mq.tar</span><br></pre></td></tr></table></figure>
 
-<p>执行下面的命令来运行MQ容器：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">docker run \</span><br><span class="line"> -e RABBITMQ_DEFAULT_USER=itcast \</span><br><span class="line"> -e RABBITMQ_DEFAULT_PASS=123321 \</span><br><span class="line"> --name mq \</span><br><span class="line"> --hostname mq1 \</span><br><span class="line"> -p 15672:15672 \</span><br><span class="line"> -p 5672:5672 \</span><br><span class="line"> -d \</span><br><span class="line"> rabbitmq:3-management</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>即：两位同时为“1”，结果才为“1”，否则为0</p>
+</blockquote>
+<p>例如：3&amp;5  即 0000 0011 &amp; 0000 0101 &#x3D; 0000 0001   因此，3&amp;5的值为1。</p>
+<p>例如：9&amp;5  即 0000 1001 (9的二进制补码)&amp;00000101 (5的二进制补码) &#x3D;00000001 (1的二进制补码)可见9&amp;5&#x3D;1。</p>
+<h2 id="或运算（-）"><a href="#或运算（-）" class="headerlink" title="或运算（|）"></a>或运算（|）</h2><p>参加运算的两个对象，按二进制位进行“或”运算。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">运算规则：0|0=0；   0|1=1；   1|0=1；    1|1=1；</span><br></pre></td></tr></table></figure>
 
-<p>运行成功以后访问<code>192.168.120.132:15672</code>，即可看到RabbitMQ的页面。</p>
-<p><img src="https://img-blog.csdnimg.cn/136273f5f5a3406e919a98c01cd7e91b.png#pic_center" alt="在这里插入图片描述"></p>
-<p>但是我们尝试使用itcast账号登录的时候发现控制台报错401，说明我们是没有权限的，所以我们要去docker容器中添加权限。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it mq bash</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>即 ：参加运算的两个对象只要有一个为1，其值为1</p>
+</blockquote>
+<p>例如:  3|5 可写算式如下： 0000 0011 | 0000 0101 &#x3D; 0000 0111(十进制为7)因此，3|5的值为7。　</p>
+<p>例如：9|5 可写算式如下： 00001001 | 00000101 &#x3D; 00001101 (十进制为13)因此，9|5的值为13。</p>
+<h2 id="异或运算（-）"><a href="#异或运算（-）" class="headerlink" title="异或运算（^）"></a>异或运算（^）</h2><p>参加运算的两个数据，按二进制位进行“异或”运算。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">运算规则：0^0=0；   0^1=1；   1^0=1；   1^1=0；</span><br></pre></td></tr></table></figure>
 
-<p>执行<code>rabbitmqctl add_user root 123</code> 添加用户，用户名为root,密码为123</p>
-<p>执行<code>abbitmqctl set_permissions -p / root &quot;.*&quot; &quot;.*&quot; &quot;.*&quot;</code> 赋予root用户所有权限</p>
-<p>执行<code>rabbitmqctl set_user_tags root administrator</code>赋予root用户administrator角色</p>
-<p><img src="https://img-blog.csdnimg.cn/b35905b8ad914df78907000522a01102.png#pic_center" alt="在这里插入图片描述"></p>
-<p>添加成功之后我们使用新添加的用户进行登录。</p>
-<p><img src="https://img-blog.csdnimg.cn/f84b0e551c5c42298e9d7e5456cc47be.png#pic_center" alt="在这里插入图片描述"></p>
-<h3 id="（2）Rabbit的架构"><a href="#（2）Rabbit的架构" class="headerlink" title="（2）Rabbit的架构"></a>（2）Rabbit的架构</h3><p><img src="https://img-blog.csdnimg.cn/abb879b025f04a73a3a8e14b110554af.png#pic_center" alt="在这里插入图片描述"></p>
+<blockquote>
+<p>即：参加运算的两个对象，如果两个相应位为“异”（值不同），则该位结果为1，否则为0</p>
+</blockquote>
+<p>例如：9^5可写成算式如下： 00001001 ^ 00000101 &#x3D; 00001100 (十进制为12)因此，9^5的值为12。</p>
+<h1 id="几个有趣的位操作"><a href="#几个有趣的位操作" class="headerlink" title="几个有趣的位操作"></a>几个有趣的位操作</h1><h2 id="或操作转字母小写"><a href="#或操作转字母小写" class="headerlink" title="或操作转字母小写"></a>或操作转字母小写</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(<span class="string">&#x27;a&#x27;</span> | <span class="string">&#x27; &#x27;</span>) = <span class="string">&#x27;a&#x27;</span></span><br><span class="line">(<span class="string">&#x27;A&#x27;</span> | <span class="string">&#x27; &#x27;</span>) = <span class="string">&#x27;a&#x27;</span></span><br></pre></td></tr></table></figure>
 
+<h2 id="与操作转字母大写"><a href="#与操作转字母大写" class="headerlink" title="与操作转字母大写"></a>与操作转字母大写</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(<span class="string">&#x27;b&#x27;</span> &amp; <span class="string">&#x27;_&#x27;</span>) = <span class="string">&#x27;B&#x27;</span></span><br><span class="line">(<span class="string">&#x27;B&#x27;</span> &amp; <span class="string">&#x27;_&#x27;</span>) = <span class="string">&#x27;B&#x27;</span></span><br></pre></td></tr></table></figure>
+<h2 id="异或操作与空格进行字母大小写转换"><a href="#异或操作与空格进行字母大小写转换" class="headerlink" title="异或操作与空格进行字母大小写转换"></a>异或操作与空格进行字母大小写转换</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(<span class="string">&#x27;d&#x27;</span> ^ <span class="string">&#x27; &#x27;</span>) = <span class="string">&#x27;D&#x27;</span></span><br><span class="line">(<span class="string">&#x27;D&#x27;</span> ^ <span class="string">&#x27; &#x27;</span>) = <span class="string">&#x27;d&#x27;</span></span><br></pre></td></tr></table></figure>
+<h2 id="判断两个数是否异号"><a href="#判断两个数是否异号" class="headerlink" title="判断两个数是否异号"></a>判断两个数是否异号</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">int x = -3, y = 2;</span><br><span class="line">boolean f = ((x ^ y) &lt; 0); // <span class="literal">true</span></span><br><span class="line"></span><br><span class="line">int x = 3, y = 2;</span><br><span class="line">boolean f = ((x ^ y) &lt; 0); // <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+<h2 id="不用临时变量交换两个数"><a href="#不用临时变量交换两个数" class="headerlink" title="不用临时变量交换两个数"></a>不用临时变量交换两个数</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">int a = 1, b = 2;</span><br><span class="line">a ^= b;</span><br><span class="line">b ^= a;</span><br><span class="line">a ^= b;</span><br><span class="line">// 现在 a = 2, b = 1</span><br></pre></td></tr></table></figure>
+
+<h2 id="消除数字n二进制中的最后一个1"><a href="#消除数字n二进制中的最后一个1" class="headerlink" title="消除数字n二进制中的最后一个1"></a>消除数字n二进制中的最后一个1</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">n &amp; (n - 1 )</span><br></pre></td></tr></table></figure>
+<h2 id="一个数与本身异或的结果为0"><a href="#一个数与本身异或的结果为0" class="headerlink" title="一个数与本身异或的结果为0"></a>一个数与本身异或的结果为0</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a ^ a = 0</span><br></pre></td></tr></table></figure>
         </div>
 
         
             <div class="post-copyright-info">
                 <div class="article-copyright-info-container">
     <ul>
-        <li>本文标题：初识MQ</li>
+        <li>本文标题：有趣的位操作</li>
         <li>本文作者：zal</li>
-        <li>创建时间：2022-09-24 22:02:53</li>
+        <li>创建时间：2022-09-25 21:24:52</li>
         <li>
-            本文链接：https://xiaoaozz.github.io/2022/09/24/初识MQ/
+            本文链接：https://xiaoaozz.github.io/2022/09/25/有趣的位操作/
         </li>
         <li>
             版权声明：本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -276,11 +283,15 @@
             <ul class="post-tags-box">
                 
                     <li class="tag-item">
-                        <a href="/tags/MQ%E6%A6%82%E8%BF%B0/">#MQ概述</a>&nbsp;
+                        <a href="/tags/%E4%BA%8C%E8%BF%9B%E5%88%B6/">#二进制</a>&nbsp;
                     </li>
                 
                     <li class="tag-item">
-                        <a href="/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/">#消息队列</a>&nbsp;
+                        <a href="/tags/%E4%BD%8D%E6%93%8D%E4%BD%9C/">#位操作</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/%E7%AE%97%E6%B3%95/">#算法</a>&nbsp;
                     </li>
                 
             </ul>
@@ -289,29 +300,14 @@
         
             <div class="article-nav">
                 
-                    <div class="article-prev">
-                        <a class="prev"
-                           rel="prev"
-                           href="/2022/09/25/%E6%9C%89%E8%B6%A3%E7%9A%84%E4%BD%8D%E6%93%8D%E4%BD%9C/"
-                        >
-                            <span class="left arrow-icon flex-center">
-                              <i class="fas fa-chevron-left"></i>
-                            </span>
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">有趣的位操作</span>
-                                <span class="post-nav-item">上一篇</span>
-                            </span>
-                        </a>
-                    </div>
-                
                 
                     <div class="article-next">
                         <a class="next"
                            rel="next"
-                           href="/2022/09/19/Git%E5%88%86%E6%94%AF%E4%BB%A5%E5%8F%8A%E5%A4%9A%E4%BA%BA%E5%8D%8F%E4%BD%9C/"
+                           href="/2022/09/24/%E5%88%9D%E8%AF%86MQ/"
                         >
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">Git分支以及多人协作</span>
+                                <span class="post-nav-title-item">初识MQ</span>
                                 <span class="post-nav-item">下一篇</span>
                             </span>
                             <span class="right arrow-icon flex-center">
@@ -459,7 +455,7 @@
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1%E3%80%81%E5%90%8C%E6%AD%A5%E9%80%9A%E8%AE%AF%E5%92%8C%E5%BC%82%E6%AD%A5%E9%80%9A%E8%AE%AF"><span class="nav-number">1.</span> <span class="nav-text">1、同步通讯和异步通讯</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%881%EF%BC%89%E5%90%8C%E6%AD%A5%E8%B0%83%E7%94%A8"><span class="nav-number">1.1.</span> <span class="nav-text">（1）同步调用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%882%EF%BC%89%E6%80%BB%E7%BB%93"><span class="nav-number">1.2.</span> <span class="nav-text">（2）总结</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%883%EF%BC%89%E5%BC%82%E6%AD%A5%E8%B0%83%E7%94%A8"><span class="nav-number">1.3.</span> <span class="nav-text">（3）异步调用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2%E3%80%81%E4%BB%80%E4%B9%88%E6%98%AFMQ%EF%BC%9F"><span class="nav-number">2.</span> <span class="nav-text">2、什么是MQ？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3%E3%80%81RabbitMQ%E6%A6%82%E8%BF%B0"><span class="nav-number">3.</span> <span class="nav-text">3、RabbitMQ概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%881%EF%BC%89RabbitMQ%E5%AE%89%E8%A3%85"><span class="nav-number">3.1.</span> <span class="nav-text">（1）RabbitMQ安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%882%EF%BC%89Rabbit%E7%9A%84%E6%9E%B6%E6%9E%84"><span class="nav-number">3.2.</span> <span class="nav-text">（2）Rabbit的架构</span></a></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%8D%E6%93%8D%E4%BD%9C%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86%E7%82%B9"><span class="nav-number">2.</span> <span class="nav-text">位操作基本知识点</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8E%E8%BF%90%E7%AE%97%EF%BC%88-amp-%EF%BC%89"><span class="nav-number">2.1.</span> <span class="nav-text">与运算（&amp;）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%88%96%E8%BF%90%E7%AE%97%EF%BC%88-%EF%BC%89"><span class="nav-number">2.2.</span> <span class="nav-text">或运算（|）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%82%E6%88%96%E8%BF%90%E7%AE%97%EF%BC%88-%EF%BC%89"><span class="nav-number">2.3.</span> <span class="nav-text">异或运算（^）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%87%A0%E4%B8%AA%E6%9C%89%E8%B6%A3%E7%9A%84%E4%BD%8D%E6%93%8D%E4%BD%9C"><span class="nav-number">3.</span> <span class="nav-text">几个有趣的位操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%88%96%E6%93%8D%E4%BD%9C%E8%BD%AC%E5%AD%97%E6%AF%8D%E5%B0%8F%E5%86%99"><span class="nav-number">3.1.</span> <span class="nav-text">或操作转字母小写</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8E%E6%93%8D%E4%BD%9C%E8%BD%AC%E5%AD%97%E6%AF%8D%E5%A4%A7%E5%86%99"><span class="nav-number">3.2.</span> <span class="nav-text">与操作转字母大写</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%82%E6%88%96%E6%93%8D%E4%BD%9C%E4%B8%8E%E7%A9%BA%E6%A0%BC%E8%BF%9B%E8%A1%8C%E5%AD%97%E6%AF%8D%E5%A4%A7%E5%B0%8F%E5%86%99%E8%BD%AC%E6%8D%A2"><span class="nav-number">3.3.</span> <span class="nav-text">异或操作与空格进行字母大小写转换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%A4%E6%96%AD%E4%B8%A4%E4%B8%AA%E6%95%B0%E6%98%AF%E5%90%A6%E5%BC%82%E5%8F%B7"><span class="nav-number">3.4.</span> <span class="nav-text">判断两个数是否异号</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8D%E7%94%A8%E4%B8%B4%E6%97%B6%E5%8F%98%E9%87%8F%E4%BA%A4%E6%8D%A2%E4%B8%A4%E4%B8%AA%E6%95%B0"><span class="nav-number">3.5.</span> <span class="nav-text">不用临时变量交换两个数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B6%88%E9%99%A4%E6%95%B0%E5%AD%97n%E4%BA%8C%E8%BF%9B%E5%88%B6%E4%B8%AD%E7%9A%84%E6%9C%80%E5%90%8E%E4%B8%80%E4%B8%AA1"><span class="nav-number">3.6.</span> <span class="nav-text">消除数字n二进制中的最后一个1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E4%B8%AA%E6%95%B0%E4%B8%8E%E6%9C%AC%E8%BA%AB%E5%BC%82%E6%88%96%E7%9A%84%E7%BB%93%E6%9E%9C%E4%B8%BA0"><span class="nav-number">3.7.</span> <span class="nav-text">一个数与本身异或的结果为0</span></a></li></ol></li></ol>
     </div>
 </div>
         </aside>
