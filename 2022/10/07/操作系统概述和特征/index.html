@@ -9,7 +9,7 @@
     
     <title>
         
-            jdk-8u301-windows-x64的安装与配置 |
+            操作系统概述和特征 |
         
         zzal&#39;s Blog
     </title>
@@ -150,7 +150,7 @@
     <div class="article-content-container">
 
         <div class="article-title">
-            <span class="title-hover-animation">jdk-8u301-windows-x64的安装与配置</span>
+            <span class="title-hover-animation">操作系统概述和特征</span>
         </div>
 
         
@@ -169,8 +169,8 @@
                         <div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fas fa-edit"></i>&nbsp;
-        <span class="pc">2022-09-09 14:29:52</span>
-        <span class="mobile">2022-09-09 14:29</span>
+        <span class="pc">2022-10-07 22:04:33</span>
+        <span class="mobile">2022-10-07 22:04</span>
     </span>
     
         <span class="article-categories article-meta-item">
@@ -178,7 +178,7 @@
             <ul>
                 
                     <li>
-                        <a href="/categories/web/">web</a>&nbsp;
+                        <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>&nbsp;
                     </li>
                 
             </ul>
@@ -190,11 +190,15 @@
             <ul>
                 
                     <li>
-                        <a href="/tags/jdk/">jdk</a>&nbsp;
+                        <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>&nbsp;
                     </li>
                 
                     <li>
-                        | <a href="/tags/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">环境配置</a>&nbsp;
+                        | <a href="/tags/%E6%A6%82%E8%BF%B0/">概述</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E5%8F%91%E5%B1%95%E3%80%81%E7%89%B9%E5%BE%81/">发展、特征</a>&nbsp;
                     </li>
                 
             </ul>
@@ -217,17 +221,95 @@
         
 
         <div class="article-content markdown-body">
-            <p>@<a href="jdk-8u301-windows-x64%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE">TOC</a></p>
-<h1 id="1、下载jdk"><a href="#1、下载jdk" class="headerlink" title="1、下载jdk"></a>1、下载jdk</h1><p>这里使用的jdk-8u301-windows-x64版本，下载可以去官网。</p>
-<h1 id="2、安装"><a href="#2、安装" class="headerlink" title="2、安装"></a>2、安装</h1><p>因为jdk8版本的安装需要分别安装jdk和jre，所以这里我们提前创建好目录，我们先创建一个<code>java</code>文件夹，里面再新建两个文件夹，分别是<code>jdk</code>和<code>jre</code>，如图<br><img src="https://img-blog.csdnimg.cn/86ca647edb374803a950654ed51f4059.png" alt="在这里插入图片描述"><br>然后我们就开始进行安装，双击<code>jdk-8u301-windows-x64.exe</code>。<br><img src="https://img-blog.csdnimg.cn/742af16f88b0490e909eec2c1cea711e.png" alt="在这里插入图片描述"><br>我们必须要保证电脑上之前没有安装过jdk或者是完全卸载了jdk，如果有，可以通过控制面板进行卸载。<br>这里我们点击下一步。<br><img src="https://img-blog.csdnimg.cn/80b741723e5d447aa27c306db675ecff.png" alt="在这里插入图片描述"><br>然后我们更改默认的安装目录，更改为我们创建的<code>java</code>文件夹中的<code>jdk</code>文件夹。<br><img src="https://img-blog.csdnimg.cn/57d9658297a4433ca03e14b9a05460a3.png" alt="在这里插入图片描述"><br>然后点击下一步，等待安装。<br><img src="https://img-blog.csdnimg.cn/b9d79079564c42b48fba8fb0073c8b2f.png" alt="在这里插入图片描述"><br>jdk安装好之后，会自动弹出一个弹窗，这就是安装jre的程序，如图，更改默认的安装路径之后，点击下一步。<br><img src="https://img-blog.csdnimg.cn/dbebfbec16224c9082da8639102465a0.png" alt="在这里插入图片描述"><br>等待安装完成即可。<br><img src="https://img-blog.csdnimg.cn/4208ea9609f448dd9cffd80b00d25201.png" alt="在这里插入图片描述"><br>如图，安装完成!<br><img src="https://img-blog.csdnimg.cn/61ac5537276c400ca3f75ffcfd664623.png" alt="在这里插入图片描述"></p>
-<h1 id="3、配置环境变量"><a href="#3、配置环境变量" class="headerlink" title="3、配置环境变量"></a>3、配置环境变量</h1><p>jdk和jre安装完成之后，我们就需要来配置环境变量了，不过这里我们使用更加简便的方法进行配置。</p>
-<p>我们进入jdk的安装目录，如图<br><img src="https://img-blog.csdnimg.cn/9a68811f4b174b909462ff6a719ef913.png" alt="在这里插入图片描述"><br>我这里是<code>C:\App\java\jdk</code>，记录一下该路径，一会配置环境需要用到。</p>
-<p>然后我们在桌面上新建一个文本文档，将以下内容复制粘贴进去。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">%<span class="number">1</span> mshta vbscript:CreateObject(<span class="string">&quot;Shell.Application&quot;</span>).ShellExecute(<span class="string">&quot;cmd.exe&quot;</span>,<span class="string">&quot;/c %~s0 ::&quot;</span>,<span class="string">&quot;&quot;</span>,<span class="string">&quot;runas&quot;</span>,<span class="number">1</span>)(window.close)&amp;&amp;exit</span><br><span class="line">cd /d <span class="string">&quot;%~dp0&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@echo</span> off</span><br><span class="line">echo  请输入jdk安装目录</span><br><span class="line">set /p answer=  </span><br><span class="line">wmic ENVIRONMENT create name=<span class="string">&quot;JAVA_HOME&quot;</span>,username=<span class="string">&quot;&lt;system&gt;&quot;</span>,VariableValue=<span class="string">&quot;%answer%&quot;</span></span><br><span class="line">wmic ENVIRONMENT create name=<span class="string">&quot;CLASSPATH&quot;</span>,username=<span class="string">&quot;&lt;system&gt;&quot;</span>,VariableValue=<span class="string">&quot;.;%%JAVA_HOME%%\lib;%%JAVA_HOME%%\lib\tools.jar&quot;</span></span><br><span class="line">wmic ENVIRONMENT where <span class="string">&quot;name=&#x27;PATH&#x27; and username=&#x27;&lt;system&gt;&#x27;&quot;</span> set VariableValue=<span class="string">&quot;%path%;%%JAVA_HOME%%\bin;%%JAVA_HOME%%\jre\bin;&quot;</span></span><br><span class="line">echo 设置完成 按下任意键退出</span><br><span class="line">pause</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>然后点击文件，选择另存为<br><img src="https://img-blog.csdnimg.cn/d13ff831ee2e4419a38d73f72f4572e6.png" alt="在这里插入图片描述"><br>编码这里选择 ANSI，要不然会显示乱码。<br><img src="https://img-blog.csdnimg.cn/6a55de60cf81473d89c8cbf3b2a53c25.png" alt="在这里插入图片描述"><br>然后将文件的后缀名改为 <code>.bat</code>，选择是即可。<img src="https://img-blog.csdnimg.cn/ed3fd2bc6d0a47daa5dc99a73b7b8bd7.png" alt="在这里插入图片描述"><br>更改好之后如下图<br><img src="https://img-blog.csdnimg.cn/4e61a4cedb1443878b6afabad784681c.png" alt="在这里插入图片描述"></p>
-<p>然后双击执行，然后粘贴刚才的jdk安装路径，回车即可，等待程序执行完成。</p>
-<p><img src="https://img-blog.csdnimg.cn/6bd6573e803e46f49fa908fd70731c19.png" alt="在这里插入图片描述"><br>执行完成之后如下图，如果执行出现错误了，那就关闭，右键选择以管理员身份运行即再次尝试。<br><img src="https://img-blog.csdnimg.cn/606b62252efa4935b54bb33b9e42bae9.png" alt="在这里插入图片描述"><br>到这里jdk的安装与配置就已经完成了，我们使用·<code>win + R </code>快捷键打开cmd，输入<code>java -version</code>来检测是否安装成功。<br>出现版本号即代表jdk安装成功!<br><img src="https://img-blog.csdnimg.cn/08f1aafcba61436192292460872c31cf.png" alt="在这里插入图片描述"></p>
+            <h1 id="操作系统的概念、功能和定义"><a href="#操作系统的概念、功能和定义" class="headerlink" title="操作系统的概念、功能和定义"></a>操作系统的概念、功能和定义</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>1、负责管理协调硬件、软件等计算机资源的工作</p>
+<p>2、为上层的应用程序、用户提供简单易用的服务</p>
+<p>3、操作系统是系统软件，而不是硬件</p>
+<blockquote>
+<p>操作系统</p>
+<pre><code>操作系统（Operating System， OS）是指控制和管理整个计算机系统的硬件和软件资源，并合理地阻止调度计算机工作和资源的分配，以提供给用户和其他软件方便的接口和环境，它是计算机系统中最基本的系统软件。
+</code></pre>
+</blockquote>
+<h2 id="功能和目标"><a href="#功能和目标" class="headerlink" title="功能和目标"></a>功能和目标</h2><blockquote>
+<p>作为系统资源的管理者</p>
+</blockquote>
+<p><img src="https://img-blog.csdnimg.cn/8ecdecf1991b467d8f3747acf03ab0ea.png#pic_center" alt="在这里插入图片描述"></p>
+<blockquote>
+<p>作为用户和计算机硬件之间的接口</p>
+</blockquote>
+<p><img src="https://img-blog.csdnimg.cn/f369cfee027b46f9b369477ad6baf2a1.png#pic_center" alt="在这里插入图片描述"></p>
+<p>命令接口（允许用户直接使用）：</p>
+<ul>
+<li>联机命令接口：交互式命令接口</li>
+<li>脱机命令接口：批处理命令接口</li>
+</ul>
+<p>程序接口（允许用户通过程序间接使用）：由一组系统调用组成（程序接口 &#x3D;  系统调用）</p>
+<blockquote>
+<p>作为最接近硬件的层次</p>
+</blockquote>
+<p>需要提供的目标和功能：实现对硬件机器的拓展。</p>
+<p>没有任何软件支持的计算机称为裸机。在裸机上安装的操作系统，可以提供资源管理功能和方便用户的服务功能，将裸机改造成功能更强、使用更加方便的机器。</p>
+<p>通常把覆盖了软件的机器称为<strong>扩充机器</strong>，又称为<strong>虚拟机</strong>。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p><img src="https://img-blog.csdnimg.cn/78d4c9d724464d139123e173f8862d25.png#pic_center" alt="在这里插入图片描述"></p>
+<h1 id="操作系统的特征"><a href="#操作系统的特征" class="headerlink" title="操作系统的特征"></a>操作系统的特征</h1><p>操作系统的四个特征分别是并发、共享、虚拟和异步。</p>
+<h2 id="并发"><a href="#并发" class="headerlink" title="并发"></a>并发</h2><ul>
+<li>并发：指两个或者多个事件在同一时间间隔内发生。这些事件宏观上是同时发生的，但是在微观上是交替执行的。</li>
+<li>并行：指两个或者多个事件在同一时刻同时发生。</li>
+</ul>
+<h2 id="共享"><a href="#共享" class="headerlink" title="共享"></a>共享</h2><p>共享即资源共享，是指系统中的资源可供内存中多个并发执行的进程共同使用。</p>
+<p><img src="https://img-blog.csdnimg.cn/26448ac342414d648492fc6df098f9f2.png#pic_center" alt="在这里插入图片描述"></p>
+<h2 id="并发和共享的关系"><a href="#并发和共享的关系" class="headerlink" title="并发和共享的关系"></a>并发和共享的关系</h2><p>并发性指计算机系统中同时存在着多个运行着的程序。</p>
+<p>共享性是指系统中的资源可供内存中多个并发执行的进程共同使用。</p>
+<ul>
+<li>如果说失去并发性，则系统中只有一个程序正在运行，则共享性失去存在的意义。</li>
+<li>如果说失去共享性，则多个应用程序不能同时访问硬盘资源，就无法实现同时发送文件，也就无法并发。</li>
+</ul>
+<p>并发和共享互为存在的条件。</p>
+<h2 id="虚拟"><a href="#虚拟" class="headerlink" title="虚拟"></a>虚拟</h2><p>虚拟是指把一个物理上的实体变为若干个逻辑上的对应物，物理实体是实际存在的，而逻辑上的对应物是用户感受到的。</p>
+<p>虚拟技术中的“时分复用技术”。在微观上处理机在各个微小的时间段内交替着为各个进程服务。</p>
+<p><img src="https://img-blog.csdnimg.cn/d0245b4b6d97418a8a42828079a4a01b.png#pic_center" alt="在这里插入图片描述"></p>
+<h2 id="异步"><a href="#异步" class="headerlink" title="异步"></a>异步</h2><p>异步是指，在多道程序环境下，允许多个程序并发执行，但由于资源有限，进程的执行不是一贯到底的，而是走走停停，以不可预知的速度向前推进，这就是进程的异步性。</p>
+<p>显然，如果失去了并发性，则系统只能串行地处理各个进程，每个进程的执行会一贯到底，只有系统拥有并发性，才有可能导致异步性。</p>
+<p><img src="https://img-blog.csdnimg.cn/a4706a1539c14cda866456a5b2b7b932.png#pic_center" alt="在这里插入图片描述"></p>
+<h1 id="操作系统的发展和分类"><a href="#操作系统的发展和分类" class="headerlink" title="操作系统的发展和分类"></a>操作系统的发展和分类</h1><p><img src="https://img-blog.csdnimg.cn/f2b8329d49de4e618465bd03e8abdc5a.png#pic_center" alt="在这里插入图片描述"></p>
+<blockquote>
+<p>手工操作阶段</p>
+</blockquote>
+<p>主要缺点：用户独占全机、人机速度矛盾导致资源利用率极低。</p>
+<blockquote>
+<p>单道批处理系统</p>
+</blockquote>
+<p>引入 <strong>脱机输入&#x2F;输出</strong> 技术（用磁带完成），并<strong>监督程序</strong>负责控制作业的输入、输出。</p>
+<p>优点：缓解了一定程序的人机速度矛盾，资源利用率有所提升。</p>
+<p>缺点：内存中仅能有一道程序运行，只有该程序运行结束之后才能调入下一道程序。CPU有大量的时间是在空闲等待I&#x2F;O完成。资源利用率依然很低。</p>
+<blockquote>
+<p>多道批处理系统</p>
+</blockquote>
+<p>优点：多道程序并发执行，共享计算机资源。资源利用率大幅提升，CPU和其他资源保持“忙碌”状态，系统吞吐量增大。</p>
+<p>缺点：用户响应时间长，没有人机交互功能（用户提交自己的作业之后就只能等待计算机处理完成，中间不能控制自己的作业执行）</p>
+<blockquote>
+<p>分时操作系统</p>
+</blockquote>
+<p>分时操作系统：计算机以时间片尾单位轮流为各个用户&#x2F;作业服务，各个用户可通过终端与计算机进行交互。</p>
+<p>优点：用户请求可以被即时响应，解决了人机交互问题，允许多个用户同时使用一台计算机，并且用户对计算机的操作相互独立，感受不到别人的存在。</p>
+<p>缺点：不能优先处理一些紧急任务，操作系统对各个用户&#x2F;作业都是完全公平的，循环地为每个用户&#x2F;作业服务一个时间片，不区分任务的紧急性。</p>
+<blockquote>
+<p>实时操作系统</p>
+</blockquote>
+<p>优点：能够优先响应一些紧急任务，某些紧急任务不需要时间片排队。</p>
+<p>在实时操作系统的控制下，计算机系统接收到外部信息后及时进行处理，并且要在严格的时限内处理完时间。实时操作系统的主要特点是及时性和可靠性。</p>
+<p><img src="https://img-blog.csdnimg.cn/e2a6b389e9b44ae6bc7ce1e80da8f51b.png#pic_center" alt="在这里插入图片描述"></p>
+<blockquote>
+<p>网络操作系统</p>
+</blockquote>
+<p>伴随着计算机网络的发展而诞生的，能把网络中各个计算机有机地结合起来，实现数据传送等功能，实现网络中的各种资源的共享（如文件共享）和计算机之间的通信。</p>
+<blockquote>
+<p>分布式操作系统</p>
+</blockquote>
+<p>主要特点就是分布性和并行性，系统中的各台计算机的地址相同，任何工作都可以分布在这些计算机上，由他们并行、协同完成这个任务。</p>
+<blockquote>
+<p>个人计算机操作系统</p>
+</blockquote>
+<p>如Windows XP、MacOS，方便个人使用。</p>
 
         </div>
 
@@ -235,11 +317,11 @@
             <div class="post-copyright-info">
                 <div class="article-copyright-info-container">
     <ul>
-        <li>本文标题：jdk-8u301-windows-x64的安装与配置</li>
+        <li>本文标题：操作系统概述和特征</li>
         <li>本文作者：zal</li>
-        <li>创建时间：2022-09-09 14:29:52</li>
+        <li>创建时间：2022-10-07 22:04:33</li>
         <li>
-            本文链接：https://xiaoaozz.github.io/2022/09/09/jdk-8u301-windows-x64的安装与配置/
+            本文链接：https://xiaoaozz.github.io/2022/10/07/操作系统概述和特征/
         </li>
         <li>
             版权声明：本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -254,11 +336,15 @@
             <ul class="post-tags-box">
                 
                     <li class="tag-item">
-                        <a href="/tags/jdk/">#jdk</a>&nbsp;
+                        <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">#操作系统</a>&nbsp;
                     </li>
                 
                     <li class="tag-item">
-                        <a href="/tags/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">#环境配置</a>&nbsp;
+                        <a href="/tags/%E6%A6%82%E8%BF%B0/">#概述</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/%E5%8F%91%E5%B1%95%E3%80%81%E7%89%B9%E5%BE%81/">#发展、特征</a>&nbsp;
                     </li>
                 
             </ul>
@@ -267,29 +353,14 @@
         
             <div class="article-nav">
                 
-                    <div class="article-prev">
-                        <a class="prev"
-                           rel="prev"
-                           href="/2022/09/10/2022-09-10%E5%91%A8%E6%80%BB%E7%BB%93/"
-                        >
-                            <span class="left arrow-icon flex-center">
-                              <i class="fas fa-chevron-left"></i>
-                            </span>
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">2022-09-10周总结</span>
-                                <span class="post-nav-item">上一篇</span>
-                            </span>
-                        </a>
-                    </div>
-                
                 
                     <div class="article-next">
                         <a class="next"
                            rel="next"
-                           href="/2022/06/29/21.03.29%E5%91%A8%E6%80%BB%E7%BB%93/"
+                           href="/2022/10/07/Spring%E4%B9%8BJDK%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/"
                         >
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">2021-03-29周总结</span>
+                                <span class="post-nav-title-item">Spring之JDK动态代理</span>
                                 <span class="post-nav-item">下一篇</span>
                             </span>
                             <span class="right arrow-icon flex-center">
@@ -437,7 +508,7 @@
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1%E3%80%81%E4%B8%8B%E8%BD%BDjdk"><span class="nav-number">1.</span> <span class="nav-text">1、下载jdk</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2%E3%80%81%E5%AE%89%E8%A3%85"><span class="nav-number">2.</span> <span class="nav-text">2、安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3%E3%80%81%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="nav-number">3.</span> <span class="nav-text">3、配置环境变量</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%A6%82%E5%BF%B5%E3%80%81%E5%8A%9F%E8%83%BD%E5%92%8C%E5%AE%9A%E4%B9%89"><span class="nav-number">1.</span> <span class="nav-text">操作系统的概念、功能和定义</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E5%BF%B5"><span class="nav-number">1.1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8A%9F%E8%83%BD%E5%92%8C%E7%9B%AE%E6%A0%87"><span class="nav-number">1.2.</span> <span class="nav-text">功能和目标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">1.3.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%89%B9%E5%BE%81"><span class="nav-number">2.</span> <span class="nav-text">操作系统的特征</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B9%B6%E5%8F%91"><span class="nav-number">2.1.</span> <span class="nav-text">并发</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B1%E4%BA%AB"><span class="nav-number">2.2.</span> <span class="nav-text">共享</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B9%B6%E5%8F%91%E5%92%8C%E5%85%B1%E4%BA%AB%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-number">2.3.</span> <span class="nav-text">并发和共享的关系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%99%9A%E6%8B%9F"><span class="nav-number">2.4.</span> <span class="nav-text">虚拟</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%82%E6%AD%A5"><span class="nav-number">2.5.</span> <span class="nav-text">异步</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%8F%91%E5%B1%95%E5%92%8C%E5%88%86%E7%B1%BB"><span class="nav-number">3.</span> <span class="nav-text">操作系统的发展和分类</span></a></li></ol>
     </div>
 </div>
         </aside>
