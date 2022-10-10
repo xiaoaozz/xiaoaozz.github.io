@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="zal">
+    
+    <title>
+        
+            linux后台运行程序命令screen |
+        
+        小奥的个人博客
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/xiaoao-avatar.png">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"zh-CN","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/xiaoao-avatar.png","favicon":"/images/xiaoao-avatar.png","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"请保持热爱，来奔赴下一场山和海！"},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":true}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.5"};
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+  </script>
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                小奥的个人博客
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                分类
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                标签
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">分类</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">标签</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">linux后台运行程序命令screen</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/xiaoao-avatar.png">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">zal</span>
+                        
+                            <span class="author-label">Lv3</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2022-10-10 22:30:24</span>
+        <span class="mobile">2022-10-10 22:30</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/Linux/">Linux</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Linux/">Linux</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/screen/">screen</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E5%90%8E%E5%8F%B0%E4%BC%9A%E8%AF%9D/">后台会话</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>我们在服务器终端或者是使用ssh连接服务器的时候，需要长期后台运行项目，但是我们一关终端可能程序进程就会被kill掉了，我们之前学习过<code>2&gt;&amp;1 &amp;</code>后台部署的命令，但是这样我们查看项目进程的时候还需要去查询运行的PID，如果我们不想麻烦，那么我们就可以使用<code>screen工具</code>。</p>
+<hr>
+<h1 id="screen的简单使用"><a href="#screen的简单使用" class="headerlink" title="screen的简单使用"></a>screen的简单使用</h1><p>screen这个Linux工具使用起来超级简单，并且还能很好的管理我们的会话进程，常用的就三个命令：</p>
+<h2 id="1、创建一个会话窗口"><a href="#1、创建一个会话窗口" class="headerlink" title="1、创建一个会话窗口"></a>1、创建一个会话窗口</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">screen -S sessionName</span><br></pre></td></tr></table></figure>
+<p>举例：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">screen -S sessinTest  //创建一个名为sessionTest的会话</span><br></pre></td></tr></table></figure>
+<p>如图：<br>执行完命令后，就会新开一个窗口，名称是screen 0，默认名称。<br><img src="https://img-blog.csdnimg.cn/5f6759fe83614d3d998d15c7c7e33e21.png" alt="在这里插入图片描述"><br>然后我们运行自己的程序：<br><img src="https://img-blog.csdnimg.cn/268f506b2ffa4a26ad4ea3e1b9d5a542.png" alt="在这里插入图片描述"><br>这里我运行的程序是一个Arthas的demo，大家只需要知道它会无限输出一个计算的公式即可。</p>
+<h2 id="2、-查看我们screen的会话"><a href="#2、-查看我们screen的会话" class="headerlink" title="2、 查看我们screen的会话"></a>2、 查看我们screen的会话</h2><p>执行完我们的jar程序后，我们可以直接关闭掉这个控制台，然后重新打开一个新的控制台，通过以下命令查看我们的screen会话。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">screen -<span class="built_in">ls</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/0659dc50dcd24d31ad0944344e343e52.png" alt="在这里插入图片描述"><br>可以看到这个会话的PID，进程名称等信息。</p>
+<h2 id="3、-恢复会话窗口，就是继续查看我们后台运行的程序"><a href="#3、-恢复会话窗口，就是继续查看我们后台运行的程序" class="headerlink" title="3、 恢复会话窗口，就是继续查看我们后台运行的程序"></a>3、 恢复会话窗口，就是继续查看我们后台运行的程序</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">screen -r sessionName</span><br></pre></td></tr></table></figure>
+<p>或者</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">screen -r PID</span><br></pre></td></tr></table></figure>
+<p>在进入会话时，按<code>Ctrl+D</code> 或 输入<code>exit </code>回车就会退出，并删除会话，此时使用<code>screen -ls</code>就看不到该会话了！</p>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>本文标题：linux后台运行程序命令screen</li>
+        <li>本文作者：zal</li>
+        <li>创建时间：2022-10-10 22:30:24</li>
+        <li>
+            本文链接：https://xiaoaozz.github.io/2022/10/10/linux后台运行程序命令screen/
+        </li>
+        <li>
+            版权声明：本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/Linux/">#Linux</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/screen/">#screen</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/%E5%90%8E%E5%8F%B0%E4%BC%9A%E8%AF%9D/">#后台会话</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2022/10/08/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%E3%80%81%E4%B8%AD%E6%96%AD%E4%BB%A5%E5%8F%8A%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">操作系统的体系结构、中断以及系统调用</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+            <div class="comment-container">
+                <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments">&nbsp;评论</i>
+    </div>
+    
+
+        
+            
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2022</span>
+              -
+            
+            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">zal</a>
+        </div>
+        
+            <script async  src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.5</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#screen%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8"><span class="nav-text">screen的简单使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1%E3%80%81%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E4%BC%9A%E8%AF%9D%E7%AA%97%E5%8F%A3"><span class="nav-text">1、创建一个会话窗口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2%E3%80%81-%E6%9F%A5%E7%9C%8B%E6%88%91%E4%BB%ACscreen%E7%9A%84%E4%BC%9A%E8%AF%9D"><span class="nav-text">2、 查看我们screen的会话</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3%E3%80%81-%E6%81%A2%E5%A4%8D%E4%BC%9A%E8%AF%9D%E7%AA%97%E5%8F%A3%EF%BC%8C%E5%B0%B1%E6%98%AF%E7%BB%A7%E7%BB%AD%E6%9F%A5%E7%9C%8B%E6%88%91%E4%BB%AC%E5%90%8E%E5%8F%B0%E8%BF%90%E8%A1%8C%E7%9A%84%E7%A8%8B%E5%BA%8F"><span class="nav-text">3、 恢复会话窗口，就是继续查看我们后台运行的程序</span></a></li></ol></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+
+</body>
+</html>
