@@ -9,7 +9,7 @@
     
     <title>
         
-            linux后台运行程序命令screen |
+            操作系统之进程的定义、组成、组织方式和特征 |
         
         小奥的个人博客
     </title>
@@ -150,7 +150,7 @@
     <div class="article-content-container">
 
         <div class="article-title">
-            <span class="title-hover-animation">linux后台运行程序命令screen</span>
+            <span class="title-hover-animation">操作系统之进程的定义、组成、组织方式和特征</span>
         </div>
 
         
@@ -169,8 +169,8 @@
                         <div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fas fa-edit"></i>&nbsp;
-        <span class="pc">2022-10-10 22:30:24</span>
-        <span class="mobile">2022-10-10 22:30</span>
+        <span class="pc">2022-10-13 13:58:02</span>
+        <span class="mobile">2022-10-13 13:58</span>
     </span>
     
         <span class="article-categories article-meta-item">
@@ -178,7 +178,7 @@
             <ul>
                 
                     <li>
-                        <a href="/categories/Linux/">Linux</a>&nbsp;
+                        <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>&nbsp;
                     </li>
                 
             </ul>
@@ -190,15 +190,15 @@
             <ul>
                 
                     <li>
-                        <a href="/tags/Linux/">Linux</a>&nbsp;
+                        <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>&nbsp;
                     </li>
                 
                     <li>
-                        | <a href="/tags/screen/">screen</a>&nbsp;
+                        | <a href="/tags/%E8%BF%9B%E7%A8%8B/">进程</a>&nbsp;
                     </li>
                 
                     <li>
-                        | <a href="/tags/%E5%90%8E%E5%8F%B0%E4%BC%9A%E8%AF%9D/">后台会话</a>&nbsp;
+                        | <a href="/tags/%E5%AE%9A%E4%B9%89%E3%80%81%E6%A6%82%E8%BF%B0/">定义、概述</a>&nbsp;
                     </li>
                 
             </ul>
@@ -221,20 +221,47 @@
         
 
         <div class="article-content markdown-body">
-            <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>我们在服务器终端或者是使用ssh连接服务器的时候，需要长期后台运行项目，但是我们一关终端可能程序进程就会被kill掉了，我们之前学习过<code>2&gt;&amp;1 &amp;</code>后台部署的命令，但是这样我们查看项目进程的时候还需要去查询运行的PID，如果我们不想麻烦，那么我们就可以使用<code>screen工具</code>。</p>
-<hr>
-<h1 id="screen的简单使用"><a href="#screen的简单使用" class="headerlink" title="screen的简单使用"></a>screen的简单使用</h1><p>screen这个Linux工具使用起来超级简单，并且还能很好的管理我们的会话进程，常用的就三个命令：</p>
-<h2 id="1、创建一个会话窗口"><a href="#1、创建一个会话窗口" class="headerlink" title="1、创建一个会话窗口"></a>1、创建一个会话窗口</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">screen -S sessionName</span><br></pre></td></tr></table></figure>
-<p>举例：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">screen -S sessinTest  //创建一个名为sessionTest的会话</span><br></pre></td></tr></table></figure>
-<p>如图：<br>执行完命令后，就会新开一个窗口，名称是screen 0，默认名称。<br><img src="https://img-blog.csdnimg.cn/5f6759fe83614d3d998d15c7c7e33e21.png" alt="在这里插入图片描述"><br>然后我们运行自己的程序：<br><img src="https://img-blog.csdnimg.cn/268f506b2ffa4a26ad4ea3e1b9d5a542.png" alt="在这里插入图片描述"><br>这里我运行的程序是一个Arthas的demo，大家只需要知道它会无限输出一个计算的公式即可。</p>
-<h2 id="2、-查看我们screen的会话"><a href="#2、-查看我们screen的会话" class="headerlink" title="2、 查看我们screen的会话"></a>2、 查看我们screen的会话</h2><p>执行完我们的jar程序后，我们可以直接关闭掉这个控制台，然后重新打开一个新的控制台，通过以下命令查看我们的screen会话。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">screen -<span class="built_in">ls</span></span><br></pre></td></tr></table></figure>
-<p><img src="https://img-blog.csdnimg.cn/0659dc50dcd24d31ad0944344e343e52.png" alt="在这里插入图片描述"><br>可以看到这个会话的PID，进程名称等信息。</p>
-<h2 id="3、-恢复会话窗口，就是继续查看我们后台运行的程序"><a href="#3、-恢复会话窗口，就是继续查看我们后台运行的程序" class="headerlink" title="3、 恢复会话窗口，就是继续查看我们后台运行的程序"></a>3、 恢复会话窗口，就是继续查看我们后台运行的程序</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">screen -r sessionName</span><br></pre></td></tr></table></figure>
-<p>或者</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">screen -r PID</span><br></pre></td></tr></table></figure>
-<p>在进入会话时，按<code>Ctrl+D</code> 或 输入<code>exit </code>回车就会退出，并删除会话，此时使用<code>screen -ls</code>就看不到该会话了！</p>
+            <h2 id="进程的定义、组成、组织方式和特征"><a href="#进程的定义、组成、组织方式和特征" class="headerlink" title="进程的定义、组成、组织方式和特征"></a>进程的定义、组成、组织方式和特征</h2><h3 id="（1）进程的定义"><a href="#（1）进程的定义" class="headerlink" title="（1）进程的定义"></a>（1）进程的定义</h3><blockquote>
+<p>程序：就是一个指令序列。</p>
+</blockquote>
+<p>为了方便操作系统的管理，完成各种程序并发执行，引入了<strong>进程、进程实体</strong>的概念。</p>
+<p>系统为每一个运行的程序配置一个数据结构，称为进程控制块（PCB），用来描述进程的各种信息（如程序代码存放位置）。</p>
+<p><strong>PCB、程序段、数据段三部分构成了进程实体（进程映像）。一般来说，我们把进程实体就简称为进程。</strong></p>
+<p>例如，所谓的创建进程，实质上就是创建进程实体中的PCB，而撤销进程，实质上就是撤销进程实体中的PCB。</p>
+<p>注意：PCB是进程存在的唯一标志！</p>
+<p>从不同的角度，进程可以有不同的定义，比较传统典型的定义有：</p>
+<p>1、进程是程序的一次<strong>执行过程</strong>。</p>
+<p>2、进程是一个程序及其数据在处理机上顺序执行时所<strong>发生的活动</strong>。</p>
+<p>3、进程是具有独立功能的程序在数据集合上<strong>运行的过程</strong>，它是系统进行资源分配和调度的一个独立的单位。</p>
+<blockquote>
+<p>强调 动态性！</p>
+</blockquote>
+<p>引入进程实体的概念后，可把进程定义为：</p>
+<p><strong>进程</strong>是<strong>进程实体</strong>的<strong>运行过程</strong>，是系统进行<strong>资源分配和调度</strong>的一个独立单位。</p>
+<p>注：严格来说，进程实体和进程并不一样，进程实体是静态的，进程则是动态的。</p>
+<h3 id="（2）进程的组成"><a href="#（2）进程的组成" class="headerlink" title="（2）进程的组成"></a>（2）进程的组成</h3><p>进程（进程实体）由程序段、数据段和PCB三部分组成。</p>
+<blockquote>
+<p>PCB的组成</p>
+</blockquote>
+<p><img src="https://img-blog.csdnimg.cn/3fd4dabfcfa743fa84cac111053c2e85.png#pic_center" alt="在这里插入图片描述"></p>
+<blockquote>
+<p>进程的组成<br><img src="https://img-blog.csdnimg.cn/706dbf6da8d44ab486cd9ba15fe4dbcc.png#pic_center" alt="在这里插入图片描述"></p>
+</blockquote>
+<h3 id="（3）进程的组织"><a href="#（3）进程的组织" class="headerlink" title="（3）进程的组织"></a>（3）进程的组织</h3><p>在一个系统中，通常有数十、数百乃至数千个PCB，为了能对他们加以有效的管理，应使用适当的方式把这些PCB组织起来。</p>
+<p>注：进程的组成讨论的是一个进程内部由哪些部分构成的问题，而进程的组织则是讨论的是多个进程之间的组织方式问题。</p>
+<p><img src="https://img-blog.csdnimg.cn/8c961834a4ed4233ac7e05f832ef23b7.png#pic_center" alt="在这里插入图片描述"></p>
+<blockquote>
+<p>链接方式</p>
+</blockquote>
+<p><img src="https://img-blog.csdnimg.cn/3b8b0f02ca904c83a31763ce7d4aede2.png#pic_center" alt="在这里插入图片描述"></p>
+<blockquote>
+<p>索引方式</p>
+</blockquote>
+<p><img src="https://img-blog.csdnimg.cn/9d44d2e8f38f4043aac079815257cce4.png#pic_center" alt="在这里插入图片描述"></p>
+<h3 id="（4）进程的特征"><a href="#（4）进程的特征" class="headerlink" title="（4）进程的特征"></a>（4）进程的特征</h3><p><img src="https://img-blog.csdnimg.cn/714565b3804a4b35810de8d680bc0e00.png#pic_center" alt="在这里插入图片描述"></p>
+<p>动态性：是进程最基本的特征。</p>
+<p>异步性：会导致并发程序的执行结果的不确定性。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p><img src="https://img-blog.csdnimg.cn/31270726b4d14f65af5dba8f9abe489e.png#pic_center" alt="在这里插入图片描述"></p>
 
         </div>
 
@@ -242,11 +269,11 @@
             <div class="post-copyright-info">
                 <div class="article-copyright-info-container">
     <ul>
-        <li>本文标题：linux后台运行程序命令screen</li>
+        <li>本文标题：操作系统之进程的定义、组成、组织方式和特征</li>
         <li>本文作者：zal</li>
-        <li>创建时间：2022-10-10 22:30:24</li>
+        <li>创建时间：2022-10-13 13:58:02</li>
         <li>
-            本文链接：https://xiaoaozz.github.io/2022/10/10/linux后台运行程序命令screen/
+            本文链接：https://xiaoaozz.github.io/2022/10/13/操作系统之进程的定义、组成、组织方式和特征/
         </li>
         <li>
             版权声明：本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -261,15 +288,15 @@
             <ul class="post-tags-box">
                 
                     <li class="tag-item">
-                        <a href="/tags/Linux/">#Linux</a>&nbsp;
+                        <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">#操作系统</a>&nbsp;
                     </li>
                 
                     <li class="tag-item">
-                        <a href="/tags/screen/">#screen</a>&nbsp;
+                        <a href="/tags/%E8%BF%9B%E7%A8%8B/">#进程</a>&nbsp;
                     </li>
                 
                     <li class="tag-item">
-                        <a href="/tags/%E5%90%8E%E5%8F%B0%E4%BC%9A%E8%AF%9D/">#后台会话</a>&nbsp;
+                        <a href="/tags/%E5%AE%9A%E4%B9%89%E3%80%81%E6%A6%82%E8%BF%B0/">#定义、概述</a>&nbsp;
                     </li>
                 
             </ul>
@@ -278,29 +305,14 @@
         
             <div class="article-nav">
                 
-                    <div class="article-prev">
-                        <a class="prev"
-                           rel="prev"
-                           href="/2022/10/13/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B9%8B%E8%BF%9B%E7%A8%8B%E7%9A%84%E5%AE%9A%E4%B9%89%E3%80%81%E7%BB%84%E6%88%90%E3%80%81%E7%BB%84%E7%BB%87%E6%96%B9%E5%BC%8F%E5%92%8C%E7%89%B9%E5%BE%81/"
-                        >
-                            <span class="left arrow-icon flex-center">
-                              <i class="fas fa-chevron-left"></i>
-                            </span>
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">操作系统之进程的定义、组成、组织方式和特征</span>
-                                <span class="post-nav-item">上一篇</span>
-                            </span>
-                        </a>
-                    </div>
-                
                 
                     <div class="article-next">
                         <a class="next"
                            rel="next"
-                           href="/2022/10/08/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%E3%80%81%E4%B8%AD%E6%96%AD%E4%BB%A5%E5%8F%8A%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8/"
+                           href="/2022/10/10/linux%E5%90%8E%E5%8F%B0%E8%BF%90%E8%A1%8C%E7%A8%8B%E5%BA%8F%E5%91%BD%E4%BB%A4screen/"
                         >
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">操作系统的体系结构、中断以及系统调用</span>
+                                <span class="post-nav-title-item">linux后台运行程序命令screen</span>
                                 <span class="post-nav-item">下一篇</span>
                             </span>
                             <span class="right arrow-icon flex-center">
@@ -448,7 +460,7 @@
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#screen%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8"><span class="nav-text">screen的简单使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1%E3%80%81%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E4%BC%9A%E8%AF%9D%E7%AA%97%E5%8F%A3"><span class="nav-text">1、创建一个会话窗口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2%E3%80%81-%E6%9F%A5%E7%9C%8B%E6%88%91%E4%BB%ACscreen%E7%9A%84%E4%BC%9A%E8%AF%9D"><span class="nav-text">2、 查看我们screen的会话</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3%E3%80%81-%E6%81%A2%E5%A4%8D%E4%BC%9A%E8%AF%9D%E7%AA%97%E5%8F%A3%EF%BC%8C%E5%B0%B1%E6%98%AF%E7%BB%A7%E7%BB%AD%E6%9F%A5%E7%9C%8B%E6%88%91%E4%BB%AC%E5%90%8E%E5%8F%B0%E8%BF%90%E8%A1%8C%E7%9A%84%E7%A8%8B%E5%BA%8F"><span class="nav-text">3、 恢复会话窗口，就是继续查看我们后台运行的程序</span></a></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B%E7%9A%84%E5%AE%9A%E4%B9%89%E3%80%81%E7%BB%84%E6%88%90%E3%80%81%E7%BB%84%E7%BB%87%E6%96%B9%E5%BC%8F%E5%92%8C%E7%89%B9%E5%BE%81"><span class="nav-text">进程的定义、组成、组织方式和特征</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%881%EF%BC%89%E8%BF%9B%E7%A8%8B%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-text">（1）进程的定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%882%EF%BC%89%E8%BF%9B%E7%A8%8B%E7%9A%84%E7%BB%84%E6%88%90"><span class="nav-text">（2）进程的组成</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%883%EF%BC%89%E8%BF%9B%E7%A8%8B%E7%9A%84%E7%BB%84%E7%BB%87"><span class="nav-text">（3）进程的组织</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%884%EF%BC%89%E8%BF%9B%E7%A8%8B%E7%9A%84%E7%89%B9%E5%BE%81"><span class="nav-text">（4）进程的特征</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-text">总结</span></a></li></ol></li></ol>
     </div>
 </div>
         </aside>
