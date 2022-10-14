@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="zal">
+    
+    <title>
+        
+            ByteBuffer的使用 |
+        
+        小奥的个人博客
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/xiaoao-avatar.png">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"zh-CN","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/xiaoao-avatar.png","favicon":"/images/xiaoao-avatar.png","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"请保持热爱，来奔赴下一场山和海！"},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":true}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.5"};
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+  </script>
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                小奥的个人博客
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                分类
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                标签
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">分类</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">标签</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">ByteBuffer的使用</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/xiaoao-avatar.png">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">zal</span>
+                        
+                            <span class="author-label">Lv3</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2022-10-14 16:35:22</span>
+        <span class="mobile">2022-10-14 16:35</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/Netty/">Netty</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/ByteBuffer/">ByteBuffer</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/">基本使用</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h1 id="一、认识ByteBuffer"><a href="#一、认识ByteBuffer" class="headerlink" title="一、认识ByteBuffer"></a>一、认识ByteBuffer</h1><blockquote>
+<p>Bytebuffer<br>官方解释A byte buffer，一个字节缓冲区。</p>
+</blockquote>
+<p><img src="https://img-blog.csdnimg.cn/c3ec2a4e39bb43c88561a99991369f45.png" alt="在这里插入图片描述"><img src="https://img-blog.csdnimg.cn/f50245e1fbe7483db199b563a3ce5113.png" alt="在这里插入图片描述"></p>
+<h1 id="二、ByteBuffer使用"><a href="#二、ByteBuffer使用" class="headerlink" title="二、ByteBuffer使用"></a>二、ByteBuffer使用</h1><h2 id="1、读取文本数据"><a href="#1、读取文本数据" class="headerlink" title="1、读取文本数据"></a>1、读取文本数据</h2><p>有一普通文本文件 data.txt，内容为</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1234567890abcd</span><br></pre></td></tr></table></figure>
+
+<p>使用 FileChannel 来读取文件内容</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ChannelDemo1</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * FileChannel获取的方法 1、输入输出流 2、RandomAccessFile</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        <span class="keyword">try</span> (<span class="type">RandomAccessFile</span> <span class="variable">file</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">RandomAccessFile</span>(<span class="string">&quot;data.txt&quot;</span>, <span class="string">&quot;rw&quot;</span>)) &#123;</span><br><span class="line">            <span class="type">FileChannel</span> <span class="variable">channel</span> <span class="operator">=</span> file.getChannel();</span><br><span class="line">            <span class="comment">// 准备一个缓冲区，大小可以自定义</span></span><br><span class="line">            <span class="type">ByteBuffer</span> <span class="variable">buffer</span> <span class="operator">=</span> ByteBuffer.allocate(<span class="number">10</span>);</span><br><span class="line">            <span class="keyword">do</span> &#123;</span><br><span class="line">                <span class="comment">// 从channel中读取数据，向缓冲区中写入</span></span><br><span class="line">                <span class="type">int</span> <span class="variable">len</span> <span class="operator">=</span> channel.read(buffer);</span><br><span class="line">                log.debug(<span class="string">&quot;读到字节数：&#123;&#125;&quot;</span>, len);</span><br><span class="line">                <span class="keyword">if</span> (len == -<span class="number">1</span>) &#123;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="comment">// 打印读出的数据即buffer中的内容</span></span><br><span class="line">                <span class="comment">// 切换至ByteBuffer的读模式</span></span><br><span class="line">                buffer.flip();</span><br><span class="line">                <span class="keyword">while</span>(buffer.hasRemaining()) &#123;</span><br><span class="line">                    log.debug(<span class="string">&quot;&#123;&#125;&quot;</span>, (<span class="type">char</span>)buffer.get());</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="comment">// 切换 buffer 写模式</span></span><br><span class="line">                buffer.clear();</span><br><span class="line">            &#125; <span class="keyword">while</span> (<span class="literal">true</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">10</span>:<span class="number">39</span>:<span class="number">03</span> [DEBUG] [main] c.i.n.ChannelDemo1 - 读到字节数：<span class="number">10</span></span><br><span class="line"><span class="number">10</span>:<span class="number">39</span>:<span class="number">03</span> [DEBUG] [main] c.i.n.ChannelDemo1 - <span class="number">1</span></span><br><span class="line"><span class="number">10</span>:<span class="number">39</span>:<span class="number">03</span> [DEBUG] [main] c.i.n.ChannelDemo1 - <span class="number">2</span></span><br><span class="line"><span class="number">10</span>:<span class="number">39</span>:<span class="number">03</span> [DEBUG] [main] c.i.n.ChannelDemo1 - <span class="number">3</span></span><br><span class="line"><span class="number">10</span>:<span class="number">39</span>:<span class="number">03</span> [DEBUG] [main] c.i.n.ChannelDemo1 - <span class="number">4</span></span><br><span class="line"><span class="number">10</span>:<span class="number">39</span>:<span class="number">03</span> [DEBUG] [main] c.i.n.ChannelDemo1 - <span class="number">5</span></span><br><span class="line"><span class="number">10</span>:<span class="number">39</span>:<span class="number">03</span> [DEBUG] [main] c.i.n.ChannelDemo1 - <span class="number">6</span></span><br><span class="line"><span class="number">10</span>:<span class="number">39</span>:<span class="number">03</span> [DEBUG] [main] c.i.n.ChannelDemo1 - <span class="number">7</span></span><br><span class="line"><span class="number">10</span>:<span class="number">39</span>:<span class="number">03</span> [DEBUG] [main] c.i.n.ChannelDemo1 - <span class="number">8</span></span><br><span class="line"><span class="number">10</span>:<span class="number">39</span>:<span class="number">03</span> [DEBUG] [main] c.i.n.ChannelDemo1 - <span class="number">9</span></span><br><span class="line"><span class="number">10</span>:<span class="number">39</span>:<span class="number">03</span> [DEBUG] [main] c.i.n.ChannelDemo1 - <span class="number">0</span></span><br><span class="line"><span class="number">10</span>:<span class="number">39</span>:<span class="number">03</span> [DEBUG] [main] c.i.n.ChannelDemo1 - 读到字节数：<span class="number">4</span></span><br><span class="line"><span class="number">10</span>:<span class="number">39</span>:<span class="number">03</span> [DEBUG] [main] c.i.n.ChannelDemo1 - a</span><br><span class="line"><span class="number">10</span>:<span class="number">39</span>:<span class="number">03</span> [DEBUG] [main] c.i.n.ChannelDemo1 - b</span><br><span class="line"><span class="number">10</span>:<span class="number">39</span>:<span class="number">03</span> [DEBUG] [main] c.i.n.ChannelDemo1 - c</span><br><span class="line"><span class="number">10</span>:<span class="number">39</span>:<span class="number">03</span> [DEBUG] [main] c.i.n.ChannelDemo1 - d</span><br><span class="line"><span class="number">10</span>:<span class="number">39</span>:<span class="number">03</span> [DEBUG] [main] c.i.n.ChannelDemo1 - 读到字节数：-<span class="number">1</span></span><br></pre></td></tr></table></figure>
+<h2 id="2、正确使用ByteBuffer"><a href="#2、正确使用ByteBuffer" class="headerlink" title="2、正确使用ByteBuffer"></a>2、正确使用ByteBuffer</h2><p>1、 向 buffer 写入数据，例如调用 channel.read(buffer)<br>2、调用 flip() 切换至<strong>读模式</strong><br>3、从 buffer 读取数据，例如调用 buffer.get()<br>4、 调用 clear() 或 compact() 切换至<strong>写模式</strong><br>5、 重复 1~4 步骤</p>
+<h2 id="3、ByteBuffer的结构"><a href="#3、ByteBuffer的结构" class="headerlink" title="3、ByteBuffer的结构"></a>3、ByteBuffer的结构</h2><p>ByteBuffer 有以下重要属性</p>
+<ul>
+<li>capacity</li>
+<li>position</li>
+<li>limit</li>
+</ul>
+<p>一开始</p>
+<p><img src="https://img-blog.csdnimg.cn/ee1e0cdffb344a33b73733ae1b1a0422.png#pic_center" alt="在这里插入图片描述"></p>
+<p>写模式下，position 是写入位置，limit 等于容量，下图表示写入了 4 个字节后的状态</p>
+<p><img src="https://img-blog.csdnimg.cn/356aadcfa55149208473807f4b0740f4.png#pic_center" alt="在这里插入图片描述"></p>
+<p>flip 动作发生后，position 切换为读取位置，limit 切换为读取限制<br><img src="https://img-blog.csdnimg.cn/99600df464e043058a30389340255ae7.png#pic_center" alt="在这里插入图片描述"></p>
+<p>读取 4 个字节后，状态</p>
+<p><img src="https://img-blog.csdnimg.cn/784df8c9a0414d659c9d9a712c4440f2.png#pic_center" alt="在这里插入图片描述"></p>
+<p>clear 动作发生后，状态</p>
+<p><img src="https://img-blog.csdnimg.cn/94fb12e8e00043c9b55e733ba1e3ee1b.png#pic_center" alt="在这里插入图片描述"></p>
+<p>compact 方法，是把未读完的部分向前压缩，然后切换至写模式</p>
+<p><img src="https://img-blog.csdnimg.cn/1031a0edbc02419f878a548a467b78f8.png#pic_center" alt="在这里插入图片描述"></p>
+<h2 id="4、ByteBuffer的常见方法"><a href="#4、ByteBuffer的常见方法" class="headerlink" title="4、ByteBuffer的常见方法"></a>4、ByteBuffer的常见方法</h2><p>为了方便控制台输出和查看，提供了一个工具类，<code>ByteBufferUtil</code>，稍后会放在文章末尾。</p>
+<h3 id="（1）分配空间"><a href="#（1）分配空间" class="headerlink" title="（1）分配空间"></a>（1）分配空间</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  * class java.nio.HeapByteBuffer Java堆内存，读写效率低，受到GC影响</span></span><br><span class="line"><span class="comment">  * class java.nio.DirectByteBuffer 直接内存，读写效率高（少一次拷贝），不会受到GC影响，</span></span><br><span class="line"><span class="comment">  *                                  分配的效率低，使用不当会造成内存泄漏</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line">  System.out.println(ByteBuffer.allocate(<span class="number">16</span>).getClass());</span><br><span class="line">  System.out.println(ByteBuffer.allocateDirect(<span class="number">16</span>).getClass());</span><br></pre></td></tr></table></figure>
+
+<h3 id="（2）向-buffer-写入数据"><a href="#（2）向-buffer-写入数据" class="headerlink" title="（2）向 buffer 写入数据"></a>（2）向 buffer 写入数据</h3><p>向buffer中写入数据可以使用以下两种方式：</p>
+<ul>
+<li>调用 channel 的 read 方法</li>
+<li>调用 buffer 自己的 put 方法</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 调用 channel 的 read 方法</span></span><br><span class="line"><span class="type">int</span> <span class="variable">readBytes</span> <span class="operator">=</span> channel.read(buffer);</span><br><span class="line"><span class="comment">// 调用 buffer 自己的 put 方法</span></span><br><span class="line">buffer.put((<span class="type">byte</span>) <span class="number">0x61</span>);</span><br></pre></td></tr></table></figure>
+<p>如下例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">ByteBuffer</span> <span class="variable">buffer</span> <span class="operator">=</span> ByteBuffer.allocate(<span class="number">10</span>); <span class="comment">// 创建一个ByteBuffer缓冲区</span></span><br><span class="line">buffer.put((<span class="type">byte</span>) <span class="number">0x61</span>); <span class="comment">//写入单个字节数据</span></span><br><span class="line">ByteBufferUtil.debugAll(buffer); <span class="comment">//查看buffer结构的工具方法</span></span><br><span class="line">buffer.put(<span class="keyword">new</span> <span class="title class_">byte</span>[]&#123;<span class="number">0x62</span>, <span class="number">0x63</span>&#125;); <span class="comment">//写入字节数组数据</span></span><br><span class="line">ByteBufferUtil.debugAll(buffer); <span class="comment">//查看buffer结构的工具方法</span></span><br></pre></td></tr></table></figure>
+<p>从下面的输出可以看到，第一次写入了一个a，在索引为0的地方；第二个写入了一个数组，两个字符 a和b，分别在下标0和1的地方。<br>同时也能看到buffer中的position和limit的值。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">+--------+-------------------- all ------------------------+----------------+</span><br><span class="line">position: [<span class="number">1</span>], limit: [<span class="number">10</span>]</span><br><span class="line">         +-------------------------------------------------+</span><br><span class="line">         |  <span class="number">0</span>  <span class="number">1</span>  <span class="number">2</span>  <span class="number">3</span>  <span class="number">4</span>  <span class="number">5</span>  <span class="number">6</span>  <span class="number">7</span>  <span class="number">8</span>  <span class="number">9</span>  a  b  c  d  e  f |</span><br><span class="line">+--------+-------------------------------------------------+----------------+</span><br><span class="line">|<span class="number">00000000</span>| <span class="number">61</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span>                   |a.........      |</span><br><span class="line">+--------+-------------------------------------------------+----------------+</span><br><span class="line">+--------+-------------------- all ------------------------+----------------+</span><br><span class="line">position: [<span class="number">3</span>], limit: [<span class="number">10</span>]</span><br><span class="line">         +-------------------------------------------------+</span><br><span class="line">         |  <span class="number">0</span>  <span class="number">1</span>  <span class="number">2</span>  <span class="number">3</span>  <span class="number">4</span>  <span class="number">5</span>  <span class="number">6</span>  <span class="number">7</span>  <span class="number">8</span>  <span class="number">9</span>  a  b  c  d  e  f |</span><br><span class="line">+--------+-------------------------------------------------+----------------+</span><br><span class="line">|<span class="number">00000000</span>| <span class="number">61</span> <span class="number">62</span> <span class="number">63</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span>                   |abc.......      |</span><br><span class="line">+--------+-------------------------------------------------+----------------+</span><br><span class="line"></span><br><span class="line">Process finished with exit code <span class="number">0</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="（3）从-buffer-读取数据"><a href="#（3）从-buffer-读取数据" class="headerlink" title="（3）从 buffer 读取数据"></a>（3）从 buffer 读取数据</h3><p>同样有两种办法</p>
+<ul>
+<li>调用 channel 的 write 方法</li>
+<li>调用 buffer 自己的 get 方法</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">writeBytes</span> <span class="operator">=</span> channel.write(buf);</span><br></pre></td></tr></table></figure>
+
+<p>和</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">byte</span> <span class="variable">b</span> <span class="operator">=</span> buf.get();</span><br></pre></td></tr></table></figure>
+
+<p>get 方法会让 position 读指针向后走，如果想重复读取数据</p>
+<ul>
+<li>可以调用 rewind 方法将 position 重新置为 0</li>
+<li>或者调用 get(int i) 方法获取索引 i 的内容，它不会移动读指针</li>
+</ul>
+<p>如下示例：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">ByteBuffer buffer = ByteBuffer.allocate(10); // 创建一个buffer缓冲区</span><br><span class="line">buffer.put(new byte[]&#123;<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>, <span class="string">&#x27;d&#x27;</span>&#125;); // 向缓冲区输入四个字符</span><br><span class="line">buffer.flip(); //转换为bytebuffer读模式</span><br><span class="line"></span><br><span class="line">buffer.get(new byte[4]); //get，一次读取多个字节</span><br><span class="line">ByteBufferUtil.debugAll(buffer); //查看buffer结构的工具方法</span><br><span class="line">buffer.rewind(); //重置position</span><br><span class="line">ByteBufferUtil.debugAll(buffer); //查看buffer结构的工具方法</span><br></pre></td></tr></table></figure>
+<p>执行结果如下：<br>可以看到，当get多个数据的时候，position的值会改变。当执行了rewind()方法后，position的值被重置为0。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">+--------+-------------------- all ------------------------+----------------+</span><br><span class="line">position: [<span class="number">4</span>], limit: [<span class="number">4</span>]</span><br><span class="line">         +-------------------------------------------------+</span><br><span class="line">         |  <span class="number">0</span>  <span class="number">1</span>  <span class="number">2</span>  <span class="number">3</span>  <span class="number">4</span>  <span class="number">5</span>  <span class="number">6</span>  <span class="number">7</span>  <span class="number">8</span>  <span class="number">9</span>  a  b  c  d  e  f |</span><br><span class="line">+--------+-------------------------------------------------+----------------+</span><br><span class="line">|<span class="number">00000000</span>| <span class="number">61</span> <span class="number">62</span> <span class="number">63</span> <span class="number">64</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span>                   |abcd......      |</span><br><span class="line">+--------+-------------------------------------------------+----------------+</span><br><span class="line">+--------+-------------------- all ------------------------+----------------+</span><br><span class="line">position: [<span class="number">0</span>], limit: [<span class="number">4</span>]</span><br><span class="line">         +-------------------------------------------------+</span><br><span class="line">         |  <span class="number">0</span>  <span class="number">1</span>  <span class="number">2</span>  <span class="number">3</span>  <span class="number">4</span>  <span class="number">5</span>  <span class="number">6</span>  <span class="number">7</span>  <span class="number">8</span>  <span class="number">9</span>  a  b  c  d  e  f |</span><br><span class="line">+--------+-------------------------------------------------+----------------+</span><br><span class="line">|<span class="number">00000000</span>| <span class="number">61</span> <span class="number">62</span> <span class="number">63</span> <span class="number">64</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span>                   |abcd......      |</span><br><span class="line">+--------+-------------------------------------------------+----------------+</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="（4）mark-和-reset"><a href="#（4）mark-和-reset" class="headerlink" title="（4）mark 和 reset"></a>（4）mark 和 reset</h3><p>mark 是在读取时，做一个标记，即使 position 改变，只要调用 reset 就能回到 mark 的位置。</p>
+<blockquote>
+<p><strong>注意</strong></p>
+<p>rewind 和 flip 都会清除 mark 位置</p>
+</blockquote>
+<p>如下示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">ByteBuffer</span> <span class="variable">buffer</span> <span class="operator">=</span> ByteBuffer.allocate(<span class="number">10</span>);</span><br><span class="line">buffer.put(<span class="keyword">new</span> <span class="title class_">byte</span>[]&#123;<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>, <span class="string">&#x27;d&#x27;</span>&#125;);</span><br><span class="line">buffer.flip();</span><br><span class="line">System.out.println((<span class="type">char</span>) buffer.get());</span><br><span class="line">System.out.println((<span class="type">char</span>) buffer.get());</span><br><span class="line">buffer.mark();</span><br><span class="line">System.out.println((<span class="type">char</span>) buffer.get());</span><br><span class="line">System.out.println((<span class="type">char</span>) buffer.get());</span><br><span class="line">ByteBufferUtil.debugAll(buffer);</span><br><span class="line">buffer.reset();</span><br><span class="line">ByteBufferUtil.debugAll(buffer);</span><br></pre></td></tr></table></figure>
+<p>执行结果如下：<br>可以看到，当get了两个数据后，执行了mark()方法，然后再将最后的两个数据进行读取完毕，最后position的值为4，当执行过reset()方法之后，position的值变成了2。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">a</span><br><span class="line">b</span><br><span class="line">c</span><br><span class="line">d</span><br><span class="line">+--------+-------------------- all ------------------------+----------------+</span><br><span class="line">position: [<span class="number">4</span>], limit: [<span class="number">4</span>]</span><br><span class="line">         +-------------------------------------------------+</span><br><span class="line">         |  <span class="number">0</span>  <span class="number">1</span>  <span class="number">2</span>  <span class="number">3</span>  <span class="number">4</span>  <span class="number">5</span>  <span class="number">6</span>  <span class="number">7</span>  <span class="number">8</span>  <span class="number">9</span>  a  b  c  d  e  f |</span><br><span class="line">+--------+-------------------------------------------------+----------------+</span><br><span class="line">|<span class="number">00000000</span>| <span class="number">61</span> <span class="number">62</span> <span class="number">63</span> <span class="number">64</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span>                   |abcd......      |</span><br><span class="line">+--------+-------------------------------------------------+----------------+</span><br><span class="line">+--------+-------------------- all ------------------------+----------------+</span><br><span class="line">position: [<span class="number">2</span>], limit: [<span class="number">4</span>]</span><br><span class="line">         +-------------------------------------------------+</span><br><span class="line">         |  <span class="number">0</span>  <span class="number">1</span>  <span class="number">2</span>  <span class="number">3</span>  <span class="number">4</span>  <span class="number">5</span>  <span class="number">6</span>  <span class="number">7</span>  <span class="number">8</span>  <span class="number">9</span>  a  b  c  d  e  f |</span><br><span class="line">+--------+-------------------------------------------------+----------------+</span><br><span class="line">|<span class="number">00000000</span>| <span class="number">61</span> <span class="number">62</span> <span class="number">63</span> <span class="number">64</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span>                   |abcd......      |</span><br><span class="line">+--------+-------------------------------------------------+----------------+</span><br></pre></td></tr></table></figure>
+<h2 id="5、练习"><a href="#5、练习" class="headerlink" title="5、练习"></a>5、练习</h2><p>网络上有多条数据发送给服务端，数据之间使用 \n 进行分隔<br>但由于某种原因这些数据在接收时，被进行了重新组合，例如原始数据有3条为</p>
+<ul>
+<li>Hello,world\n</li>
+<li>I’m zhangsan\n</li>
+<li>How are you?\n</li>
+</ul>
+<p>变成了下面的两个 byteBuffer (黏包，半包)</p>
+<ul>
+<li>Hello,world\nI’m zhangsan\nHo</li>
+<li>w are you?\n</li>
+</ul>
+<p>现在要求你编写程序，将错乱的数据恢复成原始的按 \n 分隔的数据。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * 网络上有多条数据发送给服务端，数据之间使用 \n 进行分割</span></span><br><span class="line"><span class="comment">         * 但是由于某种原因，数据在接收时，被进行了重新组合，例如：</span></span><br><span class="line"><span class="comment">         *  Hello World\n</span></span><br><span class="line"><span class="comment">         *  I&#x27;m zhangsan\n</span></span><br><span class="line"><span class="comment">         *  How are you\n</span></span><br><span class="line"><span class="comment">         *  变成了下面两个byteBuffer （黏包，半包）</span></span><br><span class="line"><span class="comment">         *  Hello World\n I&#x27;m zhangsan\nHo</span></span><br><span class="line"><span class="comment">         *  w are you\n</span></span><br><span class="line"><span class="comment">         *  现在要求将错乱的程序恢复原始的正常的数据</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        <span class="type">ByteBuffer</span> <span class="variable">source</span> <span class="operator">=</span> ByteBuffer.allocate(<span class="number">32</span>);</span><br><span class="line">        source.put(<span class="string">&quot;HelloWorld\nI&#x27;m zhangsan\nHo&quot;</span>.getBytes());</span><br><span class="line">        split(source);</span><br><span class="line">        source.put(<span class="string">&quot;w are you?\n&quot;</span>.getBytes());</span><br><span class="line">        split(source);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">split</span><span class="params">(ByteBuffer source)</span> &#123;</span><br><span class="line">        <span class="comment">// ByteBuffer切换到读模式</span></span><br><span class="line">        source.flip();</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; source.limit(); i++) &#123;</span><br><span class="line">            <span class="comment">// 找到一条完整的消息</span></span><br><span class="line">            <span class="keyword">if</span> (source.get(i) == <span class="string">&#x27;\n&#x27;</span>) &#123;</span><br><span class="line">                <span class="type">int</span> <span class="variable">len</span> <span class="operator">=</span> i + <span class="number">1</span> - source.position();</span><br><span class="line">                <span class="comment">// 把这条消息完整的存入新的ByteBuffer</span></span><br><span class="line">                <span class="type">ByteBuffer</span> <span class="variable">target</span> <span class="operator">=</span> ByteBuffer.allocate(len);</span><br><span class="line">                <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>; j &lt; len; j++) &#123;</span><br><span class="line">                    target.put(source.get());</span><br><span class="line">                &#125;</span><br><span class="line">                ByteBufferUtil.debugAll(target);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 标记当前位置，将后续字节整理后放在下次读取的数据前面</span></span><br><span class="line">        source.compact();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>执行后的结果如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">+--------+-------------------- all ------------------------+----------------+</span><br><span class="line">position: [<span class="number">11</span>], limit: [<span class="number">11</span>]</span><br><span class="line">         +-------------------------------------------------+</span><br><span class="line">         |  <span class="number">0</span>  <span class="number">1</span>  <span class="number">2</span>  <span class="number">3</span>  <span class="number">4</span>  <span class="number">5</span>  <span class="number">6</span>  <span class="number">7</span>  <span class="number">8</span>  <span class="number">9</span>  a  b  c  d  e  f |</span><br><span class="line">+--------+-------------------------------------------------+----------------+</span><br><span class="line">|<span class="number">00000000</span>| <span class="number">48</span> <span class="number">65</span> 6c 6c <span class="number">6f</span> <span class="number">57</span> <span class="number">6f</span> <span class="number">72</span> 6c <span class="number">64</span> 0a                |HelloWorld.     |</span><br><span class="line">+--------+-------------------------------------------------+----------------+</span><br><span class="line">+--------+-------------------- all ------------------------+----------------+</span><br><span class="line">position: [<span class="number">13</span>], limit: [<span class="number">13</span>]</span><br><span class="line">         +-------------------------------------------------+</span><br><span class="line">         |  <span class="number">0</span>  <span class="number">1</span>  <span class="number">2</span>  <span class="number">3</span>  <span class="number">4</span>  <span class="number">5</span>  <span class="number">6</span>  <span class="number">7</span>  <span class="number">8</span>  <span class="number">9</span>  a  b  c  d  e  f |</span><br><span class="line">+--------+-------------------------------------------------+----------------+</span><br><span class="line">|<span class="number">00000000</span>| <span class="number">49</span> <span class="number">27</span> <span class="number">6d</span> <span class="number">20</span> 7a <span class="number">68</span> <span class="number">61</span> 6e <span class="number">67</span> <span class="number">73</span> <span class="number">61</span> 6e 0a          |I<span class="string">&#x27;m zhangsan.   |</span></span><br><span class="line"><span class="string">+--------+-------------------------------------------------+----------------+</span></span><br><span class="line"><span class="string">+--------+-------------------- all ------------------------+----------------+</span></span><br><span class="line"><span class="string">position: [13], limit: [13]</span></span><br><span class="line"><span class="string">         +-------------------------------------------------+</span></span><br><span class="line"><span class="string">         |  0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f |</span></span><br><span class="line"><span class="string">+--------+-------------------------------------------------+----------------+</span></span><br><span class="line"><span class="string">|00000000| 48 6f 77 20 61 72 65 20 79 6f 75 3f 0a          |How are you?.   |</span></span><br><span class="line"><span class="string">+--------+-------------------------------------------------+----------------+</span></span><br></pre></td></tr></table></figure>
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>本文标题：ByteBuffer的使用</li>
+        <li>本文作者：zal</li>
+        <li>创建时间：2022-10-14 16:35:22</li>
+        <li>
+            本文链接：https://xiaoaozz.github.io/2022/10/14/ByteBuffer的使用/
+        </li>
+        <li>
+            版权声明：本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/ByteBuffer/">#ByteBuffer</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/">#基本使用</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2022/10/13/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%8E%9F%E7%90%86%E7%AC%AC%E4%B8%80%E7%AB%A0%E7%AC%94%E8%AE%B0/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">计算机原理第一章笔记</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+            <div class="comment-container">
+                <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments">&nbsp;评论</i>
+    </div>
+    
+
+        
+            
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2022</span>
+              -
+            
+            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">zal</a>
+        </div>
+        
+            <script async  src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.5</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E8%AE%A4%E8%AF%86ByteBuffer"><span class="nav-text">一、认识ByteBuffer</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C%E3%80%81ByteBuffer%E4%BD%BF%E7%94%A8"><span class="nav-text">二、ByteBuffer使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1%E3%80%81%E8%AF%BB%E5%8F%96%E6%96%87%E6%9C%AC%E6%95%B0%E6%8D%AE"><span class="nav-text">1、读取文本数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2%E3%80%81%E6%AD%A3%E7%A1%AE%E4%BD%BF%E7%94%A8ByteBuffer"><span class="nav-text">2、正确使用ByteBuffer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3%E3%80%81ByteBuffer%E7%9A%84%E7%BB%93%E6%9E%84"><span class="nav-text">3、ByteBuffer的结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4%E3%80%81ByteBuffer%E7%9A%84%E5%B8%B8%E8%A7%81%E6%96%B9%E6%B3%95"><span class="nav-text">4、ByteBuffer的常见方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%881%EF%BC%89%E5%88%86%E9%85%8D%E7%A9%BA%E9%97%B4"><span class="nav-text">（1）分配空间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%882%EF%BC%89%E5%90%91-buffer-%E5%86%99%E5%85%A5%E6%95%B0%E6%8D%AE"><span class="nav-text">（2）向 buffer 写入数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%883%EF%BC%89%E4%BB%8E-buffer-%E8%AF%BB%E5%8F%96%E6%95%B0%E6%8D%AE"><span class="nav-text">（3）从 buffer 读取数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%884%EF%BC%89mark-%E5%92%8C-reset"><span class="nav-text">（4）mark 和 reset</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5%E3%80%81%E7%BB%83%E4%B9%A0"><span class="nav-text">5、练习</span></a></li></ol></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+
+</body>
+</html>
