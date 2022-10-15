@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="zal">
+    
+    <title>
+        
+            NIO下理解阻塞模式和非阻塞模式 |
+        
+        小奥的个人博客
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/xiaoao-avatar.png">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"zh-CN","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/xiaoao-avatar.png","favicon":"/images/xiaoao-avatar.png","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"请保持热爱，来奔赴下一场山和海！"},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":true}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.5"};
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+  </script>
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                小奥的个人博客
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                分类
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                标签
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">分类</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">标签</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">NIO下理解阻塞模式和非阻塞模式</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/xiaoao-avatar.png">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">zal</span>
+                        
+                            <span class="author-label">Lv3</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2022-10-15 17:01:30</span>
+        <span class="mobile">2022-10-15 17:01</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/Netty/">Netty</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/NIO/">NIO</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E9%98%BB%E5%A1%9E%E5%92%8C%E9%9D%9E%E9%98%BB%E5%A1%9E/">阻塞和非阻塞</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <hr>
+<h1 id="一、阻塞和非阻塞"><a href="#一、阻塞和非阻塞" class="headerlink" title="一、阻塞和非阻塞"></a>一、阻塞和非阻塞</h1><p>何为阻塞？ </p>
+<p>从该网络通讯过程来理解一下何为阻塞 : </p>
+<p>在以上过程中若连接还没到来，那么 accept 会阻塞 , 程序运行到这里不得不挂起， CPU 转而执行其他线程。 </p>
+<p>在以上过程中若数据还没准备好， read 会一样也会阻塞。 </p>
+<p>阻塞式网络 IO 的特点：多线程处理多个连接。每个线程拥有自己的栈空间并且占用一些 CPU 时间。每个线程遇到外部为准备好的时候，都会阻塞掉。阻塞的结果就是会带来大量的进程上下文切换。且大部分进程上下文切换可能是无意义的。比如假设一个线程监听一个端口，一天只会有几次请求进来，但是该 cpu 不得不为该线程不断做上下文切换尝试，大部分的切换以阻塞告终。 </p>
+<p>何为非阻塞？ </p>
+<p>下面有个隐喻： </p>
+<p>一辆从 A 开往 B 的公共汽车上，路上有很多点可能会有人下车。司机不知道哪些点会有哪些人会下车，对于需要下车的人，如何处理更好？ </p>
+<ol>
+<li><p>司机过程中定时询问每个乘客是否到达目的地，若有人说到了，那么司机停车，乘客下车。 ( 类似阻塞式 ) </p>
+</li>
+<li><p>每个人告诉售票员自己的目的地，然后睡觉，司机只和售票员交互，到了某个点由售票员通知乘客下车。 ( 类似非阻塞 )</p>
+</li>
+</ol>
+<p>很显然，每个人要到达某个目的地可以认为是一个线程，司机可以认为是 CPU 。在阻塞式里面，每个线程需要不断的轮询，上下文切换，以达到找到目的地的结果。而在非阻塞方式里，每个乘客 ( 线程 ) 都在睡觉 ( 休眠 ) ，只在真正外部环境准备好了才唤醒，这样的唤醒肯定不会阻塞。 </p>
+<h1 id="二、阻塞"><a href="#二、阻塞" class="headerlink" title="二、阻塞"></a>二、阻塞</h1><h2 id="1、阻塞"><a href="#1、阻塞" class="headerlink" title="1、阻塞"></a>1、阻塞</h2><ul>
+<li>阻塞模式下，相关方法都会导致线程暂停<ul>
+<li>ServerSocketChannel.accept 会在没有连接建立时让线程暂停</li>
+<li>SocketChannel.read 会在没有数据可读时让线程暂停</li>
+<li>阻塞的表现其实就是线程暂停了，暂停期间不会占用 cpu，但线程相当于闲置</li>
+</ul>
+</li>
+<li>单线程下，阻塞方法之间相互影响，几乎不能正常工作，需要多线程支持</li>
+<li>但多线程下，有新的问题，体现在以下方面<ul>
+<li>32 位 jvm 一个线程 320k，64 位 jvm 一个线程 1024k，如果连接数过多，必然导致 OOM，并且线程太多，反而会因为频繁上下文切换导致性能降低</li>
+<li>可以采用线程池技术来减少线程数和线程上下文切换，但治标不治本，如果有很多连接建立，但长时间 inactive，会阻塞线程池中所有线程，因此不适合长连接，只适合短连接</li>
+</ul>
+</li>
+</ul>
+<h2 id="2、代码演示"><a href="#2、代码演示" class="headerlink" title="2、代码演示"></a>2、代码演示</h2><p>下面是案例：</p>
+<p>首先我们写一个Socket客户端，代码如下，具体解析都加有相应的注释：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> com.example.nettydemo.c1.test.ByteBufferUtil;</span><br><span class="line"><span class="keyword">import</span> lombok.extern.slf4j.Slf4j;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.net.InetSocketAddress;</span><br><span class="line"><span class="keyword">import</span> java.nio.ByteBuffer;</span><br><span class="line"><span class="keyword">import</span> java.nio.channels.ServerSocketChannel;</span><br><span class="line"><span class="keyword">import</span> java.nio.channels.SocketChannel;</span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Server</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">        <span class="comment">// 使用nio来理解阻塞模式。这里使用的是单线程连接</span></span><br><span class="line">        <span class="comment">// 全局ByteBuffer</span></span><br><span class="line">        <span class="type">ByteBuffer</span> <span class="variable">buffer</span> <span class="operator">=</span> ByteBuffer.allocate(<span class="number">16</span>);</span><br><span class="line">        <span class="comment">// 1、创建服务器</span></span><br><span class="line">        <span class="type">ServerSocketChannel</span> <span class="variable">socketChannel</span> <span class="operator">=</span> ServerSocketChannel.open();</span><br><span class="line">        <span class="comment">// 2、绑定监听端口</span></span><br><span class="line">        socketChannel.bind(<span class="keyword">new</span> <span class="title class_">InetSocketAddress</span>(<span class="number">8080</span>));</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 3、连接集合</span></span><br><span class="line">        List&lt;SocketChannel&gt; channels = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">        <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">            <span class="comment">// 4、accept与客户端建立连接，SocketChannel用来与客户端之间通信</span></span><br><span class="line">            log.debug(<span class="string">&quot;connecting...&quot;</span>); <span class="comment">//accept() 默认是阻塞方法，线程停止运行等待</span></span><br><span class="line">            <span class="type">SocketChannel</span> <span class="variable">sc</span> <span class="operator">=</span> socketChannel.accept();</span><br><span class="line">            log.debug(<span class="string">&quot;connected... &#123;&#125;&quot;</span>, sc);</span><br><span class="line">            channels.add(sc);</span><br><span class="line">            <span class="keyword">for</span> (SocketChannel channel : channels) &#123;</span><br><span class="line">                <span class="comment">// 5、接收客户端发送的数据</span></span><br><span class="line">                log.debug(<span class="string">&quot;before read... &#123;&#125;&quot;</span>, channel);</span><br><span class="line">                channel.read(buffer); <span class="comment">//read()也是一个阻塞方法，线程停止运行等待</span></span><br><span class="line">                buffer.flip(); <span class="comment">//切换为读模式</span></span><br><span class="line">                ByteBufferUtil.debugRead(buffer);  <span class="comment">// 调试打印数据</span></span><br><span class="line">                buffer.clear(); <span class="comment">//切换为写模式，并重置position</span></span><br><span class="line">                log.debug(<span class="string">&quot;after read... &#123;&#125;&quot;</span>, channel);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>服务端用来接收数据，我们还需要一个客户端进行发送数据，客户端比较简单，如下示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.net.InetSocketAddress;</span><br><span class="line"><span class="keyword">import</span> java.nio.channels.SocketChannel;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Client</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">    	<span class="comment">// 建立一个SocketChannel连接</span></span><br><span class="line">        <span class="type">SocketChannel</span> <span class="variable">socketChannel</span> <span class="operator">=</span> SocketChannel.open();</span><br><span class="line">        <span class="comment">// 连接本地，监听相应端口号</span></span><br><span class="line">        socketChannel.connect(<span class="keyword">new</span> <span class="title class_">InetSocketAddress</span>(<span class="string">&quot;localhost&quot;</span>,<span class="number">8080</span>));</span><br><span class="line">        <span class="comment">// debug模式下</span></span><br><span class="line">        <span class="comment">// 执行表达式  socketChannel.write(Charset.defaultCharset().encode(&quot;hello&quot;))</span></span><br><span class="line">        <span class="comment">// 可以看到运行的结果</span></span><br><span class="line">        System.out.println(<span class="string">&quot;waiting ....&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>下面我们进行模拟客户端与服务端之间发送和接收数据（单线程），我们以正常模式启动Server服务端，控制台会打印以下信息：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">16</span>:<span class="number">22</span>:<span class="number">44</span> [DEBUG] [main] c.e.n.c.t.Server - connecting...</span><br></pre></td></tr></table></figure>
+<p>这是因为accept()方法默认是阻塞方法，当线程执行到accept()方法的时候，线程会进入阻塞状态，等待客户端进行发送数据，此时线程不会进行其它操作。<br>接着我们以debug模式启动Client客户端，在输出语句的地方打上一个断点，保证不影响Socket的连接。<br>启动后，发现控制台又打印了两条信息，如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">16</span>:<span class="number">22</span>:<span class="number">44</span> [DEBUG] [main] c.e.n.c.t.Server - connecting...</span><br><span class="line"><span class="number">16</span>:<span class="number">25</span>:<span class="number">24</span> [DEBUG] [main] c.e.n.c.t.Server - connected... java.nio.channels.SocketChannel[connected local=/<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">8080</span> remote=/<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">36948</span>]</span><br><span class="line"><span class="number">16</span>:<span class="number">25</span>:<span class="number">24</span> [DEBUG] [main] c.e.n.c.t.Server - before read... java.nio.channels.SocketChannel[connected local=/<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">8080</span> remote=/<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">36948</span>]</span><br></pre></td></tr></table></figure>
+<p>当accept()方法等待到客户端的连接之后，会继续向下执行，建立连接，准备读取数据，这时我们知道ByteBuffer的read()方法也是一个阻塞方法，此时该线程又会被阻塞，等待数据的读取。</p>
+<p>我们可以使用debug的Evaluate Expression功能来执行模拟发送数据，操作如下：<br><img src="https://img-blog.csdnimg.cn/12d6d965ceb148b1a35ed5f760f21112.png" alt="在这里插入图片描述"><br>我们执行这样一条表达式 <code>socketChannel.write(Charset.defaultCharset().encode(&quot;hello&quot;))</code><br><img src="https://img-blog.csdnimg.cn/118a93a530c544adbf9aa3fcb93104e3.png" alt="在这里插入图片描述"><br>这就模拟发送了一条数据 “hello”，我们查看控制台打印信息，如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">16</span>:<span class="number">22</span>:<span class="number">44</span> [DEBUG] [main] c.e.n.c.t.Server - connecting...</span><br><span class="line"><span class="number">16</span>:<span class="number">25</span>:<span class="number">24</span> [DEBUG] [main] c.e.n.c.t.Server - connected... java.nio.channels.SocketChannel[connected local=/<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">8080</span> remote=/<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">36948</span>]</span><br><span class="line"><span class="number">16</span>:<span class="number">25</span>:<span class="number">24</span> [DEBUG] [main] c.e.n.c.t.Server - before read... java.nio.channels.SocketChannel[connected local=/<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">8080</span> remote=/<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">36948</span>]</span><br><span class="line">+--------+-------------------- read -----------------------+----------------+</span><br><span class="line">position: [<span class="number">0</span>], limit: [<span class="number">5</span>]</span><br><span class="line">         +-------------------------------------------------+</span><br><span class="line">         |  <span class="number">0</span>  <span class="number">1</span>  <span class="number">2</span>  <span class="number">3</span>  <span class="number">4</span>  <span class="number">5</span>  <span class="number">6</span>  <span class="number">7</span>  <span class="number">8</span>  <span class="number">9</span>  a  b  c  d  e  f |</span><br><span class="line">+--------+-------------------------------------------------+----------------+</span><br><span class="line">|<span class="number">00000000</span>| <span class="number">68</span> <span class="number">65</span> 6c 6c <span class="number">6f</span>                                  |hello           |</span><br><span class="line">+--------+-------------------------------------------------+----------------+</span><br><span class="line"><span class="number">16</span>:<span class="number">29</span>:<span class="number">44</span> [DEBUG] [main] c.e.n.c.t.Server - after read... java.nio.channels.SocketChannel[connected local=/<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">8080</span> remote=/<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">36948</span>]</span><br><span class="line"><span class="number">16</span>:<span class="number">29</span>:<span class="number">44</span> [DEBUG] [main] c.e.n.c.t.Server - connecting...</span><br></pre></td></tr></table></figure>
+
+<p>数据发送成功，而且服务端也接收到了数据，并且读取数据完毕之后，又进入了连接等待状态。</p>
+<p>那么我们尝试再次发送一条数据，执行如下表达式 <code>socketChannel.write(Charset.defaultCharset().encode(&quot;hi&quot;))</code></p>
+<p>再次查看控制台，发现控制台什么也没有打印，说明服务端Server并未接收到客户端的数据，这是为什么呢 ？</p>
+<p>我们看原来的服务端代码，发现，SocketChannel又执行了accept()方法，等待新的客户端建立连接，而我们并没有启动新的客户端，所以该线程被阻塞了，不会执行其它任何的操作。<br><img src="https://img-blog.csdnimg.cn/c84a14641ea54fadb38f0351f048b718.png" alt="在这里插入图片描述"><br>发现了问题所在，那么我们再建立一个客户端不就好了么？<br>我们可以通过IDEA配置，进行多个程序的运行，如图：<br>（1）打开客户端编辑配置<br><img src="https://img-blog.csdnimg.cn/af0e10a4af2d4af0920f357fe385b352.png" alt="在这里插入图片描述"><br>（2）选择以下选项<br>我这里已经勾选过了。<br><img src="https://img-blog.csdnimg.cn/c9b1ec8e9a7d4c0d85b972478b266148.png" alt="在这里插入图片描述"></p>
+<p>再次以debug模式运行Client客户端，运行成功后，发现服务端Server控制台打印了相关信息，如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">16</span>:<span class="number">22</span>:<span class="number">44</span> [DEBUG] [main] c.e.n.c.t.Server - connecting...</span><br><span class="line"><span class="number">16</span>:<span class="number">25</span>:<span class="number">24</span> [DEBUG] [main] c.e.n.c.t.Server - connected... java.nio.channels.SocketChannel[connected local=/<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">8080</span> remote=/<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">36948</span>]</span><br><span class="line"><span class="number">16</span>:<span class="number">25</span>:<span class="number">24</span> [DEBUG] [main] c.e.n.c.t.Server - before read... java.nio.channels.SocketChannel[connected local=/<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">8080</span> remote=/<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">36948</span>]</span><br><span class="line">+--------+-------------------- read -----------------------+----------------+</span><br><span class="line">position: [<span class="number">0</span>], limit: [<span class="number">5</span>]</span><br><span class="line">         +-------------------------------------------------+</span><br><span class="line">         |  <span class="number">0</span>  <span class="number">1</span>  <span class="number">2</span>  <span class="number">3</span>  <span class="number">4</span>  <span class="number">5</span>  <span class="number">6</span>  <span class="number">7</span>  <span class="number">8</span>  <span class="number">9</span>  a  b  c  d  e  f |</span><br><span class="line">+--------+-------------------------------------------------+----------------+</span><br><span class="line">|<span class="number">00000000</span>| <span class="number">68</span> <span class="number">65</span> 6c 6c <span class="number">6f</span>                                  |hello           |</span><br><span class="line">+--------+-------------------------------------------------+----------------+</span><br><span class="line"><span class="number">16</span>:<span class="number">29</span>:<span class="number">44</span> [DEBUG] [main] c.e.n.c.t.Server - after read... java.nio.channels.SocketChannel[connected local=/<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">8080</span> remote=/<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">36948</span>]</span><br><span class="line"><span class="number">16</span>:<span class="number">29</span>:<span class="number">44</span> [DEBUG] [main] c.e.n.c.t.Server - connecting...</span><br><span class="line"><span class="number">16</span>:<span class="number">37</span>:<span class="number">06</span> [DEBUG] [main] c.e.n.c.t.Server - connected... java.nio.channels.SocketChannel[connected local=/<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">8080</span> remote=/<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">37084</span>]</span><br><span class="line"><span class="number">16</span>:<span class="number">37</span>:<span class="number">06</span> [DEBUG] [main] c.e.n.c.t.Server - before read... java.nio.channels.SocketChannel[connected local=/<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">8080</span> remote=/<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">36948</span>]</span><br><span class="line">+--------+-------------------- read -----------------------+----------------+</span><br><span class="line">position: [<span class="number">0</span>], limit: [<span class="number">2</span>]</span><br><span class="line">         +-------------------------------------------------+</span><br><span class="line">         |  <span class="number">0</span>  <span class="number">1</span>  <span class="number">2</span>  <span class="number">3</span>  <span class="number">4</span>  <span class="number">5</span>  <span class="number">6</span>  <span class="number">7</span>  <span class="number">8</span>  <span class="number">9</span>  a  b  c  d  e  f |</span><br><span class="line">+--------+-------------------------------------------------+----------------+</span><br><span class="line">|<span class="number">00000000</span>| <span class="number">68</span> <span class="number">69</span>                                           |hi              |</span><br><span class="line">+--------+-------------------------------------------------+----------------+</span><br><span class="line"><span class="number">16</span>:<span class="number">37</span>:<span class="number">06</span> [DEBUG] [main] c.e.n.c.t.Server - after read... java.nio.channels.SocketChannel[connected local=/<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">8080</span> remote=/<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">36948</span>]</span><br><span class="line"><span class="number">16</span>:<span class="number">37</span>:<span class="number">06</span> [DEBUG] [main] c.e.n.c.t.Server - before read... java.nio.channels.SocketChannel[connected local=/<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">8080</span> remote=/<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">37084</span>]</span><br></pre></td></tr></table></figure>
+<p>我们可以与之前打印的信息相比较，我们这次没有使用debug模拟发送数据，但是之前发送的数据（并未被接收的）现在被接收并且打印了。</p>
+<h2 id="3、结论"><a href="#3、结论" class="headerlink" title="3、结论"></a>3、结论</h2><p>所以我们得出结论：<br>（1）以上过程是理解阻塞的过程。<br>（2）单线程下，阻塞方法之间相互相应，几乎不能正常工作。<br>（3）多线程方式下产生新的问题，这里不再演示</p>
+<h1 id="二、非阻塞"><a href="#二、非阻塞" class="headerlink" title="二、非阻塞"></a>二、非阻塞</h1><h2 id="1、非阻塞"><a href="#1、非阻塞" class="headerlink" title="1、非阻塞"></a>1、非阻塞</h2><ul>
+<li>非阻塞模式下，相关方法都会不会让线程暂停<ul>
+<li>在 ServerSocketChannel.accept 在没有连接建立时，会返回 null，继续运行</li>
+<li>SocketChannel.read 在没有数据可读时，会返回 0，但线程不必阻塞，可以去执行其它 SocketChannel 的 read 或是去执行 ServerSocketChannel.accept </li>
+<li>写数据时，线程只是等待数据写入 Channel 即可，无需等 Channel 通过网络把数据发送出去</li>
+</ul>
+</li>
+<li>但非阻塞模式下，即使没有连接建立，和可读数据，线程仍然在不断运行，白白浪费了 cpu</li>
+<li>数据复制过程中，线程实际还是阻塞的（AIO 改进的地方）</li>
+</ul>
+<h2 id="二、代码演示"><a href="#二、代码演示" class="headerlink" title="二、代码演示"></a>二、代码演示</h2><p>下面我们继续演示非阻塞模式的过程。<br>与阻塞模式相同，我们需要一个客户端和服务端，两者的代码差不多，这里就不再进行重写，给出服务端Server的代码，客户端的代码不变。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> com.example.nettydemo.c1.test.ByteBufferUtil;</span><br><span class="line"><span class="keyword">import</span> lombok.extern.slf4j.Slf4j;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.net.InetSocketAddress;</span><br><span class="line"><span class="keyword">import</span> java.nio.ByteBuffer;</span><br><span class="line"><span class="keyword">import</span> java.nio.channels.ServerSocketChannel;</span><br><span class="line"><span class="keyword">import</span> java.nio.channels.SocketChannel;</span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Server</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">        <span class="comment">// 使用nio来理解阻塞模式。这里使用的是单线程连接</span></span><br><span class="line">        <span class="comment">// 全局ByteBuffer</span></span><br><span class="line">        <span class="type">ByteBuffer</span> <span class="variable">buffer</span> <span class="operator">=</span> ByteBuffer.allocate(<span class="number">16</span>);</span><br><span class="line">        <span class="comment">// 1、创建服务器</span></span><br><span class="line">        <span class="type">ServerSocketChannel</span> <span class="variable">socketChannel</span> <span class="operator">=</span> ServerSocketChannel.open();</span><br><span class="line">        socketChannel.configureBlocking(<span class="literal">false</span>); <span class="comment">// 切换成非阻塞模式</span></span><br><span class="line">        <span class="comment">// 2、绑定监听端口</span></span><br><span class="line">        socketChannel.bind(<span class="keyword">new</span> <span class="title class_">InetSocketAddress</span>(<span class="number">8080</span>));</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 3、连接集合</span></span><br><span class="line">        List&lt;SocketChannel&gt; channels = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">        <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">            <span class="comment">// 4、accept与客户端建立连接，SocketChannel用来与客户端之间通信</span></span><br><span class="line">            <span class="comment">//accept() 默认是阻塞方法，线程停止运行等待</span></span><br><span class="line">            <span class="comment">//由于上面的设置，该方法就变成了非阻塞方法，线程会继续运行</span></span><br><span class="line">            <span class="comment">//如果没有连接建立，那么sc返回的是null，建立连接则不是null</span></span><br><span class="line">            <span class="type">SocketChannel</span> <span class="variable">sc</span> <span class="operator">=</span> socketChannel.accept();</span><br><span class="line">            <span class="keyword">if</span> (sc != <span class="literal">null</span>) &#123;</span><br><span class="line">                log.debug(<span class="string">&quot;connected... &#123;&#125;&quot;</span>, sc);</span><br><span class="line">                <span class="comment">//将SocketChannel设置成非阻塞方法</span></span><br><span class="line">                sc.configureBlocking(<span class="literal">false</span>);</span><br><span class="line">                channels.add(sc);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">for</span> (SocketChannel channel : channels) &#123;</span><br><span class="line">                <span class="comment">// 5、接收客户端发送的数据</span></span><br><span class="line">                <span class="comment">//read()也是一个阻塞方法，线程停止运行等待</span></span><br><span class="line">                <span class="comment">//SocketChannel设置成非阻塞方法，那么read()也就是非阻塞方法</span></span><br><span class="line">                <span class="comment">//如果没有读取到数据，read返回0</span></span><br><span class="line">                <span class="type">int</span> <span class="variable">read</span> <span class="operator">=</span> channel.read(buffer);</span><br><span class="line">                <span class="keyword">if</span> (read &gt; <span class="number">0</span>)&#123;</span><br><span class="line">                    buffer.flip(); <span class="comment">//切换为读模式</span></span><br><span class="line">                    ByteBufferUtil.debugRead(buffer);  <span class="comment">// 调试打印数据</span></span><br><span class="line">                    buffer.clear(); <span class="comment">//切换为写模式，并重置position</span></span><br><span class="line">                    log.debug(<span class="string">&quot;after read... &#123;&#125;&quot;</span>, channel);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>其实非阻塞模式只是将socket的模式设置成为了非阻塞模式，我们先以正常模式运行服务端Server，因为我们在客户端的代码中进行了非null判断，所以我们将一些debug的日志删掉了，防止刷屏影响我们查看控制台数据。</p>
+<p>然后我们以debug模式启动三个客户端Client，启动后发现控制台输出信息：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">16</span>:<span class="number">49</span>:<span class="number">10</span> [DEBUG] [main] c.e.n.c.t.Server - connected... java.nio.channels.SocketChannel[connected local=/<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">8080</span> remote=/<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">37268</span>]</span><br><span class="line"><span class="number">16</span>:<span class="number">49</span>:<span class="number">32</span> [DEBUG] [main] c.e.n.c.t.Server - connected... java.nio.channels.SocketChannel[connected local=/<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">8080</span> remote=/<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">37279</span>]</span><br><span class="line"><span class="number">16</span>:<span class="number">49</span>:<span class="number">55</span> [DEBUG] [main] c.e.n.c.t.Server - connected... java.nio.channels.SocketChannel[connected local=/<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">8080</span> remote=/<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">37288</span>]</span><br></pre></td></tr></table></figure>
+<p>说明服务端Server都能接收到客户端Client的连接。</p>
+<p>然后我们打开端口号为37288的客户端，使用debug工具模拟发送消息，控制台打印如下：<br><code>socketChannel.write(Charset.defaultCharset().encode(&quot;hello&quot;))</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">16</span>:<span class="number">49</span>:<span class="number">10</span> [DEBUG] [main] c.e.n.c.t.Server - connected... java.nio.channels.SocketChannel[connected local=/<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">8080</span> remote=/<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">37268</span>]</span><br><span class="line"><span class="number">16</span>:<span class="number">49</span>:<span class="number">32</span> [DEBUG] [main] c.e.n.c.t.Server - connected... java.nio.channels.SocketChannel[connected local=/<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">8080</span> remote=/<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">37279</span>]</span><br><span class="line"><span class="number">16</span>:<span class="number">49</span>:<span class="number">55</span> [DEBUG] [main] c.e.n.c.t.Server - connected... java.nio.channels.SocketChannel[connected local=/<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">8080</span> remote=/<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">37288</span>]</span><br><span class="line">+--------+-------------------- read -----------------------+----------------+</span><br><span class="line">position: [<span class="number">0</span>], limit: [<span class="number">5</span>]</span><br><span class="line">         +-------------------------------------------------+</span><br><span class="line">         |  <span class="number">0</span>  <span class="number">1</span>  <span class="number">2</span>  <span class="number">3</span>  <span class="number">4</span>  <span class="number">5</span>  <span class="number">6</span>  <span class="number">7</span>  <span class="number">8</span>  <span class="number">9</span>  a  b  c  d  e  f |</span><br><span class="line">+--------+-------------------------------------------------+----------------+</span><br><span class="line">|<span class="number">00000000</span>| <span class="number">68</span> <span class="number">65</span> 6c 6c <span class="number">6f</span>                                  |hello           |</span><br><span class="line">+--------+-------------------------------------------------+----------------+</span><br><span class="line"><span class="number">16</span>:<span class="number">50</span>:<span class="number">47</span> [DEBUG] [main] c.e.n.c.t.Server - after read... java.nio.channels.SocketChannel[connected local=/<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">8080</span> remote=/<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">37288</span>]</span><br></pre></td></tr></table></figure>
+<p>我们再次发送一条数据，<code>socketChannel.write(Charset.defaultCharset().encode(&quot;hi&quot;))</code>，查看控制台，发现仍能打印出数据，说明服务端能够一直接收客户端的数据。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">16</span>:<span class="number">49</span>:<span class="number">10</span> [DEBUG] [main] c.e.n.c.t.Server - connected... java.nio.channels.SocketChannel[connected local=/<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">8080</span> remote=/<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">37268</span>]</span><br><span class="line"><span class="number">16</span>:<span class="number">49</span>:<span class="number">32</span> [DEBUG] [main] c.e.n.c.t.Server - connected... java.nio.channels.SocketChannel[connected local=/<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">8080</span> remote=/<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">37279</span>]</span><br><span class="line"><span class="number">16</span>:<span class="number">49</span>:<span class="number">55</span> [DEBUG] [main] c.e.n.c.t.Server - connected... java.nio.channels.SocketChannel[connected local=/<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">8080</span> remote=/<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">37288</span>]</span><br><span class="line">+--------+-------------------- read -----------------------+----------------+</span><br><span class="line">position: [<span class="number">0</span>], limit: [<span class="number">5</span>]</span><br><span class="line">         +-------------------------------------------------+</span><br><span class="line">         |  <span class="number">0</span>  <span class="number">1</span>  <span class="number">2</span>  <span class="number">3</span>  <span class="number">4</span>  <span class="number">5</span>  <span class="number">6</span>  <span class="number">7</span>  <span class="number">8</span>  <span class="number">9</span>  a  b  c  d  e  f |</span><br><span class="line">+--------+-------------------------------------------------+----------------+</span><br><span class="line">|<span class="number">00000000</span>| <span class="number">68</span> <span class="number">65</span> 6c 6c <span class="number">6f</span>                                  |hello           |</span><br><span class="line">+--------+-------------------------------------------------+----------------+</span><br><span class="line"><span class="number">16</span>:<span class="number">50</span>:<span class="number">47</span> [DEBUG] [main] c.e.n.c.t.Server - after read... java.nio.channels.SocketChannel[connected local=/<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">8080</span> remote=/<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">37288</span>]</span><br><span class="line">+--------+-------------------- read -----------------------+----------------+</span><br><span class="line">position: [<span class="number">0</span>], limit: [<span class="number">2</span>]</span><br><span class="line">         +-------------------------------------------------+</span><br><span class="line">         |  <span class="number">0</span>  <span class="number">1</span>  <span class="number">2</span>  <span class="number">3</span>  <span class="number">4</span>  <span class="number">5</span>  <span class="number">6</span>  <span class="number">7</span>  <span class="number">8</span>  <span class="number">9</span>  a  b  c  d  e  f |</span><br><span class="line">+--------+-------------------------------------------------+----------------+</span><br><span class="line">|<span class="number">00000000</span>| <span class="number">68</span> <span class="number">69</span>                                           |hi              |</span><br><span class="line">+--------+-------------------------------------------------+----------------+</span><br><span class="line"><span class="number">16</span>:<span class="number">51</span>:<span class="number">06</span> [DEBUG] [main] c.e.n.c.t.Server - after read... java.nio.channels.SocketChannel[connected local=/<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">8080</span> remote=/<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">37288</span>]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>其他的客户端发送数据也是可以被服务端接收的到的。</p>
+<h2 id="3、结论-1"><a href="#3、结论-1" class="headerlink" title="3、结论"></a>3、结论</h2><p>（1）非阻塞模式下，相关方法都会不会让线程暂停<br>（2）但非阻塞模式下，即使没有连接建立，和可读数据，线程仍然在不断运行，白白浪费了 cpu</p>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>本文标题：NIO下理解阻塞模式和非阻塞模式</li>
+        <li>本文作者：zal</li>
+        <li>创建时间：2022-10-15 17:01:30</li>
+        <li>
+            本文链接：https://xiaoaozz.github.io/2022/10/15/NIO下理解阻塞模式和非阻塞模式/
+        </li>
+        <li>
+            版权声明：本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/NIO/">#NIO</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/%E9%98%BB%E5%A1%9E%E5%92%8C%E9%9D%9E%E9%98%BB%E5%A1%9E/">#阻塞和非阻塞</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2022/10/14/ByteBuffer%E7%9A%84%E4%BD%BF%E7%94%A8/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">ByteBuffer的使用</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+            <div class="comment-container">
+                <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments">&nbsp;评论</i>
+    </div>
+    
+
+        
+            
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2022</span>
+              -
+            
+            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">zal</a>
+        </div>
+        
+            <script async  src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.5</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E9%98%BB%E5%A1%9E%E5%92%8C%E9%9D%9E%E9%98%BB%E5%A1%9E"><span class="nav-text">一、阻塞和非阻塞</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E9%98%BB%E5%A1%9E"><span class="nav-text">二、阻塞</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1%E3%80%81%E9%98%BB%E5%A1%9E"><span class="nav-text">1、阻塞</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2%E3%80%81%E4%BB%A3%E7%A0%81%E6%BC%94%E7%A4%BA"><span class="nav-text">2、代码演示</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3%E3%80%81%E7%BB%93%E8%AE%BA"><span class="nav-text">3、结论</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E9%9D%9E%E9%98%BB%E5%A1%9E"><span class="nav-text">二、非阻塞</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1%E3%80%81%E9%9D%9E%E9%98%BB%E5%A1%9E"><span class="nav-text">1、非阻塞</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E4%BB%A3%E7%A0%81%E6%BC%94%E7%A4%BA"><span class="nav-text">二、代码演示</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3%E3%80%81%E7%BB%93%E8%AE%BA-1"><span class="nav-text">3、结论</span></a></li></ol></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+
+</body>
+</html>
