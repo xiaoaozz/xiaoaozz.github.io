@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="zal">
+    
+    <title>
+        
+            Arthas的入门与使用 |
+        
+        小奥的个人博客
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/xiaoao-avatar.png">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"zh-CN","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/xiaoao-avatar.png","favicon":"/images/xiaoao-avatar.png","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"请保持热爱，来奔赴下一场山和海！"},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":true}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.5"};
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+  </script>
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                小奥的个人博客
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                分类
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                标签
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">分类</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">标签</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">Arthas的入门与使用</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/xiaoao-avatar.png">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">zal</span>
+                        
+                            <span class="author-label">Lv3</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2022-11-20 22:13:09</span>
+        <span class="mobile">2022-11-20 22:13</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/Arthas/">Arthas</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        &gt; <a href="/categories/Arthas/%E6%80%A7%E8%83%BD%E7%9B%91%E6%8E%A7/">性能监控</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Arthas/">Arthas</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h1 id="Arthas使用与进阶"><a href="#Arthas使用与进阶" class="headerlink" title="Arthas使用与进阶"></a>Arthas使用与进阶</h1><h1 id="一、概述"><a href="#一、概述" class="headerlink" title="一、概述"></a>一、概述</h1><p>Arthas是 Alibaba 开源的 Java 诊断工具，深受开发者喜爱。</p>
+<p>Arthas 是一款线上监控诊断产品，通过全局视角实时查看应用 load、内存、gc、线程的状态信息，并能在不修改应用代码的情况下，对业务问题进行诊断，包括查看方法调用的出入参、异常，监测方法执行耗时，类加载信息等，大大提升线上问题排查效率。</p>
+<p>Arthas（阿尔萨斯）支持JDK6+，支持Linux&#x2F;Mac&#x2F;Windows，采用命令行交互模式，同时提供丰富的tab自动补全功能，进一步方便进行问题的定位和诊断。</p>
+<h1 id="二、快速安装"><a href="#二、快速安装" class="headerlink" title="二、快速安装"></a>二、快速安装</h1><p>下载arthas-boot.jar，然后使用<code>java -jar</code>的方式启动。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl -O https:<span class="comment">//arthas.aliyun.com/arthas-boot.jar</span></span><br><span class="line">java -jar arthas-boot.jar</span><br></pre></td></tr></table></figure>
+
+<h2 id="windows下安装arthas"><a href="#windows下安装arthas" class="headerlink" title="windows下安装arthas"></a>windows下安装arthas</h2><p>如图，我这里先进入F盘，新建一个文件夹，用来存放Arthas文件。</p>
+<p>然后进入该目录，下载Arthas。</p>
+<p><img src="/assets/image-20220905153531141.png" alt="image-20220905153531141"></p>
+<p>注意，在运行第二条命令之前，先运行一个java进程在内存中，不然会出现找不到java进程的错误。</p>
+<blockquote>
+<p>打印帮助信息</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar arthas-boot.jar -h</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>如果下载速度比较慢，可以使用aliyun的镜像</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar arthas-boot.jar --repo-mirror aliyun --use-http</span><br></pre></td></tr></table></figure>
+
+<p>然后我们使用<code>java -jar arthas-boot.jar</code>运行Arthas。</p>
+<p><img src="/assets/image-20220905153703215.png" alt="image-20220905153703215"></p>
+<p>这时Arthas会发现我们本地是没有Arthas的安装包的，这时会提示我们选择，这里我们选择2，1是我们在本地运行的Java进程。</p>
+<p>选择2就会从网上去下载Arthas，从maven仓库中下载。</p>
+<p><img src="/assets/image-20220905153833311.png" alt="image-20220905153833311"></p>
+<p>然后我们可以根据输出日志的文件存放路径，找到刚才下载的文件，我这里<code>C:\Users\zal\.arthas\lib\3.6.6\arthas</code>,是如图：</p>
+<p><img src="/assets/image-20220905154010658.png" alt="image-20220905154010658"></p>
+<p>安装好之后会在<code>C:\Users\zal</code>该路径下生成两个文件夹，一个是<code>.arthas</code>，一个是<code>logs</code>，安装好的界面如图：</p>
+<p><img src="/assets/image-20220905154335610.png" alt="image-20220905154335610"></p>
+<h2 id="Linux下安装arthas"><a href="#Linux下安装arthas" class="headerlink" title="Linux下安装arthas"></a>Linux下安装arthas</h2><p>linux下安装arthas其实是和windows下安装的过程差不多。</p>
+<p>首先下载jar包，使用命令<code>curl -O https://arthas.aliyun.com/arthas-boot.jar</code></p>
+<p>下载完成之后启动jar包，如图：</p>
+<p><img src="/assets/image-20220905154656228.png" alt="image-20220905154656228"></p>
+<p>我们随便选择一个java进程之后，就会进入arthas的下载。</p>
+<p><img src="/assets/image-20220905154922269.png" alt="image-20220905154922269"></p>
+<p>安装好的arthas文件会隐藏，所以我们使用<code>ls -a</code>来查看。</p>
+<p><img src="/assets/image-20220905155102206.png" alt="image-20220905155102206"></p>
+<blockquote>
+<p>退出arthas</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">quit</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="卸载"><a href="#卸载" class="headerlink" title="卸载"></a>卸载</h2><h3 id="在Linux-x2F-Unix-x2F-Mac平台"><a href="#在Linux-x2F-Unix-x2F-Mac平台" class="headerlink" title="在Linux&#x2F;Unix&#x2F;Mac平台"></a>在Linux&#x2F;Unix&#x2F;Mac平台</h3><p>删除下面的文件</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rm -rf ~/.arthas/</span><br><span class="line">rm -rf ~/logs/arthas</span><br></pre></td></tr></table></figure>
+
+<h3 id="Windows平台"><a href="#Windows平台" class="headerlink" title="Windows平台"></a>Windows平台</h3><p>直接删除user home下面的<code>.arthas</code>和<code>logs/arthas</code>目录即可。</p>
+<p><img src="/assets/image-20220905155436537.png" alt="image-20220905155436537"></p>
+<blockquote>
+<p>小结</p>
+</blockquote>
+<p>因为jar包是绿色的，要卸载的话，直接删除两个目录即可。</p>
+<p>1、arthas安装目录</p>
+<p>2、arthas的日志记录目录</p>
+<h1 id="三、快速入门：attach一个进程"><a href="#三、快速入门：attach一个进程" class="headerlink" title="三、快速入门：attach一个进程"></a>三、快速入门：attach一个进程</h1><blockquote>
+<p>目标：通过案例快速入门</p>
+</blockquote>
+<ul>
+<li>执行一个jar包</li>
+<li>通过arthas来attach</li>
+<li>进行几种常用的命令操作</li>
+</ul>
+<blockquote>
+<p>步骤</p>
+</blockquote>
+<h2 id="1、准备"><a href="#1、准备" class="headerlink" title="1、准备"></a>1、准备</h2><p>我们直接使用arthas安装好之后自带的jar包进行快速入门，如图。</p>
+<p><code>math-game</code>是一个简单的程序，每隔一秒生成一个随机数，再执行质因数分解，并打印出分解结果。</p>
+<p><img src="/assets/image-20220905160616285.png" alt="image-20220905160616285"></p>
+<p>然后我们重新打开一个连接窗口，去进行使用arthas操作。</p>
+<h2 id="2、启动arthas"><a href="#2、启动arthas" class="headerlink" title="2、启动arthas"></a>2、启动arthas</h2><p><img src="/assets/image-20220905161320221.png" alt="image-20220905161320221"></p>
+<p>（1）如果粘附成功，在math-game.jar的那个窗口中会出现日志记录的信息。</p>
+<p>（2）如果端口号被占用，也可以通过以下命令换成另一个端口号执行</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar arthas-boot.jar --telnet-port 9992 -http-port -1</span><br></pre></td></tr></table></figure>
+
+<p>我们也可以通过浏览器访问arthas，如图，访问该地址</p>
+<p><img src="/assets/image-20220905161742771.png" alt="image-20220905161742771"></p>
+<p>访问<code>127.0.0.1:3658</code>，注意这里的ip地址是<code>127.0.0.1</code>，不是你的服务器ip或者是虚拟机ip。</p>
+<p><img src="/assets/image-20220905174322281.png" alt="image-20220905174322281"></p>
+<p>我们也可以直接在浏览器中直接输入命令进行操作。</p>
+<blockquote>
+<p>小结</p>
+</blockquote>
+<ul>
+<li>启动被诊断进程</li>
+<li>启动arthas-boot.jar，粘贴上面的进程</li>
+<li>不但可以通过命令行的方式来操作arthas，也可以通过浏览器来进行访问。</li>
+</ul>
+<h1 id="四、快速入门：常用命令接触"><a href="#四、快速入门：常用命令接触" class="headerlink" title="四、快速入门：常用命令接触"></a>四、快速入门：常用命令接触</h1><blockquote>
+<p>目标</p>
+</blockquote>
+<ul>
+<li>dashboard仪表盘</li>
+<li>通过thread命令来获取到<code>math-game</code>进程的 Main Class</li>
+<li>通过jad来反编译Main Class</li>
+<li>watch</li>
+</ul>
+<h2 id="命令介绍"><a href="#命令介绍" class="headerlink" title="命令介绍"></a>命令介绍</h2><h2 id="1、dashboard仪表板"><a href="#1、dashboard仪表板" class="headerlink" title="1、dashboard仪表板"></a>1、dashboard仪表板</h2><p>输入<code>dashboard</code>，按<code>回车/enter</code> ，会展示当前进程的信息，按<code>ctrl + c</code>可以中断执行。</p>
+<p>注：输入前面部分的字母，按tab可以自动补全命令</p>
+<ul>
+<li>第一部分是显示JVM中运行的所有线程：所在线程组、优先级、线程状态、cpu占用率、是否是后台进程等</li>
+<li>第二部分显示的JVM内存的使用情况</li>
+<li>第三部分是操作系统的一些信息和Java版本号</li>
+</ul>
+<p><img src="/assets/image-20220905204018861.png" alt="image-20220905204018861"></p>
+<p>按<code>q</code>或者<code>ctrl+c</code>可以退出。</p>
+<p><code>cls</code>清屏</p>
+<h2 id="2、通过Thread命令来获取到arthas的进程的Main-Class"><a href="#2、通过Thread命令来获取到arthas的进程的Main-Class" class="headerlink" title="2、通过Thread命令来获取到arthas的进程的Main Class"></a>2、通过Thread命令来获取到arthas的进程的Main Class</h2><p>使用命令<code>Thread</code>查看所有线程。</p>
+<p><img src="/assets/image-20220905204621428.png" alt="image-20220905204621428"></p>
+<p>使用命令<code>thread 1</code>会打印线程ID为1的线程的栈，通常是Main函数的线程。</p>
+<p><img src="/assets/image-20220905204829353.png" alt="image-20220905204829353"></p>
+<h2 id="3、通过jad反编译Main-Class"><a href="#3、通过jad反编译Main-Class" class="headerlink" title="3、通过jad反编译Main Class"></a>3、通过jad反编译Main Class</h2><p><img src="/assets/image-20220905205724867.png" alt="image-20220905205724867"></p>
+<h2 id="4、watch监视"><a href="#4、watch监视" class="headerlink" title="4、watch监视"></a>4、watch监视</h2><p>通过<code>watch</code>命令来查看<code>demo.MathGame#primeFactors</code>函数的返回值：</p>
+<p>按<code>q或者ctrl +  c</code>可以停止监视。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">watch demo.MathGame primeFactors returnObj</span><br></pre></td></tr></table></figure>
+
+<p><img src="/assets/image-20220905205846159.png" alt="image-20220905205846159"></p>
+<h2 id="5、退出arthas"><a href="#5、退出arthas" class="headerlink" title="5、退出arthas"></a>5、退出arthas</h2><p>如果只是退出当前的连接，可以使用<code>quit</code>或者<code>exit</code>命令，arthas到目标进程上的arthas还会继续运行，端口会保持开放，下次连接时可以直接连接上。</p>
+<p>如果想完全退出arthas，可以执行<code>stop</code>命令。</p>
+<blockquote>
+<p>小结</p>
+</blockquote>
+<p><img src="/assets/image-20220905210341145.png" alt="image-20220905210341145"></p>
+<h1 id="五、基础命令"><a href="#五、基础命令" class="headerlink" title="五、基础命令"></a>五、基础命令</h1><h2 id="1、help"><a href="#1、help" class="headerlink" title="1、help"></a>1、help</h2><p>查看命令帮助信息</p>
+<p><img src="/assets/image-20220905210510854.png" alt="image-20220905210510854"></p>
+<h2 id="2、cat"><a href="#2、cat" class="headerlink" title="2、cat"></a>2、cat</h2><p>打印文件内容，和linux中的cat命令类似</p>
+<p>如果没有写路径，则显示当前目录下的文件</p>
+<p><img src="/assets/image-20220905211405453.png" alt="image-20220905211405453"></p>
+<h2 id="3、grep"><a href="#3、grep" class="headerlink" title="3、grep"></a>3、grep</h2><p>匹配查找，和linux中的grep命令类似，但它只能用于管道命令。</p>
+<p><img src="/assets/image-20220905211948536.png" alt="image-20220905211948536"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">只显示包含java字符串的行系统属性</span><br><span class="line">sysprop | grep java</span><br></pre></td></tr></table></figure>
+
+<p><img src="/assets/image-20220905212132903.png" alt="image-20220905212132903"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">显示包含java字符串的行和行号的系统属性</span><br><span class="line">sysprop | grep java -n</span><br></pre></td></tr></table></figure>
+
+<p><img src="/assets/image-20220905212302705.png" alt="image-20220905212302705"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">显示包含system字符串的<span class="number">10</span>行信息</span><br><span class="line">thread | grep system -m <span class="number">10</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/assets/image-20220905212435477.png" alt="image-20220905212435477"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">使用正则表达式，显示包含2个o字符的线程信息</span><br><span class="line">thread | grep -e &quot;o+&quot;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/assets/image-20220905212731535.png" alt="image-20220905212731535"></p>
+<h2 id="4、pwd"><a href="#4、pwd" class="headerlink" title="4、pwd"></a>4、pwd</h2><p>返回当前的工作目录</p>
+<p><img src="/assets/image-20220905212827327.png" alt="image-20220905212827327"></p>
+<h2 id="5、cls"><a href="#5、cls" class="headerlink" title="5、cls"></a>5、cls</h2><p>清空当前屏幕区域</p>
+<blockquote>
+<p>小结</p>
+</blockquote>
+<p><img src="/assets/image-20220905221052675.png" alt="image-20220905221052675"></p>
+<h2 id="6、session"><a href="#6、session" class="headerlink" title="6、session"></a>6、session</h2><p>查看当前会话的信息</p>
+<p><img src="/assets/image-20220905221134138.png" alt="image-20220905221134138"></p>
+<h2 id="7、reset"><a href="#7、reset" class="headerlink" title="7、reset"></a>7、reset</h2><p>重置增强类，将被arthas增强过的类全部还原，arthas服务端关闭时会重置所有增强过的类。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">还原指定类</span><br><span class="line">reset Test</span><br><span class="line">还原所有以List结尾的类</span><br><span class="line">reset *List</span><br><span class="line">还原所有的类</span><br><span class="line">reset</span><br></pre></td></tr></table></figure>
+
+<p><img src="/assets/image-20220905221549540.png" alt="image-20220905221549540"></p>
+<h2 id="8、version"><a href="#8、version" class="headerlink" title="8、version"></a>8、version</h2><p>输出当前目标Java进程所加载的Arthas版本号</p>
+<h2 id="9、history"><a href="#9、history" class="headerlink" title="9、history"></a>9、history</h2><p>打印历史命令</p>
+<p><img src="/assets/image-20220905221738616.png" alt="image-20220905221738616"></p>
+<h2 id="10、quit"><a href="#10、quit" class="headerlink" title="10、quit"></a>10、quit</h2><p>退出当前arthas客户端，其它arthas客户端不受影响</p>
+<h2 id="11、stop"><a href="#11、stop" class="headerlink" title="11、stop"></a>11、stop</h2><p>关闭arthas服务端，所有客户端全部退出</p>
+<h2 id="12、keymap"><a href="#12、keymap" class="headerlink" title="12、keymap"></a>12、keymap</h2><p>arthas快捷键列表以及自定义快捷键</p>
+<p><img src="/assets/image-20220905221937046.png" alt="image-20220905221937046"></p>
+<h2 id="13、arthas命令行快捷键"><a href="#13、arthas命令行快捷键" class="headerlink" title="13、arthas命令行快捷键"></a>13、arthas命令行快捷键</h2><p><img src="/assets/image-20220905222006249.png" alt="image-20220905222006249"></p>
+<ul>
+<li>任何时候的tab键，会根据当前的输入给出提示</li>
+<li>命令后敲 - 或 – ，然后按tab键，可以展示出此命令具体的选项</li>
+</ul>
+<h2 id="后台异步命令相关快捷键"><a href="#后台异步命令相关快捷键" class="headerlink" title="后台异步命令相关快捷键"></a>后台异步命令相关快捷键</h2><ul>
+<li><code>ctrl + c</code> 终止当前命令</li>
+<li><code>ctrl + z</code> 挂起当前命令，后续可以 bg&#x2F;fg 重新支持此命令，或kill掉</li>
+<li><code>ctrl + a</code> 回到行首</li>
+<li><code>ctrl + e</code> 回到行尾</li>
+</ul>
+<p><img src="/assets/image-20220905222245386.png" alt="image-20220905222245386"></p>
+<h1 id="六、JVM相关命令"><a href="#六、JVM相关命令" class="headerlink" title="六、JVM相关命令"></a>六、JVM相关命令</h1><h2 id="1、dashboard"><a href="#1、dashboard" class="headerlink" title="1、dashboard"></a>1、dashboard</h2><p>显示当前系统的实时数据面板，按<code>q或者ctrl + c</code>退出</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dashboard    Overview of target jvm&#x27;s thread, memory, gc, vm, tomcat info.   </span><br></pre></td></tr></table></figure>
+
+<p><img src="/assets/image-20220906194823096.png" alt="image-20220906194823096"></p>
+<ul>
+<li>ID：Java级别的线程ID，注意这个ID不能跟jstack中的naviteID一一对应</li>
+<li>NAME：线程名</li>
+<li>GROUP：线程组名</li>
+<li>PRIORITY：线程优先级，1-10之间的数字，越大表示优先级越高</li>
+<li>STATE：线程的状态</li>
+<li>CPU%：线程消耗的cpu占比，采样100ms，将所有的线程在这100ms内的cpu使用量求和，再算出每个线程的cpu使用占比。</li>
+<li>TIME：线程的运行总时间，数据格式为 分：秒</li>
+<li>INTERRUPTED：线程当前的中断位状态</li>
+<li>DAEMON：是否是daemon线程</li>
+</ul>
+<h2 id="2、Thread"><a href="#2、Thread" class="headerlink" title="2、Thread"></a>2、Thread</h2><p>查看当前JVM的线程堆栈信息</p>
+<p><img src="/assets/image-20220906221434423.png" alt="image-20220906221434423"></p>
+<p><img src="/assets/image-20220906221601403.png" alt="image-20220906221601403"></p>
+<blockquote>
+<p>查看处于等待状态的线程</p>
+<p>thread –state WAITING</p>
+</blockquote>
+<p><img src="/assets/image-20220906222039899.png" alt="image-20220906222039899"></p>
+<h2 id="3、jvm、sysprop"><a href="#3、jvm、sysprop" class="headerlink" title="3、jvm、sysprop"></a>3、jvm、sysprop</h2><p>查看当前JVM的信息</p>
+<p><img src="/assets/image-20220906222131479.png" alt="image-20220906222131479"></p>
+<p>线程相关</p>
+<ul>
+<li>COUNT：JVM当前活跃的线程数</li>
+<li>DAEMON-COUNT：JVM当前活跃的守护线程</li>
+<li>PEAK-COUNT：从JVM启动开始曾经活着的最大线程数</li>
+<li>STARED-COUT：从JVM启动开始总共启动过的线程次数</li>
+<li>DEADLOCK-COUNT：JVM当前死锁的线程数</li>
+</ul>
+<p>文件描述符相关</p>
+<ul>
+<li>MAX-FILE-DESCRIPTOR-COUNT：JVM进程最大可以打开的文件描述符</li>
+<li>OPEN-FILE-DESCRIPTOR-COUNT；JVM当前打开的文件描述符</li>
+</ul>
+<h2 id="4、sysprop"><a href="#4、sysprop" class="headerlink" title="4、sysprop"></a>4、sysprop</h2><p>查看和修改JVM的系统属性</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 查看所有属性 </span><br><span class="line">sysporp</span><br><span class="line">查看单个属性，支持通过tab补全</span><br><span class="line">sysporp java.version</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">修改单个属性</span><br><span class="line">sysporp user.country</span><br><span class="line">user.country=US</span><br><span class="line"></span><br><span class="line">sysporp user.country CN</span><br></pre></td></tr></table></figure>
+
+<p><img src="/assets/image-20220908181346998.png" alt="image-20220908181346998"></p>
+<h2 id="5、sysenv"><a href="#5、sysenv" class="headerlink" title="5、sysenv"></a>5、sysenv</h2><p>查看当前JVM的环境属性（system environment variables）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">查看所有环境变量</span><br><span class="line">sysenv</span><br><span class="line">查看单个环境变量</span><br><span class="line">sysenv USER</span><br></pre></td></tr></table></figure>
+
+<h2 id="6、vmoption"><a href="#6、vmoption" class="headerlink" title="6、vmoption"></a>6、vmoption</h2><p>查看、更新VM诊断相关的参数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">查看所有的选项</span><br><span class="line">vmoption</span><br><span class="line">查看指定的选项</span><br><span class="line">vmoption PrintGCDetails</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">更新指定的选项</span><br><span class="line">vmoption PrintGCDetails true</span><br></pre></td></tr></table></figure>
+
+<h2 id="7、getstatic"><a href="#7、getstatic" class="headerlink" title="7、getstatic"></a>7、getstatic</h2><p>通过getstatic命令可以方便的查看类的静态属性</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">getstatic 类名 属性名</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">显示demo.MathGame类中的静态属性random</span><br><span class="line">getstatic demo.MathGame random</span><br></pre></td></tr></table></figure>
+
+<h2 id="8、ognl"><a href="#8、ognl" class="headerlink" title="8、ognl"></a>8、ognl</h2><p>执行ognl表达式，，这是从3.0.5版本新增的功能</p>
+<p><img src="/assets/image-20220908182147039.png" alt="image-20220908182147039"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">调用静态函数</span><br><span class="line">ognl &#x27;@java.lang.System@out.println(&quot;helloworld&quot;)&#x27;</span><br><span class="line">获取静态类的静态字段</span><br><span class="line">ognl &#x27;@demo.MathGame@random&#x27;</span><br><span class="line">执行多行表达式，赋值给临时变量，返回一个list</span><br><span class="line">ognl &#x27;#value1=@System@getProperty(&quot;java.home&quot;),#value2=@System@getProperty(&quot;java.runtime.name&quot;),&#123;#value1,#value2&#125;&#x27;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/assets/image-20220908182618072.png" alt="image-20220908182618072"></p>
+<p><img src="/assets/image-20220908182639001.png" alt="image-20220908182639001"></p>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>本文标题：Arthas的入门与使用</li>
+        <li>本文作者：zal</li>
+        <li>创建时间：2022-11-20 22:13:09</li>
+        <li>
+            本文链接：https://xiaoaozz.github.io/2022/11/20/Arthas的入门与使用/
+        </li>
+        <li>
+            版权声明：本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/Arthas/">#Arthas</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2022/11/12/Netty%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Netty源码分析</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+            <div class="comment-container">
+                <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments">&nbsp;评论</i>
+    </div>
+    
+
+        
+            
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2022</span>
+              -
+            
+            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">zal</a>
+        </div>
+        
+            <script async  src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.5</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Arthas%E4%BD%BF%E7%94%A8%E4%B8%8E%E8%BF%9B%E9%98%B6"><span class="nav-text">Arthas使用与进阶</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E6%A6%82%E8%BF%B0"><span class="nav-text">一、概述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E5%BF%AB%E9%80%9F%E5%AE%89%E8%A3%85"><span class="nav-text">二、快速安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#windows%E4%B8%8B%E5%AE%89%E8%A3%85arthas"><span class="nav-text">windows下安装arthas</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux%E4%B8%8B%E5%AE%89%E8%A3%85arthas"><span class="nav-text">Linux下安装arthas</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%B8%E8%BD%BD"><span class="nav-text">卸载</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%A8Linux-x2F-Unix-x2F-Mac%E5%B9%B3%E5%8F%B0"><span class="nav-text">在Linux&#x2F;Unix&#x2F;Mac平台</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Windows%E5%B9%B3%E5%8F%B0"><span class="nav-text">Windows平台</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8%EF%BC%9Aattach%E4%B8%80%E4%B8%AA%E8%BF%9B%E7%A8%8B"><span class="nav-text">三、快速入门：attach一个进程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1%E3%80%81%E5%87%86%E5%A4%87"><span class="nav-text">1、准备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2%E3%80%81%E5%90%AF%E5%8A%A8arthas"><span class="nav-text">2、启动arthas</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8%EF%BC%9A%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%8E%A5%E8%A7%A6"><span class="nav-text">四、快速入门：常用命令接触</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%E4%BB%8B%E7%BB%8D"><span class="nav-text">命令介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1%E3%80%81dashboard%E4%BB%AA%E8%A1%A8%E6%9D%BF"><span class="nav-text">1、dashboard仪表板</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2%E3%80%81%E9%80%9A%E8%BF%87Thread%E5%91%BD%E4%BB%A4%E6%9D%A5%E8%8E%B7%E5%8F%96%E5%88%B0arthas%E7%9A%84%E8%BF%9B%E7%A8%8B%E7%9A%84Main-Class"><span class="nav-text">2、通过Thread命令来获取到arthas的进程的Main Class</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3%E3%80%81%E9%80%9A%E8%BF%87jad%E5%8F%8D%E7%BC%96%E8%AF%91Main-Class"><span class="nav-text">3、通过jad反编译Main Class</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4%E3%80%81watch%E7%9B%91%E8%A7%86"><span class="nav-text">4、watch监视</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5%E3%80%81%E9%80%80%E5%87%BAarthas"><span class="nav-text">5、退出arthas</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4"><span class="nav-text">五、基础命令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1%E3%80%81help"><span class="nav-text">1、help</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2%E3%80%81cat"><span class="nav-text">2、cat</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3%E3%80%81grep"><span class="nav-text">3、grep</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4%E3%80%81pwd"><span class="nav-text">4、pwd</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5%E3%80%81cls"><span class="nav-text">5、cls</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6%E3%80%81session"><span class="nav-text">6、session</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7%E3%80%81reset"><span class="nav-text">7、reset</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8%E3%80%81version"><span class="nav-text">8、version</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9%E3%80%81history"><span class="nav-text">9、history</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10%E3%80%81quit"><span class="nav-text">10、quit</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11%E3%80%81stop"><span class="nav-text">11、stop</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12%E3%80%81keymap"><span class="nav-text">12、keymap</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13%E3%80%81arthas%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%BF%AB%E6%8D%B7%E9%94%AE"><span class="nav-text">13、arthas命令行快捷键</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%8E%E5%8F%B0%E5%BC%82%E6%AD%A5%E5%91%BD%E4%BB%A4%E7%9B%B8%E5%85%B3%E5%BF%AB%E6%8D%B7%E9%94%AE"><span class="nav-text">后台异步命令相关快捷键</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%AD%E3%80%81JVM%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4"><span class="nav-text">六、JVM相关命令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1%E3%80%81dashboard"><span class="nav-text">1、dashboard</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2%E3%80%81Thread"><span class="nav-text">2、Thread</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3%E3%80%81jvm%E3%80%81sysprop"><span class="nav-text">3、jvm、sysprop</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4%E3%80%81sysprop"><span class="nav-text">4、sysprop</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5%E3%80%81sysenv"><span class="nav-text">5、sysenv</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6%E3%80%81vmoption"><span class="nav-text">6、vmoption</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7%E3%80%81getstatic"><span class="nav-text">7、getstatic</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8%E3%80%81ognl"><span class="nav-text">8、ognl</span></a></li></ol></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+
+</body>
+</html>
