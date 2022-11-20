@@ -217,7 +217,8 @@
         
 
         <div class="article-content markdown-body">
-            <h1 id="Arthas使用与进阶"><a href="#Arthas使用与进阶" class="headerlink" title="Arthas使用与进阶"></a>Arthas使用与进阶</h1><h1 id="一、概述"><a href="#一、概述" class="headerlink" title="一、概述"></a>一、概述</h1><p>Arthas是 Alibaba 开源的 Java 诊断工具，深受开发者喜爱。</p>
+            <p>@<a href="Arthas%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E8%BF%9B%E9%98%B6">TOC</a></p>
+<h1 id="Arthas使用与进阶"><a href="#Arthas使用与进阶" class="headerlink" title="Arthas使用与进阶"></a>Arthas使用与进阶</h1><h1 id="一、概述"><a href="#一、概述" class="headerlink" title="一、概述"></a>一、概述</h1><p>Arthas是 Alibaba 开源的 Java 诊断工具，深受开发者喜爱。</p>
 <p>Arthas 是一款线上监控诊断产品，通过全局视角实时查看应用 load、内存、gc、线程的状态信息，并能在不修改应用代码的情况下，对业务问题进行诊断，包括查看方法调用的出入参、异常，监测方法执行耗时，类加载信息等，大大提升线上问题排查效率。</p>
 <p>Arthas（阿尔萨斯）支持JDK6+，支持Linux&#x2F;Mac&#x2F;Windows，采用命令行交互模式，同时提供丰富的tab自动补全功能，进一步方便进行问题的定位和诊断。</p>
 <h1 id="二、快速安装"><a href="#二、快速安装" class="headerlink" title="二、快速安装"></a>二、快速安装</h1><p>下载arthas-boot.jar，然后使用<code>java -jar</code>的方式启动。</p>
@@ -225,7 +226,7 @@
 
 <h2 id="windows下安装arthas"><a href="#windows下安装arthas" class="headerlink" title="windows下安装arthas"></a>windows下安装arthas</h2><p>如图，我这里先进入F盘，新建一个文件夹，用来存放Arthas文件。</p>
 <p>然后进入该目录，下载Arthas。</p>
-<p><img src="/assets/image-20220905153531141.png" alt="image-20220905153531141"></p>
+<p><img src="https://img-blog.csdnimg.cn/3a2f7210f7874b33b2405c31f3f92b5b.png#pic_center" alt="在这里插入图片描述"></p>
 <p>注意，在运行第二条命令之前，先运行一个java进程在内存中，不然会出现找不到java进程的错误。</p>
 <blockquote>
 <p>打印帮助信息</p>
@@ -238,22 +239,22 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar arthas-boot.jar --repo-mirror aliyun --use-http</span><br></pre></td></tr></table></figure>
 
 <p>然后我们使用<code>java -jar arthas-boot.jar</code>运行Arthas。</p>
-<p><img src="/assets/image-20220905153703215.png" alt="image-20220905153703215"></p>
+<p><img src="https://img-blog.csdnimg.cn/b6eadf530399431483121b30e596e96e.png#pic_center" alt="在这里插入图片描述"></p>
 <p>这时Arthas会发现我们本地是没有Arthas的安装包的，这时会提示我们选择，这里我们选择2，1是我们在本地运行的Java进程。</p>
 <p>选择2就会从网上去下载Arthas，从maven仓库中下载。</p>
-<p><img src="/assets/image-20220905153833311.png" alt="image-20220905153833311"></p>
+<p><img src="https://img-blog.csdnimg.cn/1d9da97e4bc64932952337ec5813e443.png#pic_center" alt="在这里插入图片描述"></p>
 <p>然后我们可以根据输出日志的文件存放路径，找到刚才下载的文件，我这里<code>C:\Users\zal\.arthas\lib\3.6.6\arthas</code>,是如图：</p>
-<p><img src="/assets/image-20220905154010658.png" alt="image-20220905154010658"></p>
+<p><img src="https://img-blog.csdnimg.cn/218f5acfa9c44989aa681248ae61f60b.png#pic_center" alt="在这里插入图片描述"></p>
 <p>安装好之后会在<code>C:\Users\zal</code>该路径下生成两个文件夹，一个是<code>.arthas</code>，一个是<code>logs</code>，安装好的界面如图：</p>
-<p><img src="/assets/image-20220905154335610.png" alt="image-20220905154335610"></p>
+<p><img src="https://img-blog.csdnimg.cn/9e557b4475074fea801e23d6e8ca245d.png#pic_center" alt="在这里插入图片描述"></p>
 <h2 id="Linux下安装arthas"><a href="#Linux下安装arthas" class="headerlink" title="Linux下安装arthas"></a>Linux下安装arthas</h2><p>linux下安装arthas其实是和windows下安装的过程差不多。</p>
 <p>首先下载jar包，使用命令<code>curl -O https://arthas.aliyun.com/arthas-boot.jar</code></p>
 <p>下载完成之后启动jar包，如图：</p>
-<p><img src="/assets/image-20220905154656228.png" alt="image-20220905154656228"></p>
+<p><img src="https://img-blog.csdnimg.cn/588b8e3887b54509a0757b73da027334.png#pic_center" alt="在这里插入图片描述"></p>
 <p>我们随便选择一个java进程之后，就会进入arthas的下载。</p>
-<p><img src="/assets/image-20220905154922269.png" alt="image-20220905154922269"></p>
+<p><img src="https://img-blog.csdnimg.cn/6e7755c620f84db0bd2193b49cbdd6d8.png#pic_center" alt="在这里插入图片描述"></p>
 <p>安装好的arthas文件会隐藏，所以我们使用<code>ls -a</code>来查看。</p>
-<p><img src="/assets/image-20220905155102206.png" alt="image-20220905155102206"></p>
+<p><img src="https://img-blog.csdnimg.cn/3285dee6ee8d43afb993c1b4fdedecbf.png#pic_center" alt="在这里插入图片描述"></p>
 <blockquote>
 <p>退出arthas</p>
 </blockquote>
@@ -265,7 +266,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rm -rf ~/.arthas/</span><br><span class="line">rm -rf ~/logs/arthas</span><br></pre></td></tr></table></figure>
 
 <h3 id="Windows平台"><a href="#Windows平台" class="headerlink" title="Windows平台"></a>Windows平台</h3><p>直接删除user home下面的<code>.arthas</code>和<code>logs/arthas</code>目录即可。</p>
-<p><img src="/assets/image-20220905155436537.png" alt="image-20220905155436537"></p>
+<p><img src="https://img-blog.csdnimg.cn/5ae626076c1b4cfb8d7c1d3640543ba0.png#pic_center" alt="在这里插入图片描述"></p>
 <blockquote>
 <p>小结</p>
 </blockquote>
@@ -285,17 +286,17 @@
 </blockquote>
 <h2 id="1、准备"><a href="#1、准备" class="headerlink" title="1、准备"></a>1、准备</h2><p>我们直接使用arthas安装好之后自带的jar包进行快速入门，如图。</p>
 <p><code>math-game</code>是一个简单的程序，每隔一秒生成一个随机数，再执行质因数分解，并打印出分解结果。</p>
-<p><img src="/assets/image-20220905160616285.png" alt="image-20220905160616285"></p>
+<p><img src="https://img-blog.csdnimg.cn/4ae2ef5c268c43499de6d028d639192b.png#pic_center" alt="在这里插入图片描述"></p>
 <p>然后我们重新打开一个连接窗口，去进行使用arthas操作。</p>
-<h2 id="2、启动arthas"><a href="#2、启动arthas" class="headerlink" title="2、启动arthas"></a>2、启动arthas</h2><p><img src="/assets/image-20220905161320221.png" alt="image-20220905161320221"></p>
+<h2 id="2、启动arthas"><a href="#2、启动arthas" class="headerlink" title="2、启动arthas"></a>2、启动arthas</h2><p><img src="https://img-blog.csdnimg.cn/ab4d2153d5aa4dbba9dca72aa4189a15.png#pic_center" alt="在这里插入图片描述"></p>
 <p>（1）如果粘附成功，在math-game.jar的那个窗口中会出现日志记录的信息。</p>
 <p>（2）如果端口号被占用，也可以通过以下命令换成另一个端口号执行</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar arthas-boot.jar --telnet-port 9992 -http-port -1</span><br></pre></td></tr></table></figure>
 
 <p>我们也可以通过浏览器访问arthas，如图，访问该地址</p>
-<p><img src="/assets/image-20220905161742771.png" alt="image-20220905161742771"></p>
+<p><img src="https://img-blog.csdnimg.cn/d3fb800e3f93473eb1dc70642a0427b1.png#pic_center" alt="在这里插入图片描述"></p>
 <p>访问<code>127.0.0.1:3658</code>，注意这里的ip地址是<code>127.0.0.1</code>，不是你的服务器ip或者是虚拟机ip。</p>
-<p><img src="/assets/image-20220905174322281.png" alt="image-20220905174322281"></p>
+<p><img src="https://img-blog.csdnimg.cn/8aa9869233ac43639b323876a61ec775.png#pic_center" alt="在这里插入图片描述"></p>
 <p>我们也可以直接在浏览器中直接输入命令进行操作。</p>
 <blockquote>
 <p>小结</p>
@@ -321,65 +322,65 @@
 <li>第二部分显示的JVM内存的使用情况</li>
 <li>第三部分是操作系统的一些信息和Java版本号</li>
 </ul>
-<p><img src="/assets/image-20220905204018861.png" alt="image-20220905204018861"></p>
+<p><img src="https://img-blog.csdnimg.cn/db77123bb20044c6b5bdf89397ef784a.png#pic_center" alt="在这里插入图片描述"></p>
 <p>按<code>q</code>或者<code>ctrl+c</code>可以退出。</p>
 <p><code>cls</code>清屏</p>
 <h2 id="2、通过Thread命令来获取到arthas的进程的Main-Class"><a href="#2、通过Thread命令来获取到arthas的进程的Main-Class" class="headerlink" title="2、通过Thread命令来获取到arthas的进程的Main Class"></a>2、通过Thread命令来获取到arthas的进程的Main Class</h2><p>使用命令<code>Thread</code>查看所有线程。</p>
-<p><img src="/assets/image-20220905204621428.png" alt="image-20220905204621428"></p>
+<p><img src="https://img-blog.csdnimg.cn/0588a187b5ec49c989bba93b3bac89dd.png#pic_center" alt="在这里插入图片描述"></p>
 <p>使用命令<code>thread 1</code>会打印线程ID为1的线程的栈，通常是Main函数的线程。</p>
-<p><img src="/assets/image-20220905204829353.png" alt="image-20220905204829353"></p>
-<h2 id="3、通过jad反编译Main-Class"><a href="#3、通过jad反编译Main-Class" class="headerlink" title="3、通过jad反编译Main Class"></a>3、通过jad反编译Main Class</h2><p><img src="/assets/image-20220905205724867.png" alt="image-20220905205724867"></p>
+<p><img src="https://img-blog.csdnimg.cn/d2bbd881d6f14ade9e389e71632bc3b7.png#pic_center" alt="在这里插入图片描述"></p>
+<h2 id="3、通过jad反编译Main-Class"><a href="#3、通过jad反编译Main-Class" class="headerlink" title="3、通过jad反编译Main Class"></a>3、通过jad反编译Main Class</h2><p><img src="https://img-blog.csdnimg.cn/57d24675f51d4fe68168acf61727965a.png#pic_center" alt="在这里插入图片描述"></p>
 <h2 id="4、watch监视"><a href="#4、watch监视" class="headerlink" title="4、watch监视"></a>4、watch监视</h2><p>通过<code>watch</code>命令来查看<code>demo.MathGame#primeFactors</code>函数的返回值：</p>
 <p>按<code>q或者ctrl +  c</code>可以停止监视。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">watch demo.MathGame primeFactors returnObj</span><br></pre></td></tr></table></figure>
 
-<p><img src="/assets/image-20220905205846159.png" alt="image-20220905205846159"></p>
+<p><img src="https://img-blog.csdnimg.cn/9e5fe8a9bc7b439cb2e4201b82ad6e6e.png#pic_center" alt="在这里插入图片描述"></p>
 <h2 id="5、退出arthas"><a href="#5、退出arthas" class="headerlink" title="5、退出arthas"></a>5、退出arthas</h2><p>如果只是退出当前的连接，可以使用<code>quit</code>或者<code>exit</code>命令，arthas到目标进程上的arthas还会继续运行，端口会保持开放，下次连接时可以直接连接上。</p>
 <p>如果想完全退出arthas，可以执行<code>stop</code>命令。</p>
 <blockquote>
 <p>小结</p>
 </blockquote>
-<p><img src="/assets/image-20220905210341145.png" alt="image-20220905210341145"></p>
+<p><img src="https://img-blog.csdnimg.cn/5a4280f989f4434099fa34f0f232efa8.png#pic_center" alt="在这里插入图片描述"></p>
 <h1 id="五、基础命令"><a href="#五、基础命令" class="headerlink" title="五、基础命令"></a>五、基础命令</h1><h2 id="1、help"><a href="#1、help" class="headerlink" title="1、help"></a>1、help</h2><p>查看命令帮助信息</p>
-<p><img src="/assets/image-20220905210510854.png" alt="image-20220905210510854"></p>
+<p><img src="https://img-blog.csdnimg.cn/08d9943ce539490a856dafe82529eeed.png#pic_center" alt="在这里插入图片描述"></p>
 <h2 id="2、cat"><a href="#2、cat" class="headerlink" title="2、cat"></a>2、cat</h2><p>打印文件内容，和linux中的cat命令类似</p>
 <p>如果没有写路径，则显示当前目录下的文件</p>
-<p><img src="/assets/image-20220905211405453.png" alt="image-20220905211405453"></p>
+<p><img src="https://img-blog.csdnimg.cn/ed78eb418b464afb914b231e9281e34b.png#pic_center" alt="在这里插入图片描述"></p>
 <h2 id="3、grep"><a href="#3、grep" class="headerlink" title="3、grep"></a>3、grep</h2><p>匹配查找，和linux中的grep命令类似，但它只能用于管道命令。</p>
-<p><img src="/assets/image-20220905211948536.png" alt="image-20220905211948536"></p>
+<p><img src="https://img-blog.csdnimg.cn/6e958b6de4514792a0179cc70baf5652.png#pic_center" alt="在这里插入图片描述"></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">只显示包含java字符串的行系统属性</span><br><span class="line">sysprop | grep java</span><br></pre></td></tr></table></figure>
 
-<p><img src="/assets/image-20220905212132903.png" alt="image-20220905212132903"></p>
+<p><img src="https://img-blog.csdnimg.cn/b7cec80c695d4e4fa3c2489fdbafc976.png#pic_center" alt="在这里插入图片描述"></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">显示包含java字符串的行和行号的系统属性</span><br><span class="line">sysprop | grep java -n</span><br></pre></td></tr></table></figure>
 
-<p><img src="/assets/image-20220905212302705.png" alt="image-20220905212302705"></p>
+<p><img src="https://img-blog.csdnimg.cn/0efb9463fbbf454c9563d18bc74c4a53.png#pic_center" alt="在这里插入图片描述"></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">显示包含system字符串的<span class="number">10</span>行信息</span><br><span class="line">thread | grep system -m <span class="number">10</span></span><br></pre></td></tr></table></figure>
 
-<p><img src="/assets/image-20220905212435477.png" alt="image-20220905212435477"></p>
+<p><img src="https://img-blog.csdnimg.cn/0279a1ecd79d4037a126df65b48a2653.png#pic_center" alt="在这里插入图片描述"></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">使用正则表达式，显示包含2个o字符的线程信息</span><br><span class="line">thread | grep -e &quot;o+&quot;</span><br></pre></td></tr></table></figure>
 
-<p><img src="/assets/image-20220905212731535.png" alt="image-20220905212731535"></p>
+<p><img src="https://img-blog.csdnimg.cn/f7ff720b4a26458cb0bcaa982914bfd6.png#pic_center" alt="在这里插入图片描述"></p>
 <h2 id="4、pwd"><a href="#4、pwd" class="headerlink" title="4、pwd"></a>4、pwd</h2><p>返回当前的工作目录</p>
-<p><img src="/assets/image-20220905212827327.png" alt="image-20220905212827327"></p>
+<p><img src="https://img-blog.csdnimg.cn/a7469e447ed84d04b0121194e30bacbc.png#pic_center" alt="在这里插入图片描述"></p>
 <h2 id="5、cls"><a href="#5、cls" class="headerlink" title="5、cls"></a>5、cls</h2><p>清空当前屏幕区域</p>
 <blockquote>
 <p>小结</p>
 </blockquote>
-<p><img src="/assets/image-20220905221052675.png" alt="image-20220905221052675"></p>
+<p><img src="https://img-blog.csdnimg.cn/2325dcc2c1e84ff091e555a22ba47e62.png#pic_center" alt="在这里插入图片描述"></p>
 <h2 id="6、session"><a href="#6、session" class="headerlink" title="6、session"></a>6、session</h2><p>查看当前会话的信息</p>
-<p><img src="/assets/image-20220905221134138.png" alt="image-20220905221134138"></p>
+<p><img src="https://img-blog.csdnimg.cn/af694f0b371a4f3583f326d049c9525c.png#pic_center" alt="在这里插入图片描述"></p>
 <h2 id="7、reset"><a href="#7、reset" class="headerlink" title="7、reset"></a>7、reset</h2><p>重置增强类，将被arthas增强过的类全部还原，arthas服务端关闭时会重置所有增强过的类。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">还原指定类</span><br><span class="line">reset Test</span><br><span class="line">还原所有以List结尾的类</span><br><span class="line">reset *List</span><br><span class="line">还原所有的类</span><br><span class="line">reset</span><br></pre></td></tr></table></figure>
 
-<p><img src="/assets/image-20220905221549540.png" alt="image-20220905221549540"></p>
+<p><img src="https://img-blog.csdnimg.cn/b80b6d5ef3fa4a8c9946fa6644983763.png#pic_center" alt="在这里插入图片描述"></p>
 <h2 id="8、version"><a href="#8、version" class="headerlink" title="8、version"></a>8、version</h2><p>输出当前目标Java进程所加载的Arthas版本号</p>
 <h2 id="9、history"><a href="#9、history" class="headerlink" title="9、history"></a>9、history</h2><p>打印历史命令</p>
-<p><img src="/assets/image-20220905221738616.png" alt="image-20220905221738616"></p>
+<p><img src="https://img-blog.csdnimg.cn/7ea52778f45b4ab094eb0efabdec8bb0.png#pic_center" alt="在这里插入图片描述"></p>
 <h2 id="10、quit"><a href="#10、quit" class="headerlink" title="10、quit"></a>10、quit</h2><p>退出当前arthas客户端，其它arthas客户端不受影响</p>
 <h2 id="11、stop"><a href="#11、stop" class="headerlink" title="11、stop"></a>11、stop</h2><p>关闭arthas服务端，所有客户端全部退出</p>
 <h2 id="12、keymap"><a href="#12、keymap" class="headerlink" title="12、keymap"></a>12、keymap</h2><p>arthas快捷键列表以及自定义快捷键</p>
-<p><img src="/assets/image-20220905221937046.png" alt="image-20220905221937046"></p>
-<h2 id="13、arthas命令行快捷键"><a href="#13、arthas命令行快捷键" class="headerlink" title="13、arthas命令行快捷键"></a>13、arthas命令行快捷键</h2><p><img src="/assets/image-20220905222006249.png" alt="image-20220905222006249"></p>
+<p><img src="https://img-blog.csdnimg.cn/f1d0be6658fb410c8caa431785c09d1e.png#pic_center" alt="在这里插入图片描述"></p>
+<h2 id="13、arthas命令行快捷键"><a href="#13、arthas命令行快捷键" class="headerlink" title="13、arthas命令行快捷键"></a>13、arthas命令行快捷键</h2><p><img src="https://img-blog.csdnimg.cn/eb946b1b7f6b483c8a25f6aa49a4b0d2.png#pic_center" alt="在这里插入图片描述"></p>
 <ul>
 <li>任何时候的tab键，会根据当前的输入给出提示</li>
 <li>命令后敲 - 或 – ，然后按tab键，可以展示出此命令具体的选项</li>
@@ -390,11 +391,11 @@
 <li><code>ctrl + a</code> 回到行首</li>
 <li><code>ctrl + e</code> 回到行尾</li>
 </ul>
-<p><img src="/assets/image-20220905222245386.png" alt="image-20220905222245386"></p>
+<p><img src="https://img-blog.csdnimg.cn/aa6c91a02c6c4189821f35760504a307.png#pic_center" alt="在这里插入图片描述"></p>
 <h1 id="六、JVM相关命令"><a href="#六、JVM相关命令" class="headerlink" title="六、JVM相关命令"></a>六、JVM相关命令</h1><h2 id="1、dashboard"><a href="#1、dashboard" class="headerlink" title="1、dashboard"></a>1、dashboard</h2><p>显示当前系统的实时数据面板，按<code>q或者ctrl + c</code>退出</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dashboard    Overview of target jvm&#x27;s thread, memory, gc, vm, tomcat info.   </span><br></pre></td></tr></table></figure>
 
-<p><img src="/assets/image-20220906194823096.png" alt="image-20220906194823096"></p>
+<p><img src="https://img-blog.csdnimg.cn/61551903261c4fc595ebd2e03a66bc4a.png#pic_center" alt="在这里插入图片描述"></p>
 <ul>
 <li>ID：Java级别的线程ID，注意这个ID不能跟jstack中的naviteID一一对应</li>
 <li>NAME：线程名</li>
@@ -407,15 +408,15 @@
 <li>DAEMON：是否是daemon线程</li>
 </ul>
 <h2 id="2、Thread"><a href="#2、Thread" class="headerlink" title="2、Thread"></a>2、Thread</h2><p>查看当前JVM的线程堆栈信息</p>
-<p><img src="/assets/image-20220906221434423.png" alt="image-20220906221434423"></p>
-<p><img src="/assets/image-20220906221601403.png" alt="image-20220906221601403"></p>
+<p><img src="https://img-blog.csdnimg.cn/4a12dabeefea4ec5a7ef0e20bb1a343e.png#pic_center" alt="在这里插入图片描述"></p>
+<p><img src="https://img-blog.csdnimg.cn/0dbbfd00a9884080ae6c9a26e746a39c.png#pic_center" alt="在这里插入图片描述"></p>
 <blockquote>
 <p>查看处于等待状态的线程</p>
 <p>thread –state WAITING</p>
 </blockquote>
-<p><img src="/assets/image-20220906222039899.png" alt="image-20220906222039899"></p>
+<p><img src="https://img-blog.csdnimg.cn/dc9ddd8459c64bc492075f90d4a7cdfb.png#pic_center" alt="在这里插入图片描述"></p>
 <h2 id="3、jvm、sysprop"><a href="#3、jvm、sysprop" class="headerlink" title="3、jvm、sysprop"></a>3、jvm、sysprop</h2><p>查看当前JVM的信息</p>
-<p><img src="/assets/image-20220906222131479.png" alt="image-20220906222131479"></p>
+<p><img src="https://img-blog.csdnimg.cn/b8a890ad4fe6481e9d2871bf0a9d37d3.png#pic_center" alt="在这里插入图片描述"></p>
 <p>线程相关</p>
 <ul>
 <li>COUNT：JVM当前活跃的线程数</li>
@@ -434,7 +435,7 @@
 
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">修改单个属性</span><br><span class="line">sysporp user.country</span><br><span class="line">user.country=US</span><br><span class="line"></span><br><span class="line">sysporp user.country CN</span><br></pre></td></tr></table></figure>
 
-<p><img src="/assets/image-20220908181346998.png" alt="image-20220908181346998"></p>
+<p><img src="https://img-blog.csdnimg.cn/f881d453ec66454e81139c1b99b439d5.png#pic_center" alt="在这里插入图片描述"></p>
 <h2 id="5、sysenv"><a href="#5、sysenv" class="headerlink" title="5、sysenv"></a>5、sysenv</h2><p>查看当前JVM的环境属性（system environment variables）</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">查看所有环境变量</span><br><span class="line">sysenv</span><br><span class="line">查看单个环境变量</span><br><span class="line">sysenv USER</span><br></pre></td></tr></table></figure>
 
@@ -448,12 +449,12 @@
 
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">显示demo.MathGame类中的静态属性random</span><br><span class="line">getstatic demo.MathGame random</span><br></pre></td></tr></table></figure>
 
-<h2 id="8、ognl"><a href="#8、ognl" class="headerlink" title="8、ognl"></a>8、ognl</h2><p>执行ognl表达式，，这是从3.0.5版本新增的功能</p>
-<p><img src="/assets/image-20220908182147039.png" alt="image-20220908182147039"></p>
+<h2 id="8、ognl"><a href="#8、ognl" class="headerlink" title="8、ognl"></a>8、ognl</h2><p>执行ognl表达式，这是从3.0.5版本新增的功能。</p>
+<p><img src="https://img-blog.csdnimg.cn/06c65a8937cc4825a32773bddd4d56b8.png#pic_center" alt="在这里插入图片描述"></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">调用静态函数</span><br><span class="line">ognl &#x27;@java.lang.System@out.println(&quot;helloworld&quot;)&#x27;</span><br><span class="line">获取静态类的静态字段</span><br><span class="line">ognl &#x27;@demo.MathGame@random&#x27;</span><br><span class="line">执行多行表达式，赋值给临时变量，返回一个list</span><br><span class="line">ognl &#x27;#value1=@System@getProperty(&quot;java.home&quot;),#value2=@System@getProperty(&quot;java.runtime.name&quot;),&#123;#value1,#value2&#125;&#x27;</span><br></pre></td></tr></table></figure>
 
-<p><img src="/assets/image-20220908182618072.png" alt="image-20220908182618072"></p>
-<p><img src="/assets/image-20220908182639001.png" alt="image-20220908182639001"></p>
+<p><img src="https://img-blog.csdnimg.cn/2e6c81bd93704b578d450d960bdb8099.png#pic_center" alt="在这里插入图片描述"></p>
+<p><img src="https://img-blog.csdnimg.cn/1190328121374d7e936aa89539a86abc.png#pic_center" alt="在这里插入图片描述"></p>
 
         </div>
 
