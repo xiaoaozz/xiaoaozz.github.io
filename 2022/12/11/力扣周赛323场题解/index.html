@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="zal">
+    
+    <title>
+        
+            力扣周赛323场题解 |
+        
+        小奥的个人博客
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/xiaoao-avatar.png">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"zh-CN","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/xiaoao-avatar.png","favicon":"/images/xiaoao-avatar.png","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"请保持热爱，来奔赴下一场山和海！"},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":true}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.5"};
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+  </script>
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                小奥的个人博客
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                分类
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                标签
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">分类</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">标签</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">力扣周赛323场题解</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/xiaoao-avatar.png">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">zal</span>
+                        
+                            <span class="author-label">Lv3</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2022-12-11 15:39:40</span>
+        <span class="mobile">2022-12-11 15:39</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E9%A2%98%E8%A7%A3/">题解</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E5%8A%9B%E6%89%A3/">力扣</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E5%91%A8%E8%B5%9B/">周赛</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h1 id="力扣第-323-场周赛"><a href="#力扣第-323-场周赛" class="headerlink" title="力扣第 323 场周赛"></a>力扣第 323 场周赛</h1><h2 id="t1、6257-删除每行中的最大值"><a href="#t1、6257-删除每行中的最大值" class="headerlink" title="t1、6257. 删除每行中的最大值"></a>t1、<a class="link"   target="_blank" rel="noopener" href="https://leetcode.cn/problems/delete-greatest-value-in-each-row/" >6257. 删除每行中的最大值<i class="fas fa-external-link-alt"></i></a></h2><p>给你一个 <code>m x n</code> 大小的矩阵 <code>grid</code> ，由若干正整数组成。</p>
+<p>执行下述操作，直到 <code>grid</code> 变为空矩阵：</p>
+<ul>
+<li>从每一行删除值最大的元素。如果存在多个这样的值，删除其中任何一个。</li>
+<li>将删除元素中的最大值与答案相加。</li>
+</ul>
+<p><strong>注意</strong> 每执行一次操作，矩阵中列的数据就会减 1 。</p>
+<p>返回执行上述操作后的答案。</p>
+<p><strong>示例 1：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2022/10/19/q1ex1.jpg" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">输入：grid = [[1,2,4],[3,3,1]]</span><br><span class="line">输出：8</span><br><span class="line">解释：上图展示在每一步中需要移除的值。</span><br><span class="line">- 在第一步操作中，从第一行删除 4 ，从第二行删除 3（注意，有两个单元格中的值为 3 ，我们可以删除任一）。在答案上加 4 。</span><br><span class="line">- 在第二步操作中，从第一行删除 2 ，从第二行删除 3 。在答案上加 3 。</span><br><span class="line">- 在第三步操作中，从第一行删除 1 ，从第二行删除 1 。在答案上加 1 。</span><br><span class="line">最终，答案 = 4 + 3 + 1 = 8 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2022/10/19/q1ex2.jpg" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入：grid = [[10]]</span><br><span class="line">输出：10</span><br><span class="line">解释：上图展示在每一步中需要移除的值。</span><br><span class="line">- 在第一步操作中，从第一行删除 10 。在答案上加 10 。</span><br><span class="line">最终，答案 = 10 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>m == grid.length</code></li>
+<li><code>n == grid[i].length</code></li>
+<li><code>1 &lt;= m, n &lt;= 50</code></li>
+<li><code>1 &lt;= grid[i][j] &lt;= 100</code></li>
+</ul>
+<blockquote>
+<p>个人题解</p>
+<p>​	简单题，暴力即可。对二维数组的每个一维数组进行排序，然后分别从最后一列进行遍历，结果加上每一列的最大值，即可。</p>
+<p>3ms、41.3M</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">deleteGreatestValue</span><span class="params">(<span class="type">int</span>[][] grid)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">res</span> <span class="operator">=</span> <span class="number">0</span>, m = grid.length, n = grid[<span class="number">0</span>].length;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; m; i++) &#123;</span><br><span class="line">            Arrays.sort(grid[i]); <span class="comment">// 对二维数组的每一维进行排序</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> <span class="variable">len</span> <span class="operator">=</span> grid[<span class="number">0</span>].length - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="type">int</span> <span class="variable">temp</span> <span class="operator">=</span> Integer.MIN_VALUE;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>; j &lt; m; j++) &#123;</span><br><span class="line">                temp = Math.max(grid[j][i], temp); <span class="comment">//取出每一列的最大值</span></span><br><span class="line">            &#125;</span><br><span class="line">            res += temp; <span class="comment">// 加到结果中</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="t2、6258-数组中最长的方波"><a href="#t2、6258-数组中最长的方波" class="headerlink" title="t2、6258. 数组中最长的方波"></a>t2、<a class="link"   target="_blank" rel="noopener" href="https://leetcode.cn/problems/longest-square-streak-in-an-array/" >6258. 数组中最长的方波<i class="fas fa-external-link-alt"></i></a></h2><p>给你一个整数数组 <code>nums</code> 。如果 <code>nums</code> 的子序列满足下述条件，则认为该子序列是一个 <strong>方波</strong> ：</p>
+<ul>
+<li>子序列的长度至少为 <code>2</code> ，并且</li>
+<li>将子序列从小到大排序 <strong>之后</strong> ，除第一个元素外，每个元素都是前一个元素的 <strong>平方</strong> 。</li>
+</ul>
+<p>返回 <code>nums</code> 中 <strong>最长方波</strong> 的长度，如果不存在 <strong>方波</strong> 则返回 <code>-1</code> 。</p>
+<p><strong>子序列</strong> 也是一个数组，可以由另一个数组删除一些或不删除元素且不改变剩余元素的顺序得到。</p>
+<p><strong>示例 1 ：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [4,3,6,16,8,2]</span><br><span class="line">输出：3</span><br><span class="line">解释：选出子序列 [4,16,2] 。排序后，得到 [2,4,16] 。</span><br><span class="line">- 4 = 2 * 2.</span><br><span class="line">- 16 = 4 * 4.</span><br><span class="line">因此，[4,16,2] 是一个方波.</span><br><span class="line">可以证明长度为 4 的子序列都不是方波。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2 ：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [2,3,5,6,7]</span><br><span class="line">输出：-1</span><br><span class="line">解释：nums 不存在方波，所以返回 -1 </span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>2 &lt;= nums.length &lt;= 105</code></li>
+<li><code>2 &lt;= nums[i] &lt;= 105</code></li>
+</ul>
+<blockquote>
+<p>个人题解</p>
+<p>​	利用set集合的性质和contains()函数，来进行查找集合中是否存在符合条件的元素，应该后续会被re，感觉自己的写法有点问题，不过竟然能通过，没有爆int。</p>
+<p>56ms、61.1M</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">longestSquareStreak</span><span class="params">(<span class="type">int</span>[] nums)</span> &#123;</span><br><span class="line">        Set&lt;Integer&gt; set = <span class="keyword">new</span> <span class="title class_">HashSet</span>&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> num : nums) &#123;</span><br><span class="line">            set.add(num);  <span class="comment">// 将所有元素添加到set集合中</span></span><br><span class="line">        &#125;</span><br><span class="line">        Arrays.sort(nums); <span class="comment">// 对集合进行排序，使得小数都出现在前面，保证不会漏掉符合条件的数</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">res</span> <span class="operator">=</span> -<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> num : nums) &#123; <span class="comment">// 遍历每一个元素</span></span><br><span class="line">            <span class="type">int</span> <span class="variable">tempCur</span> <span class="operator">=</span> num;</span><br><span class="line">            <span class="type">int</span> <span class="variable">sum</span> <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">while</span>(set.contains(tempCur * tempCur)) &#123; <span class="comment">// 如果set中存在平方的话，那么继续搜索</span></span><br><span class="line">                tempCur = tempCur * tempCur;</span><br><span class="line">                sum++; <span class="comment">// 个数加1</span></span><br><span class="line">            &#125;</span><br><span class="line">            res = Math.max(res, sum); <span class="comment">// 返回最大的个数</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res == <span class="number">1</span> ? -<span class="number">1</span> : res; <span class="comment">// 等于1的话相等于没有两个及以上的平方，返回-1</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>大佬题解：</p>
+<p>​	排序 + 二分</p>
+<p>​	1、排序简化解题</p>
+<p>​	2、遍历时，当nums[i] * nums[i] &gt; nums[n - 1]时，直接跳出循环</p>
+<p>​	3、查找是否存在当前值的平方时，可以使用二分查找</p>
+<p>来源：<a class="link"   target="_blank" rel="noopener" href="https://leetcode.cn/problems/longest-square-streak-in-an-array/solution/dao-ge-shua-ti-by-lcfgrn-6qx7/" >https://leetcode.cn/problems/longest-square-streak-in-an-array/solution/dao-ge-shua-ti-by-lcfgrn-6qx7/<i class="fas fa-external-link-alt"></i></a></p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">longestSquareStreak</span><span class="params">(<span class="type">int</span>[] nums)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> nums.length;</span><br><span class="line">        Arrays.sort(nums); <span class="comment">// 排序，减少判断次数</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">ans</span> <span class="operator">=</span> -<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="comment">// 如果当前数的平方大于最后一个数，直接跳出循环</span></span><br><span class="line">            <span class="keyword">if</span> (nums[i] * nums[i] &gt; nums[n - <span class="number">1</span>]) <span class="keyword">break</span>; </span><br><span class="line">            <span class="type">int</span> <span class="variable">idx</span> <span class="operator">=</span> i, count = <span class="number">1</span>; <span class="comment">// count=1是将当前数也看作符合条件的数</span></span><br><span class="line">            <span class="keyword">while</span> (idx &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="comment">// 二分搜索 当前数的平方，如果存在，则返回下标，不存在，则返回-1</span></span><br><span class="line">                idx = Arrays.binarySearch(nums, nums[idx] * nums[idx]);</span><br><span class="line">                <span class="keyword">if</span> (idx &gt;= <span class="number">0</span>) ++count;</span><br><span class="line">            &#125;</span><br><span class="line">            ans = Math.max(ans, count);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans &gt; <span class="number">1</span> ? ans : -<span class="number">1</span>; <span class="comment">// 如果结果个数大于1，则返回，否则返回-1</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="t3、6259-设计内存分配器"><a href="#t3、6259-设计内存分配器" class="headerlink" title="t3、6259. 设计内存分配器"></a>t3、<a class="link"   target="_blank" rel="noopener" href="https://leetcode.cn/problems/design-memory-allocator/" >6259. 设计内存分配器<i class="fas fa-external-link-alt"></i></a></h2><p>给你一个整数 <code>n</code> ，表示下标从 <strong>0</strong> 开始的内存数组的大小。所有内存单元开始都是空闲的。</p>
+<p>请你设计一个具备以下功能的内存分配器：</p>
+<ol>
+<li><strong>分配</strong> 一块大小为 <code>size</code> 的连续空闲内存单元并赋 id <code>mID</code> 。</li>
+<li><strong>释放</strong> 给定 id <code>mID</code> 对应的所有内存单元。</li>
+</ol>
+<p><strong>注意：</strong></p>
+<ul>
+<li>多个块可以被分配到同一个 <code>mID</code> 。</li>
+<li>你必须释放 <code>mID</code> 对应的所有内存单元，即便这些内存单元被分配在不同的块中。</li>
+</ul>
+<p>实现 <code>Allocator</code> 类：</p>
+<ul>
+<li><code>Allocator(int n)</code> 使用一个大小为 <code>n</code> 的内存数组初始化 <code>Allocator</code> 对象。</li>
+<li><code>int allocate(int size, int mID)</code> 找出大小为 <code>size</code> 个连续空闲内存单元且位于 <strong>最左侧</strong> 的块，分配并赋 id <code>mID</code> 。返回块的第一个下标。如果不存在这样的块，返回 <code>-1</code> 。</li>
+<li><code>int free(int mID)</code> 释放 id <code>mID</code> 对应的所有内存单元。返回释放的内存单元数目。</li>
+</ul>
+<p><strong>示例：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">输入</span><br><span class="line">[&quot;Allocator&quot;, &quot;allocate&quot;, &quot;allocate&quot;, &quot;allocate&quot;, &quot;free&quot;, &quot;allocate&quot;, &quot;allocate&quot;, &quot;allocate&quot;, &quot;free&quot;, &quot;allocate&quot;, &quot;free&quot;]</span><br><span class="line">[[10], [1, 1], [1, 2], [1, 3], [2], [3, 4], [1, 1], [1, 1], [1], [10, 2], [7]]</span><br><span class="line">输出</span><br><span class="line">[null, 0, 1, 2, 1, 3, 1, 6, 3, -1, 0]</span><br><span class="line"></span><br><span class="line">解释</span><br><span class="line">Allocator loc = new Allocator(10); // 初始化一个大小为 10 的内存数组，所有内存单元都是空闲的。</span><br><span class="line">loc.allocate(1, 1); // 最左侧的块的第一个下标是 0 。内存数组变为 [1, , , , , , , , , ]。返回 0 。</span><br><span class="line">loc.allocate(1, 2); // 最左侧的块的第一个下标是 1 。内存数组变为 [1,2, , , , , , , , ]。返回 1 。</span><br><span class="line">loc.allocate(1, 3); // 最左侧的块的第一个下标是 2 。内存数组变为 [1,2,3, , , , , , , ]。返回 2 。</span><br><span class="line">loc.free(2); // 释放 mID 为 2 的所有内存单元。内存数组变为 [1, ,3, , , , , , , ] 。返回 1 ，因为只有 1 个 mID 为 2 的内存单元。</span><br><span class="line">loc.allocate(3, 4); // 最左侧的块的第一个下标是 3 。内存数组变为 [1, ,3,4,4,4, , , , ]。返回 3 。</span><br><span class="line">loc.allocate(1, 1); // 最左侧的块的第一个下标是 1 。内存数组变为 [1,1,3,4,4,4, , , , ]。返回 1 。</span><br><span class="line">loc.allocate(1, 1); // 最左侧的块的第一个下标是 6 。内存数组变为 [1,1,3,4,4,4,1, , , ]。返回 6 。</span><br><span class="line">loc.free(1); // 释放 mID 为 1 的所有内存单元。内存数组变为 [ , ,3,4,4,4, , , , ] 。返回 3 ，因为有 3 个 mID 为 1 的内存单元。</span><br><span class="line">loc.allocate(10, 2); // 无法找出长度为 10 个连续空闲内存单元的空闲块，所有返回 -1 。</span><br><span class="line">loc.free(7); // 释放 mID 为 7 的所有内存单元。内存数组保持原状，因为不存在 mID 为 7 的内存单元。返回 0 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= n, size, mID &lt;= 1000</code></li>
+<li>最多调用 <code>allocate</code> 和 <code>free</code> 方法 <code>1000</code> 次</li>
+</ul>
+<blockquote>
+<p>个人题解</p>
+<p>​	打周赛时，一眼看出了可以使用list数据结构，只不过对于allocate()方法的构造考虑的太多了，导致没有写出来，比赛结束了看了大佬的题解，直呼内行！！！</p>
+</blockquote>
+<blockquote>
+<p>大佬题解 — 国服第三 arignote 的题解</p>
+<p>​	直接使用数组暴力模拟，我想到了list，但是没想到可以直接使用数组进行模拟，毕竟list的底层也是数组，这点属实是没想到，大佬就是大佬。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Allocator</span> &#123;</span><br><span class="line">    <span class="type">int</span>[] arr;</span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Allocator</span><span class="params">(<span class="type">int</span> n)</span> &#123;</span><br><span class="line">        arr = <span class="keyword">new</span> <span class="title class_">int</span>[n]; <span class="comment">// 直接构造数组</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">allocate</span><span class="params">(<span class="type">int</span> size, <span class="type">int</span> mID)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">count</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; arr.length; i++) &#123;  <span class="comment">// 遍历一次数组，来寻找符合条件的区间</span></span><br><span class="line">            count = arr[i] &gt; <span class="number">0</span> ? <span class="number">0</span> : count + <span class="number">1</span>; <span class="comment">// 如果当前元素为0，则区间长度加1</span></span><br><span class="line">            <span class="keyword">if</span>(count == size) &#123; <span class="comment">// 如果区间符合size</span></span><br><span class="line">                <span class="comment">// 将该区间内的所有元素都更改为mID，返回第一个下标</span></span><br><span class="line">                <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> i - size + <span class="number">1</span>; j &lt;= i; j++) &#123;</span><br><span class="line">                    arr[j] = mID;</span><br><span class="line">                &#125;</span><br><span class="line">                 <span class="keyword">return</span> i - size + <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>; <span class="comment">// 不存在，则返回-1</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">free</span><span class="params">(<span class="type">int</span> mID)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">count</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="comment">// 直接遍历数组，如果等于mID，则计数并更改元素</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span>(arr[i] == mID) &#123;</span><br><span class="line">                arr[i] = <span class="number">0</span>;</span><br><span class="line">                count++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> count;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="t4、6260-矩阵查询可获得的最大分数"><a href="#t4、6260-矩阵查询可获得的最大分数" class="headerlink" title="t4、6260. 矩阵查询可获得的最大分数"></a>t4、<a class="link"   target="_blank" rel="noopener" href="https://leetcode.cn/problems/maximum-number-of-points-from-grid-queries/" >6260. 矩阵查询可获得的最大分数<i class="fas fa-external-link-alt"></i></a></h2><p>给你一个大小为 <code>m x n</code> 的整数矩阵 <code>grid</code> 和一个大小为 <code>k</code> 的数组 <code>queries</code> 。</p>
+<p>找出一个大小为 <code>k</code> 的数组 <code>answer</code> ，且满足对于每个整数 <code>queres[i]</code> ，你从矩阵 <strong>左上角</strong> 单元格开始，重复以下过程：</p>
+<ul>
+<li>如果 <code>queries[i]</code> <strong>严格</strong> 大于你当前所处位置单元格，如果该单元格是第一次访问，则获得 1 分，并且你可以移动到所有 <code>4</code> 个方向（上、下、左、右）上任一 <strong>相邻</strong> 单元格。</li>
+<li>否则，你不能获得任何分，并且结束这一过程。</li>
+</ul>
+<p>在过程结束后，<code>answer[i]</code> 是你可以获得的最大分数。注意，对于每个查询，你可以访问同一个单元格 <strong>多次</strong> 。</p>
+<p>返回结果数组 <code>answer</code> 。</p>
+<p><strong>示例 1：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2022/10/19/yetgriddrawio.png" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：grid = [[1,2,3],[2,5,7],[3,5,1]], queries = [5,6,2]</span><br><span class="line">输出：[5,8,1]</span><br><span class="line">解释：上图展示了每个查询中访问并获得分数的单元格。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2022/10/20/yetgriddrawio-2.png" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：grid = [[5,2,1],[1,1,2]], queries = [3]</span><br><span class="line">输出：[0]</span><br><span class="line">解释：无法获得分数，因为左上角单元格的值大于等于 3 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>m == grid.length</code></li>
+<li><code>n == grid[i].length</code></li>
+<li><code>2 &lt;= m, n &lt;= 1000</code></li>
+<li><code>4 &lt;= m * n &lt;= 105</code></li>
+<li><code>k == queries.length</code></li>
+<li><code>1 &lt;= k &lt;= 104</code></li>
+<li><code>1 &lt;= grid[i][j], queries[i] &lt;= 106</code></li>
+</ul>
+<blockquote>
+<p>个人题解：</p>
+<p>​	未做出，之后会补！</p>
+</blockquote>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>本文标题：力扣周赛323场题解</li>
+        <li>本文作者：zal</li>
+        <li>创建时间：2022-12-11 15:39:40</li>
+        <li>
+            本文链接：https://xiaoaozz.github.io/2022/12/11/力扣周赛323场题解/
+        </li>
+        <li>
+            版权声明：本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/%E5%8A%9B%E6%89%A3/">#力扣</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/%E5%91%A8%E8%B5%9B/">#周赛</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2022/11/30/mysql%E9%AB%98%E9%A2%91%E9%9D%A2%E8%AF%95%E9%A2%98%E6%80%BB%E7%BB%93/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">mysql高频面试题总结</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+            <div class="comment-container">
+                <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments">&nbsp;评论</i>
+    </div>
+    
+
+        
+            
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2022</span>
+              -
+            
+            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">zal</a>
+        </div>
+        
+            <script async  src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.5</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8A%9B%E6%89%A3%E7%AC%AC-323-%E5%9C%BA%E5%91%A8%E8%B5%9B"><span class="nav-text">力扣第 323 场周赛</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#t1%E3%80%816257-%E5%88%A0%E9%99%A4%E6%AF%8F%E8%A1%8C%E4%B8%AD%E7%9A%84%E6%9C%80%E5%A4%A7%E5%80%BC"><span class="nav-text">t1、6257. 删除每行中的最大值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#t2%E3%80%816258-%E6%95%B0%E7%BB%84%E4%B8%AD%E6%9C%80%E9%95%BF%E7%9A%84%E6%96%B9%E6%B3%A2"><span class="nav-text">t2、6258. 数组中最长的方波</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#t3%E3%80%816259-%E8%AE%BE%E8%AE%A1%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%E5%99%A8"><span class="nav-text">t3、6259. 设计内存分配器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#t4%E3%80%816260-%E7%9F%A9%E9%98%B5%E6%9F%A5%E8%AF%A2%E5%8F%AF%E8%8E%B7%E5%BE%97%E7%9A%84%E6%9C%80%E5%A4%A7%E5%88%86%E6%95%B0"><span class="nav-text">t4、6260. 矩阵查询可获得的最大分数</span></a></li></ol></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+
+</body>
+</html>
