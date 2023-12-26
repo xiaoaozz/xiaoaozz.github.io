@@ -1,0 +1,574 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"><title>Java面经篇 | 小奥</title><meta name="keywords" content="“Java面经”"><meta name="author" content="小奥,3189137314@qq.com"><meta name="copyright" content="小奥"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#f7f9fe"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-touch-fullscreen" content="yes"><meta name="apple-mobile-web-app-title" content="Java面经篇"><meta name="application-name" content="Java面经篇"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="#f7f9fe"><meta property="og:type" content="article"><meta property="og:title" content="Java面经篇"><meta property="og:url" content="http://example.com/2023/12/26/Java%E9%9D%A2%E7%BB%8F%E7%AF%87/index.html"><meta property="og:site_name" content="小奥"><meta property="og:description" content="Java基础面试题汇总概述说一下对Java的了解（1）首先，Java是由sun公司开发一种面向对象的编程语言，Java语言的作为面向对象的三大特征是封装、继承、多态。 （2）封装，就是将对象的属性和行为特征包装到类中，把实现的细节隐藏起来，通过对外部提供的公共方法来展示类对外提供的功能。 （3）继承"><meta property="og:locale" content="zh-CN"><meta property="og:image" content="http://example.com/img/default_cover.jpg"><meta property="article:author" content="小奥"><meta property="article:tag"><meta name="twitter:card" content="summary"><meta name="twitter:image" content="http://example.com/img/default_cover.jpg"><meta name="description" content="Java基础面试题汇总概述说一下对Java的了解（1）首先，Java是由sun公司开发一种面向对象的编程语言，Java语言的作为面向对象的三大特征是封装、继承、多态。 （2）封装，就是将对象的属性和行为特征包装到类中，把实现的细节隐藏起来，通过对外部提供的公共方法来展示类对外提供的功能。 （3）继承"><link rel="shortcut icon" href="/favicon.ico"><link rel="canonical" href="http://example.com/2023/12/26/Java%E9%9D%A2%E7%BB%8F%E7%AF%87/"><link rel="preconnect" href="//cdn.cbd.int"/><meta name="google-site-verification" content="xxx"/><meta name="baidu-site-verification" content="code-xxx"/><meta name="msvalidate.01" content="xxx"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.cbd.int/@fancyapps/ui@5.0.28/dist/fancybox/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  linkPageTop: undefined,
+  peoplecanvas: {"enable":true,"img":"https://upload-bbs.miyoushe.com/upload/2023/09/03/125766904/ee23df8517f3c3e3efc4145658269c06_5714860933110284659.png"},
+  postHeadAiDescription: undefined,
+  diytitle: {"enable":true,"leaveTitle":"w(ﾟДﾟ)w 不要走！再看看嘛！","backTitle":"♪(^∇^*)欢迎肥来！"},
+  LA51: undefined,
+  greetingBox: {"enable":true,"default":"晚上好👋","list":[{"greeting":"晚安😴","startTime":0,"endTime":5},{"greeting":"早上好鸭👋, 祝你一天好心情！","startTime":6,"endTime":9},{"greeting":"上午好👋, 状态很好，鼓励一下～","startTime":10,"endTime":10},{"greeting":"11点多啦, 在坚持一下就吃饭啦～","startTime":11,"endTime":11},{"greeting":"午安👋, 宝贝","startTime":12,"endTime":14},{"greeting":"🌈充实的一天辛苦啦！","startTime":14,"endTime":18},{"greeting":"19点喽, 奖励一顿丰盛的大餐吧🍔。","startTime":19,"endTime":19},{"greeting":"晚上好👋, 在属于自己的时间好好放松😌~","startTime":20,"endTime":24}]},
+  twikooEnvId: '',
+  commentBarrageConfig:undefined,
+  root: '/',
+  preloader: {"source":3},
+  friends_vue_info: undefined,
+  navMusic: true,
+  mainTone: undefined,
+  authorStatus: {"skills":["🤖️ 编程知识爱好者","🔍 分享与热心帮助","🏠 面试总结小能手","🔨 设计开发一条龙","🤝 源码阅读与解析","🏃 脚踏实地行动派","🧱 团队小组发动机","💢 壮汉人狠话不多"]},
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简","rightMenuMsgToTraditionalChinese":"转为繁体","rightMenuMsgToSimplifiedChinese":"转为简体"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    simplehomepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"copy":true,"copyrightEbable":false,"limitCount":50,"languages":{"author":"作者: 小奥","link":"链接: ","source":"来源: 小奥","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。","copySuccess":"复制成功，复制和转载请标注本文地址"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#425AEF","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.cbd.int/flickr-justified-gallery@2.1.2/dist/fjGallery.min.js',
+      css: 'https://cdn.cbd.int/flickr-justified-gallery@2.1.2/dist/fjGallery.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  shortcutKey: undefined,
+  autoDarkmode: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  configTitle: '小奥',
+  title: 'Java面经篇',
+  postAI: '',
+  pageFillDescription: 'Java基础面试题汇总, 概述, 说一下对Java的了解, JVM、JRE、JDK, 为什么Java代码可以实现一次编译到处运行, 什么是字节码？使用字节码的好处是什么？, 为什么说Java语言 编译与解释并存, 对面向对象和面向过程的理解, 面向对象的三大特征, Java和C++的区别, 项目中哪里体现了面向对象的特点, 数据类型, 介绍一下Java的数据类型, 为什么要有包装类, 基本类型与包装类型的区别, 包装类型的缓存机制, 什么是自动装箱和拆箱, 泛型, 什么是泛型, 使用泛型的意义, 如何使用泛型, 如何理解Java中的泛型是伪泛型基础面试题汇总概述说一下对的了解首先是由公司开发一种面向对象的编程语言语言的作为面向对象的三大特征是封装继承多态封装就是将对象的属性和行为特征包装到类中把实现的细节隐藏起来通过对外部提供的公共方法来展示类对外提供的功能继承简单来说就是对原有类的拓展新类的定义可以增加新的数据或者新的功能也可以使用父类的功能但是不能选择性的继承父类通过继承可以快速创建新的类提高代码的复用性多态表示为一个对象具有多种状态具体表现为父类的引用指向了子类的实例的基本特点有面向对象平台无关性简单性解释执行多线程分布式高性能安全性等是开发工具包是功能齐全的它包含提供了编译运行程序所需要的各种工具编译工具打包工具和资源是整个的核心是运行时环境它是运行已经编译的程序所需要的所有内容的集合包含以及核心类库是虚拟机是整个实现跨平台的核心部分负责解释执行字节码文件是可运行字节码文件的虚拟计算机包括包含为什么代码可以实现一次编译到处运行虚拟机是跨平台的关键在程序运行之前源代码需要经过编译器编译成字节码在程序运行时负责将字节码翻译成特定机器下的机器码并运行也就是说只要在不同的平台上安装对应的就可以运行字节码文件源代码能在不同的平台上运行它不需要做出任何改变并且只需要编译一次而编译好的字节码是通过实现跨平台的是与平台相关的软件它能将统一的字节码翻译成该平台的机器码注意编译的结果是产生字节码而不是机器码字节码不能直接运行必须要通过翻译成机器码才能运行跨平台的是程序而不是是用开发的软件不同平台下需要安装不同的版本什么是字节码使用字节码的好处是什么在中可以理解的代码就叫做字节码即扩展名为文件它不面向任何特定的处理器只面向虚拟机字节码是一种中间状态的二进制代码是由源码编译过来的可读性没有源码高而且也不能直接读取字节码在中字节码需要经过虚拟机转译成机器码之后才能够读取并运行好处语言通过字节码的方式在一定程序上解决了传统解释型语言执行效率低的问题同时又保留了解释型语言可移植的特点而且字节码并不转对一种特定的机器因此程序无须重新编译就可以在不同平台运行注机器码就是能够直接读取并且运行的代码用二进制编码表示也叫做机器指令码为什么说语言编译与解释并存编译型编译型语言会通过编译器将源代码一次性翻译成可被平台执行的机器码编译语言的执行速度比较快开发效率比较低常见的编译型语言有解释型解释型语言会通过解释器一句一句的将代码解释为机器码后再执行解释型语言开发效率比较快执行速度比较慢常见的解释型语言有因为语言既有编译型语言的特征也具有解释型语言的特征因为程序要先经过编译后解释两个步骤由编写的程序需要先经过编译步骤生成字节码文件这种字节码必须由解释器来解释执行对面向对象和面向过程的理解面向对象面向对象就是将现实问题构建关系然后抽象成类给类定义属性和方法后再将类实例化成实例通过访问实例的属性和调用方法来解决问题面向过程面向过程就是一种以过程为中心的编程思想面向过程是具体化的把问题分解成一个个步骤每个步骤用函数实现需要一步一步调用解决区别两者主要区别在于解决问题的方式不同面向过程把解决问题的过程拆分成一个个方法通过一个个方法的执行解决问题面向对象会先抽象出对象然后用对象执行方法的方式解决优缺点面向对象优点易维护易复用易扩展由于面向对象有封装继承多态的特性可以设计出更加低耦合的系统使系统更加灵活更加易于维护缺点性能比面向过程差面向过程优点性能比面向对象高因为类的调用需要实例化性能开销比较大缺点没有面向对象易维护易复用易扩展面向对象的三大特征封装封装就是将对象的属性和行为特征包装到类中把实现的细节隐藏起来通过对外部提供的公共方法来展示类对外提供的功能中实现封装的关键字是和封装的好处封装提高了代码的可维护性和可重用性因为内部实现可以随时更改而不会影响外部调用者封装可以保护对象的状态防止外部非法访问和修改对象的状态封装可以控制对象的访问级别通过公共接口来控制对象的访问和修改实现了数据的隐藏和保护继承继承简单来说就是对原有类的拓展一个类可以派生出一个或者多个子类子类继承父类的属性和方法并且可以增加自己的属性和方法通过继承可以快速创建新的类提高代码的复用性中实现继承的关键字是继承的好处继承可以提高代码的可重用性和可维护性减少重复的代码继承可以实现类之间的层次关系提高代码的抽象程度和灵活性子类可以继承父类的属性和方法同时也可以根据需要增加自己的属性和方法多态多态表示为一个对象具有多种状态即一个对象在不同的情况下会有不同的体现多态通过继承和接口实现的子类可以重写父类的方法从而使得同一个方法在不同的对象上表现出不同的行为多态的好处多态可以提高代码的可扩展性不需要修改原有的代码就可以添加新的子类多态可以让程序编写更加灵活由于多态的存储可以编写适用于多个对象的代码从而提高了代码的灵活性和可重用性和的区别相同和都是面向对象的语言都支持封装继承多态不同不提供指针来直接访问内存程序内存更加安全的类只能是单继承的支持多重继承虽然的类不可以多继承但是接口可以多继承有自动内存管理垃圾回收机制不需要程序员手动释放无用内存同时支持方法重载和操作符重载但是只支持方法重载项目中哪里体现了面向对象的特点对象的封装将店铺服务等核心模型封装成一个对象通过对外提供的方法实现信息的隐藏和数据保护继承和多态使用继承和多态来减少重复代码实现代码的可维护性和可扩展性比如视频项目中电影和电视剧可以继承共同的一个父类实现共同的属性和方法接口定义为了使不同对象之间更好的协同工作我们定义了接口实现不同对象之间的解耦例如定义视频接口来规范视频的所有操作多层架构采用多层架构的设计模式将应用程序分为表现层业务逻辑层和数据访问层以达到高内聚低耦合的目的数据类型介绍一下的数据类型的数据类型包括基本数据类型和引用数据类型基本数据类型基本数据类型有个可以分为个小类分别是整数类型浮点类型字符类型布尔类型种数字类型种整数型种浮点型种字符类型种布尔型这种基本数据类型的默认值以及所占空间的大小如下基本类型位数字节默认值取值范围像能表示的最大正数都减了这是为什么呢这是因为在二进制补码表示法中最高位是用来表示符号的表示正数表示负数其余位表示数值部分所以如果我们要表示最大的正数我们需要把除了最高位之外的所有位都设为如果我们再加就会导致溢出变成一个负数对于官方文档未明确定义它依赖于厂商的具体实现可能为字节或者字节关于类型的详细介绍可以看以下两篇文章腾讯面试官问我中类型占用多少个字节我说一个面试官让我回家等通知腾讯云开发者社区腾讯云大小掘金为什么要有包装类语言是面向对象的语言其设计理念是一切皆对象但是八种基本数据类型却出现了例外他们不具备对象的性质正是为了解决这个问题为每个基本数据类型都定义了一个对应的引用类型就是包装类基本类型与包装类型的区别默认值包装类型不赋值就是基本类型有默认值且不是能否用作泛型包装类型可用于泛型而基本类型不可以存储基本数据类型的局部变量存放在虚拟机栈的局部变量表中而成员变量未被修饰存放在虚拟机的堆中包装类型属于对象类型几乎所有的对象实例都存在于堆中空间占用相比包装类型基本类型占用的空间非常少注泛型要求包容的类型是对象类型而基本数据类型在中不属于对象类型其封装类属于对象类型包装类型的缓存机制基本数据类型的包装类型的大部分都用到了缓存机制来提升性能这种包装类默认创建了数值的相应类型的缓存数据创建了数值在范围的缓存数据直接返回如果超出对应范围仍然会去创建新的对象缓存的范围区间的大小只是在性能和资源之间的权衡两种浮点数类型的包装类并没有实现缓存机制另外阿里巴巴规范中提到了所有整型包装类对象之间值的比较全部使用方法比较解释对于在至之间的赋值对象是在中产生会复用已有对象这个区间内的值可以使用进行判断但是这个区间之外的所有数据都会在堆上产生并不会复用已有对象推荐使用方法进行判断什么是自动装箱和拆箱装箱将基本类型用它们对应的引用类型包装起来拆箱将包装类型转换为基本数据类型装箱其实是调用了包装类的方法拆箱其实就是调用了方法注意如果频繁拆装箱的话也会严重影响系统的性能我们应该避免不必要的拆装箱操作泛型什么是泛型泛型是中引入的一个新特性使用泛型参数可以增强代码的可读性以及稳定性泛型的本质是为了参数化类型在不创建新的类型的情况下通过泛型指定的不同类型来控制形参具体限制的类型编译器可以对泛型参数进行检测并且通过泛型参数可以指定传入的对象类型比如这行代码就指明了对象只能传入对象如果传入其他类型的对象就会报错使用泛型的意义适用于多种数据类型执行相同的代码即代码复用泛型中的类型在使用时指定不需要进行强制类型转换即类型安全编译器会检查类型如何使用泛型泛型有三种使用方式分别为泛型类泛型接口泛型方法无限制通配符关键字声明了类型的上界表示参数化的类型可能是所指定的类型或者是此类型的子类关键字声明了类型的下界表示参数化的类型可能是指定的类型或者是此类型的父类使用原则为了获得最大限度的灵活性要在表示生产者或者消费者的输入参数上使用通配符使用的规则就是生产者有上限消费者有下限如果参数化类型表示一个的生产者使用如果它表示一个的消费者就使用如果既是生产又是消费那使用通配符就没什么意义了因为你需要的是精确的参数类型如何理解中的泛型是伪泛型泛型这个特性是从才开始加入的因此为了兼容之前的版本泛型的实现采取了伪泛型的策略即在语法上支持泛型但是在编译阶段会进行所谓的类型擦除将所有的泛型表示尖括号中的内容都替换为具体的类型其对应的原生态类型就像完全没有泛型一样泛型的类型擦除的原则是消除类型参数声明即删除及其包围的部分根据类型参数的上下界推断并替换所有的类型参数为原生态类型如果类型参数是无限制通配符或没有上下界限定则替换为如果存在上下界限定则根据子类替换原则取类型参数的最左边限定类型即父类为了保证类型安全必要时插入强制类型转换代码自动产生桥接方法以保证擦除类型后的代码仍然具有泛型的多态性',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-26 21:47:23',
+  postMainColor: '',
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#18171d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#f7f9fe')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(e => {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.0.0"></head><body data-type="anzhiyu"><div id="web_bg"></div><div id="an_music_bg"></div><div id="loading-box" onclick="document.getElementById(&quot;loading-box&quot;).classList.add(&quot;loaded&quot;)"><div class="loading-bg"><img class="loading-img nolazyload" alt="加载头像" src="https://npm.elemecdn.com/anzhiyu-blog-static@1.0.4/img/avatar.jpg"/><div class="loading-image-dot"></div></div></div><script>const preloader = {
+  endLoading: () => {
+    document.getElementById('loading-box').classList.add("loaded");
+  },
+  initLoading: () => {
+    document.getElementById('loading-box').classList.remove("loaded")
+  }
+}
+window.addEventListener('load',()=> { preloader.endLoading() })
+setTimeout(function(){preloader.endLoading();},10000)
+
+if (true) {
+  document.addEventListener('pjax:send', () => { preloader.initLoading() })
+  document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+}</script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.1.10/progress_bar/progress_bar.css"/><script async="async" src="https://cdn.cbd.int/pace-js@1.2.4/pace.min.js" data-pace-options="{ &quot;restartOnRequestAfter&quot;:false,&quot;eventLag&quot;:false}"></script><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><div id="nav-group"><span id="blog_name"><a id="site-name" href="/" accesskey="h"><div class="title">小奥</div><i class="anzhiyufont anzhiyu-icon-house-chimney"></i></a><div id="he-plugin-simple"></div><script>var WIDGET = {
+  "CONFIG": {
+    "modules": "0124",
+    "background": "2",
+    "tmpColor": "FFFFFF",
+    "tmpSize": "16",
+    "cityColor": "FFFFFF",
+    "citySize": "16",
+    "aqiColor": "E8D87B",
+    "aqiSize": "16",
+    "weatherIconSize": "24",
+    "alertIconSize": "18",
+    "padding": "10px 10px 10px 10px",
+    "shadow": "0",
+    "language": "auto",
+    "borderRadius": "20",
+    "fixed": "true",
+    "vertical": "top",
+    "horizontal": "left",
+    "left": "20",
+    "top": "7.1",
+    "key": "df245676fb434a0691ead1c63341cd94"
+  }
+}
+</script><link rel="stylesheet" href="https://widget.qweather.net/simple/static/css/he-simple.css?v=1.4.0"/><script src="https://widget.qweather.net/simple/static/js/he-simple.js?v=1.4.0"></script></span><div class="mask-name-container"><div id="name-container"><a id="page-name" href="javascript:anzhiyu.scrollToDest(0, 500)">PAGE_NAME</a></div></div><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 文章</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/archives/"><i class="anzhiyufont anzhiyu-icon-box-archive faa-tada" style="font-size: 0.9em;"></i><span> 隧道</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/categories/"><i class="anzhiyufont anzhiyu-icon-shapes faa-tada" style="font-size: 0.9em;"></i><span> 分类</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags faa-tada" style="font-size: 0.9em;"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 友链</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/link/"><i class="anzhiyufont anzhiyu-icon-link faa-tada" style="font-size: 0.9em;"></i><span> 友人帐</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/fcircle/"><i class="anzhiyufont anzhiyu-icon-artstation faa-tada" style="font-size: 0.9em;"></i><span> 朋友圈</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/comments/"><i class="anzhiyufont anzhiyu-icon-envelope faa-tada" style="font-size: 0.9em;"></i><span> 留言板</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 我的</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/music/"><i class="anzhiyufont anzhiyu-icon-music faa-tada" style="font-size: 0.9em;"></i><span> 音乐馆</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/bangumis/"><i class="anzhiyufont anzhiyu-icon-bilibili faa-tada" style="font-size: 0.9em;"></i><span> 追番页</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/album/"><i class="anzhiyufont anzhiyu-icon-images faa-tada" style="font-size: 0.9em;"></i><span> 相册集</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/air-conditioner/"><i class="anzhiyufont anzhiyu-icon-fan faa-tada" style="font-size: 0.9em;"></i><span> 小空调</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 关于</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/about/"><i class="anzhiyufont anzhiyu-icon-paper-plane faa-tada" style="font-size: 0.9em;"></i><span> 关于本人</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/essay/"><i class="anzhiyufont anzhiyu-icon-lightbulb faa-tada" style="font-size: 0.9em;"></i><span> 闲言碎语</span></a></li><li><a class="site-page child faa-parent animated-hover" href="javascript:toRandomPost()"><i class="anzhiyufont anzhiyu-icon-shoe-prints1 faa-tada" style="font-size: 0.9em;"></i><span> 随便逛逛</span></a></li></ul></div></div></div><div id="nav-right"><div class="nav-button" id="randomPost_button"><a class="site-page" onclick="toRandomPost()" title="随机前往一个文章" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-dice"></i></a></div><input id="center-console" type="checkbox"/><label class="widget" for="center-console" title="中控台" onclick="anzhiyu.switchConsole();"><i class="left"></i><i class="widget center"></i><i class="widget right"></i></label><div id="console"><div class="console-card-group-reward"><ul class="reward-all console-card"><li class="reward-item"><a href="/null" target="_blank"><img class="post-qr-code-img" alt="微信" src="/null"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/null" target="_blank"><img class="post-qr-code-img" alt="支付宝" src="/null"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div><div class="console-card-group"><div class="console-card-group-left"><div class="console-card" id="card-newest-comments"><div class="card-content"><div class="author-content-item-tips">互动</div><span class="author-content-item-title"> 最新评论</span></div><div class="aside-list"><span>正在加载中...</span></div></div></div><div class="console-card-group-right"><div class="console-card tags"><div class="card-content"><div class="author-content-item-tips">兴趣点</div><span class="author-content-item-title">寻找你感兴趣的领域</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/Java%E5%9F%BA%E7%A1%80/" style="font-size: 1.05rem;">Java基础<sup>1</sup></a><a href="/tags/%E2%80%9CJava%E9%9D%A2%E7%BB%8F%E2%80%9D/" style="font-size: 1.05rem;">“Java面经”<sup>1</sup></a><a href="/tags/%E2%80%9CMySQL%E5%BA%94%E7%94%A8%E2%80%9D/" style="font-size: 1.05rem;">“MySQL应用”<sup>1</sup></a><a href="/tags/%E2%80%9DMySQL%E9%9D%A2%E7%BB%8F%E2%80%9C/" style="font-size: 1.05rem;">”MySQL面经“<sup>1</sup></a></div></div><hr/></div></div><div class="console-card history"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-box-archiv"></i><span>文章</span></div><div class="card-archives"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/12/"><span class="card-archive-list-date">十二月 2023</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">4</span><span>篇</span></div></a></li></ul></div><hr/></div></div></div><div class="button-group"><div class="console-btn-item"><a class="darkmode_switchbutton" title="显示模式切换" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-moon"></i></a></div><div class="console-btn-item" id="consoleHideAside" onclick="anzhiyu.hideAsideBtn()" title="边栏显示控制"><a class="asideSwitch"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></a></div><div class="console-btn-item" id="consoleMusic" onclick="anzhiyu.musicToggle()" title="音乐开关"><a class="music-switch"><i class="anzhiyufont anzhiyu-icon-music"></i></a></div></div><div class="console-mask" onclick="anzhiyu.hideConsole()" href="javascript:void(0);"></div></div><div class="nav-button" id="nav-totop"><a class="totopbtn" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i><span id="percent" onclick="anzhiyu.scrollToDest(0,500)">0</span></a></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);" title="切换"><i class="anzhiyufont anzhiyu-icon-bars"></i></a></div></div></div></nav><div id="post-info"><div id="post-firstinfo"><div class="meta-firstline"><a class="post-meta-original">原创</a><span class="post-meta-categories"><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-inbox post-meta-icon"></i><a class="post-meta-categories" href="/categories/Java/" itemprop="url">Java</a></span><span class="article-meta tags"><a class="article-meta__tags" href="/tags/%E2%80%9CJava%E9%9D%A2%E7%BB%8F%E2%80%9D/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>“Java面经”</span></a></span></div></div><h1 class="post-title" itemprop="name headline">Java面经篇</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="anzhiyufont anzhiyu-icon-calendar-days post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" itemprop="dateCreated datePublished" datetime="2023-12-26T12:33:48.000Z" title="发表于 2023-12-26 20:33:48">2023-12-26</time><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-history post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" itemprop="dateCreated datePublished" datetime="2023-12-26T13:47:23.548Z" title="更新于 2023-12-26 21:47:23">2023-12-26</time></span></div><div class="meta-secondline"><span class="post-meta-separator">       </span><span class="post-meta-position" title="作者IP属地为河南"><i class="anzhiyufont anzhiyu-icon-location-dot"></i>河南</span></div></div></div><section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path></defs><g class="parallax"><use href="#gentle-wave" x="48" y="0"></use><use href="#gentle-wave" x="48" y="3"></use><use href="#gentle-wave" x="48" y="5"></use><use href="#gentle-wave" x="48" y="7"></use></g></svg></section><div id="post-top-cover"><img class="nolazyload" id="post-top-bg" src="/img/default_cover.jpg"></div></header><main id="blog-container"><div class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container" itemscope itemtype="http://example.com/2023/12/26/Java%E9%9D%A2%E7%BB%8F%E7%AF%87/"><header><a class="post-meta-categories" href="/categories/Java/" itemprop="url">Java</a><a href="/tags/%E2%80%9CJava%E9%9D%A2%E7%BB%8F%E2%80%9D/" tabindex="-1" itemprop="url">“Java面经”</a><h1 id="CrawlerTitle" itemprop="name headline">Java面经篇</h1><span itemprop="author" itemscope itemtype="http://schema.org/Person">小奥</span><time itemprop="dateCreated datePublished" datetime="2023-12-26T12:33:48.000Z" title="发表于 2023-12-26 20:33:48">2023-12-26</time><time itemprop="dateCreated datePublished" datetime="2023-12-26T13:47:23.548Z" title="更新于 2023-12-26 21:47:23">2023-12-26</time></header><h1 id="Java基础面试题汇总"><a href="#Java基础面试题汇总" class="headerlink" title="Java基础面试题汇总"></a>Java基础面试题汇总</h1><h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><h2 id="说一下对Java的了解"><a href="#说一下对Java的了解" class="headerlink" title="说一下对Java的了解"></a>说一下对Java的了解</h2><p>（1）首先，Java是由sun公司开发一种面向对象的编程语言，Java语言的作为面向对象的三大特征是封装、继承、多态。</p>
+<p>（2）封装，就是将对象的属性和行为特征包装到类中，把实现的细节隐藏起来，通过对外部提供的公共方法来展示类对外提供的功能。</p>
+<p>（3）继承，简单来说就是对原有类的拓展，新类的定义可以增加新的数据或者新的功能，也可以使用父类的功能，但是不能选择性的继承父类，通过继承，可以快速创建新的类，提高代码的复用性。</p>
+<p>（4）多态，表示为一个对象具有多种状态，具体表现为父类的引用指向了子类的实例。</p>
+<p>（5）Java的基本特点有面向对象 、平台无关性 、简单性、解释执行、多线程、分布式、高性能、安全性等。</p>
+<h2 id="JVM、JRE、JDK"><a href="#JVM、JRE、JDK" class="headerlink" title="JVM、JRE、JDK"></a>JVM、JRE、JDK</h2><p>（1）JDK是Java开发工具包，是功能齐全的SDK，它包含JRE，提供了编译、运行Java程序所需要的各种工具（编译工具javac、打包工具jar）和资源，是整个Java的核心。</p>
+<p>（2）JRE是Java运行时环境，它是运行已经编译的Java程序所需要的所有内容的集合，包含JVM以及Java核心类库。</p>
+<p>（3）JVM是Java虚拟机，是整个Java实现跨平台的核心部分，负责解释执行字节码文件，是可运行Java字节码文件的虚拟计算机。</p>
+<p>JDK包括JRE，JRE包含JVM。</p>
+<h2 id="为什么Java代码可以实现一次编译，到处运行"><a href="#为什么Java代码可以实现一次编译，到处运行" class="headerlink" title="为什么Java代码可以实现一次编译，到处运行"></a>为什么Java代码可以实现一次编译，到处运行</h2><p><strong>Java虚拟机</strong>（JVM）是Java跨平台的关键。</p>
+<p>在程序运行之前，<strong>Java源代码（.java）</strong>需要经过<strong>编译器编译</strong>成<strong>字节码（.class）</strong>，在程序运行时，JVM负责将字节码翻译成特定机器下的机器码并运行，也就是说，只要在不同的平台上安装对应的JVM，就可以运行字节码文件。</p>
+<p>Java源代码能在不同的平台上运行，<strong>它不需要做出任何改变，并且只需要编译一次</strong>。而编译好的字节码，是通过JVM实现跨平台的，JVM是与平台相关的软件，它能将统一的字节码翻译成该平台的机器码。</p>
+<p>注意：</p>
+<ul>
+<li>编译的结果是产生字节码，而不是机器码。字节码不能直接运行，必须要通过JVM翻译成机器码才能运行。</li>
+<li>跨平台的是Java程序，而不是JVM，JVM是用c&#x2F;c++开发的软件，不同平台下需要安装不同的版本。</li>
+</ul>
+<h2 id="什么是字节码？使用字节码的好处是什么？"><a href="#什么是字节码？使用字节码的好处是什么？" class="headerlink" title="什么是字节码？使用字节码的好处是什么？"></a>什么是字节码？使用字节码的好处是什么？</h2><p>在Java中，JVM可以理解的代码就叫做字节码（即扩展名为.class文件），它不面向任何特定的处理器，只面向虚拟机。</p>
+<p>字节码是一种中间状态的二进制代码，是由源码编译过来的，可读性没有源码高，而且cpu也不能直接读取字节码，在Java中，字节码需要经过JVM虚拟机转译成机器码之后，cpu才能够读取并运行。</p>
+<p>好处：Java语言通过字节码的方式，在一定程序上<strong>解决了传统解释型语言执行效率低</strong>的问题，同时又<strong>保留了解释型语言可移植</strong>的特点，而且字节码并不转对一种特定的机器，因此，Java程序无须重新编译就可以在不同平台运行。</p>
+<p>注：机器码就是cpu能够直接读取并且运行的代码，用<strong>二进制编码</strong>表示，也叫做机器指令码。</p>
+<h2 id="为什么说Java语言-“编译与解释并存”"><a href="#为什么说Java语言-“编译与解释并存”" class="headerlink" title="为什么说Java语言 “编译与解释并存”"></a>为什么说Java语言 “编译与解释并存”</h2><p>（1）编译型：编译型语言会通过编译器<strong>将源代码一次性翻译成可被平台执行的机器码</strong>。编译语言的执行速度比较快，开发效率比较低。常见的编译型语言有c、c++、go</p>
+<p>（2）解释型：解释型语言会通过解释器<strong>一句一句的将代码解释为机器码</strong>后再执行。解释型语言开发效率比较快，执行速度比较慢。常见的解释型语言有python、JavaScript</p>
+<p>（3）因为Java语言既有编译型语言的特征，也具有解释型语言的特征。因为Java程序要先经过编译，后解释两个步骤，由Java编写的程序需要先经过编译步骤，生成字节码（.class）文件，这种字节码必须由Java解释器来解释执行。</p>
+<h2 id="对面向对象和面向过程的理解"><a href="#对面向对象和面向过程的理解" class="headerlink" title="对面向对象和面向过程的理解"></a>对面向对象和面向过程的理解</h2><p>（1）面向对象</p>
+<p>面向对象就是将现实问题构建关系，然后抽象成类，给类定义属性和方法后，再将类实例化成实例，通过访问实例的属性和调用方法来解决问题。</p>
+<p>（2）面向过程</p>
+<p>面向过程就是一种以过程为中心的编程思想。面向过程是具体化的，把问题分解成一个个步骤，每个步骤用函数实现，需要一步一步调用解决。</p>
+<p>（3）区别</p>
+<p>两者主要区别在于解决问题的方式不同：</p>
+<ul>
+<li>面向过程把解决问题的过程拆分成一个个方法，通过一个个方法的执行解决问题。</li>
+<li>面向对象会先抽象出对象，然后用对象执行方法的方式解决。</li>
+</ul>
+<p>（4）优缺点</p>
+<p>面向对象：</p>
+<ul>
+<li>优点：易维护、易复用、易扩展，由于面向对象有封装、继承、多态的特性，可以设计出更加低耦合的系统，使系统更加灵活，更加易于维护。</li>
+<li>缺点：性能比面向过程差。</li>
+</ul>
+<p>面向过程：</p>
+<ul>
+<li>优点：性能比面向对象高，因为类的调用需要实例化，性能开销比较大。</li>
+<li>缺点：没有面向对象易维护、易复用、易扩展。</li>
+</ul>
+<h2 id="面向对象的三大特征"><a href="#面向对象的三大特征" class="headerlink" title="面向对象的三大特征"></a>面向对象的三大特征</h2><blockquote>
+<p>封装</p>
+</blockquote>
+<p>封装，就是将对象的属性和行为特征包装到类中，把实现的细节隐藏起来，通过对外部提供的公共方法来展示类对外提供的功能。Java中实现封装的关键字是private、protected和public。</p>
+<p>封装的好处：</p>
+<p>（1）封装提高了代码的可维护性和可重用性，因为内部实现可以随时更改而不会影响外部调用者。</p>
+<p>（2）封装可以保护对象的状态，防止外部非法访问和修改对象的状态。</p>
+<p>（3）封装可以控制对象的访问级别，通过公共接口来控制对象的访问和修改，实现了数据的隐藏和保护。</p>
+<blockquote>
+<p>继承</p>
+</blockquote>
+<p>继承，简单来说就是对原有类的拓展，一个类可以派生出一个或者多个子类，子类继承父类的属性和方法，并且可以增加自己的属性和方法，通过继承，可以快速创建新的类，提高代码的复用性。Java中实现继承的关键字是extends。</p>
+<p>继承的好处：</p>
+<p>（1）继承可以提高代码的可重用性和可维护性，减少重复的代码。</p>
+<p>（2）继承可以实现类之间的层次关系，提高代码的抽象程度和灵活性.</p>
+<p>（3）子类可以继承父类的属性和方法，同时也可以根据需要增加自己的属性和方法。</p>
+<blockquote>
+<p>多态</p>
+</blockquote>
+<p>多态，表示为一个对象具有多种状态，即一个对象在不同的情况下会有不同的体现。多态通过继承和接口实现的，子类可以重写父类的方法，从而使得同一个方法在不同的对象上表现出不同的行为。</p>
+<p>多态的好处：</p>
+<p>（1）多态可以提高代码的可扩展性，不需要修改原有的代码就可以添加新的子类。</p>
+<p>（2）多态可以让程序编写更加灵活，由于多态的存储，可以编写适用于多个对象的代码，从而提高了代码的灵活性和可重用性。</p>
+<h2 id="Java和C-的区别"><a href="#Java和C-的区别" class="headerlink" title="Java和C++的区别"></a>Java和C++的区别</h2><p>相同：Java和C++都是面向对象的语言，都支持封装、继承、多态。</p>
+<p>不同：</p>
+<ul>
+<li>Java不提供指针来直接访问内存，程序内存更加安全</li>
+<li>Java的类只能是单继承的，C++支持多重继承；虽然Java的类不可以多继承，但是接口可以多继承</li>
+<li>Java有自动内存管理垃圾回收机制（GC），不需要程序员手动释放无用内存</li>
+<li>C++同时支持方法重载和操作符重载，但是Java只支持方法重载</li>
+</ul>
+<h2 id="项目中哪里体现了面向对象的特点"><a href="#项目中哪里体现了面向对象的特点" class="headerlink" title="项目中哪里体现了面向对象的特点"></a>项目中哪里体现了面向对象的特点</h2><p>（1）<strong>对象的封装：</strong>将店铺、服务等核心模型封装成一个对象，通过对外提供的方法实现信息的隐藏和数据保护。</p>
+<p>（2）<strong>继承和多态：</strong>使用继承和多态来减少重复代码，实现代码的可维护性和可扩展性。比如视频项目中电影和电视剧可以继承共同的一个父类，实现共同的属性和方法。</p>
+<p>（3）<strong>接口定义：</strong>为了使不同对象之间更好的协同工作，我们定义了接口，实现不同对象之间的解耦，例如，定义视频接口来规范视频的所有操作。</p>
+<p>（4）<strong>多层架构：</strong>采用多层架构的设计模式，将应用程序分为表现层、业务逻辑层和数据访问层，以达到高内聚低耦合的目的。</p>
+<h1 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h1><h2 id="介绍一下Java的数据类型"><a href="#介绍一下Java的数据类型" class="headerlink" title="介绍一下Java的数据类型"></a>介绍一下Java的数据类型</h2><p>Java的数据类型包括基本数据类型和引用数据类型。</p>
+<p>（1）基本数据类型</p>
+<p>基本数据类型有8个，可以分为4个小类。分别是<strong>整数类型</strong>（byte&#x2F;short&#x2F;int&#x2F;long）、浮点类型（float&#x2F;double）、<strong>字符类型</strong>（char）、<strong>布尔类型</strong>（boolean）。</p>
+<ul>
+<li>6 种数字类型：<ul>
+<li>4 种整数型：<code>byte</code>、<code>short</code>、<code>int</code>、<code>long</code></li>
+<li>2 种浮点型：<code>float</code>、<code>double</code></li>
+</ul>
+</li>
+<li>1 种字符类型：<code>char</code></li>
+<li>1 种布尔型：<code>boolean</code>。</li>
+</ul>
+<p>这 8 种基本数据类型的默认值以及所占空间的大小如下：</p>
+<table>
+<thead>
+<tr>
+<th align="left">基本类型</th>
+<th align="left">位数</th>
+<th align="left">字节</th>
+<th align="left">默认值</th>
+<th>取值范围</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>byte</code></td>
+<td align="left">8</td>
+<td align="left">1</td>
+<td align="left">0</td>
+<td>-128 ~ 127</td>
+</tr>
+<tr>
+<td align="left"><code>short</code></td>
+<td align="left">16</td>
+<td align="left">2</td>
+<td align="left">0</td>
+<td>-32768（-2<sup>15</sup>） ~ 32767（2<sup>15</sup> - 1）</td>
+</tr>
+<tr>
+<td align="left"><code>int</code></td>
+<td align="left">32</td>
+<td align="left">4</td>
+<td align="left">0</td>
+<td>-2147483648 ~ 2147483647</td>
+</tr>
+<tr>
+<td align="left"><code>long</code></td>
+<td align="left">64</td>
+<td align="left">8</td>
+<td align="left">0L</td>
+<td>-9223372036854775808（-2<sup>63</sup>） ~ 9223372036854775807（2<sup>63</sup> -1）</td>
+</tr>
+<tr>
+<td align="left"><code>char</code></td>
+<td align="left">16</td>
+<td align="left">2</td>
+<td align="left">‘u0000’</td>
+<td>0 ~ 65535（2<sup>16</sup> - 1）</td>
+</tr>
+<tr>
+<td align="left"><code>float</code></td>
+<td align="left">32</td>
+<td align="left">4</td>
+<td align="left">0f</td>
+<td>1.4E-45 ~ 3.4028235E38</td>
+</tr>
+<tr>
+<td align="left"><code>double</code></td>
+<td align="left">64</td>
+<td align="left">8</td>
+<td align="left">0d</td>
+<td>4.9E-324 ~ 1.7976931348623157E308</td>
+</tr>
+<tr>
+<td align="left"><code>boolean</code></td>
+<td align="left">1</td>
+<td align="left"></td>
+<td align="left">false</td>
+<td>true、false</td>
+</tr>
+</tbody></table>
+<p>像 <code>byte</code>、<code>short</code>、<code>int</code>、<code>long</code>能表示的最大正数都减 1 了。这是为什么呢？这是因为在二进制补码表示法中，最高位是用来表示符号的（0 表示正数，1 表示负数），其余位表示数值部分。所以，如果我们要表示最大的正数，我们需要把除了最高位之外的所有位都设为 1。如果我们再加 1，就会导致溢出，变成一个负数。</p>
+<p>对于 <code>boolean</code>，官方文档未明确定义，它依赖于 JVM 厂商的具体实现。可能为1字节或者4字节。</p>
+<p>关于<code>boolean</code>类型的详细介绍，可以看以下两篇文章</p>
+<p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1552613">腾讯面试官问我Java中boolean类型占用多少个字节？我说一个，面试官让我回家等通知 - 腾讯云开发者社区-腾讯云 (tencent.com)</a></p>
+<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6885253030879428621">java boolean 大小 - 掘金 (juejin.cn)</a></p>
+<h2 id="为什么要有包装类"><a href="#为什么要有包装类" class="headerlink" title="为什么要有包装类"></a>为什么要有包装类</h2><p>Java语言是面向对象的语言，其设计理念是”一切皆对象”，但是八种基本数据类型却出现了例外，他们不具备对象的性质，正是为了解决这个问题，Java为每个基本数据类型都定义了一个对应的引用类型，就是包装类。</p>
+<h2 id="基本类型与包装类型的区别"><a href="#基本类型与包装类型的区别" class="headerlink" title="基本类型与包装类型的区别"></a>基本类型与包装类型的区别</h2><ul>
+<li><strong>默认值：</strong>包装类型不赋值就是null；基本类型有默认值且不是null</li>
+<li><strong>能否用作泛型</strong>：包装类型可用于泛型，而基本类型不可以</li>
+<li><strong>存储：</strong>基本数据类型的局部变量存放在Java虚拟机栈的局部变量表中，而成员变量（未被static修饰）存放在Java虚拟机的堆中；包装类型属于对象类型，几乎所有的对象实例都存在于堆中</li>
+<li><strong>空间占用：</strong>相比包装类型，基本类型占用的空间非常少</li>
+</ul>
+<p>注：泛型要求包容的类型是对象类型，而基本数据类型在Java中不属于对象类型，其封装类属于对象类型。</p>
+<h2 id="包装类型的缓存机制"><a href="#包装类型的缓存机制" class="headerlink" title="包装类型的缓存机制"></a>包装类型的缓存机制</h2><p>Java 基本数据类型的包装类型的大部分都用到了缓存机制来提升性能。</p>
+<p><code>Byte</code>,<code>Short</code>,<code>Integer</code>,<code>Long</code> 这 4 种包装类默认创建了数值 <strong>[-128，127]</strong> 的相应类型的缓存数据，<code>Character</code> 创建了数值在 <strong>[0,127]</strong> 范围的缓存数据，<code>Boolean</code> 直接返回 <code>True</code> or <code>False</code>。</p>
+<p>如果超出对应范围仍然会去创建新的对象，缓存的范围区间的大小只是在性能和资源之间的权衡。</p>
+<p>两种浮点数类型的包装类 <code>Float</code>,<code>Double</code> 并没有实现缓存机制。</p>
+<p>另外，阿里巴巴规范中提到了：<strong>所有整型包装类对象之间值的比较，全部使用equals方法比较</strong>。</p>
+<p>解释：对于Integer在-128至127之间的赋值，Integer对象是在cache中产生，会复用已有对象，这个区间内的Integer值可以使用&#x3D;&#x3D;进行判断，但是这个区间之外的所有数据，都会在堆上产生，并不会复用已有对象，推荐使用equals方法进行判断。</p>
+<h2 id="什么是自动装箱和拆箱"><a href="#什么是自动装箱和拆箱" class="headerlink" title="什么是自动装箱和拆箱"></a>什么是自动装箱和拆箱</h2><ul>
+<li>装箱：将基本类型用它们对应的引用类型包装起来</li>
+<li>拆箱：将包装类型转换为基本数据类型</li>
+</ul>
+<p>装箱其实是调用了包装类的<code>valueOf()</code>方法，拆箱其实就是调用了<code>xxxValue()</code>方法。</p>
+<p>注意：如果频繁拆装箱的话，也会严重影响系统的性能，我们应该避免不必要的拆装箱操作。</p>
+<h1 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h1><h2 id="什么是泛型"><a href="#什么是泛型" class="headerlink" title="什么是泛型"></a>什么是泛型</h2><p>Java泛型是JDK5中引入的一个新特性。<strong>使用泛型参数，可以增强代码的可读性以及稳定性</strong>。</p>
+<p>泛型的本质是为了<strong>参数化类型</strong>（在不创建新的类型的情况下，通过泛型指定的不同类型来控制形参具体限制的类型）。</p>
+<p><strong>编译器可以对泛型参数进行检测，并且通过泛型参数可以指定传入的对象类型。</strong>比如<code>List&lt;Person&gt; persons = new ArrayList&lt;&gt;();</code>这行代码就指明了<code>ArrayList</code>对象只能传入<code>Person</code>对象，如果传入其他类型的对象就会报错。</p>
+<h2 id="使用泛型的意义"><a href="#使用泛型的意义" class="headerlink" title="使用泛型的意义"></a>使用泛型的意义</h2><p>（1）适用于多种数据类型执行相同的代码，即<strong>代码复用</strong>。</p>
+<p>（2）泛型中的类型在使用时指定，不需要进行强制类型转换，即<strong>类型安全</strong>，编译器会检查类型。</p>
+<h2 id="如何使用泛型"><a href="#如何使用泛型" class="headerlink" title="如何使用泛型"></a>如何使用泛型</h2><p>泛型有三种使用方式，分别为：<strong>泛型类</strong>、<strong>泛型接口</strong>、<strong>泛型方法</strong>。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">&lt;?&gt; 无限制通配符</span><br><span class="line">&lt;? <span class="keyword">extends</span> <span class="title class_">E</span>&gt; extends 关键字声明了类型的上界，表示参数化的类型可能是所指定的类型，或者是此类型的子类</span><br><span class="line">&lt;? <span class="built_in">super</span> E&gt; <span class="built_in">super</span> 关键字声明了类型的下界，表示参数化的类型可能是指定的类型，或者是此类型的父类</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用原则《Effictive Java》</span></span><br><span class="line"><span class="comment">// 为了获得最大限度的灵活性，要在表示 生产者或者消费者 的输入参数上使用通配符，使用的规则就是：生产者有上限、消费者有下限</span></span><br><span class="line"><span class="number">1.</span> 如果参数化类型表示一个 T 的生产者，使用 &lt; ? <span class="keyword">extends</span> <span class="title class_">T</span>&gt;;</span><br><span class="line"><span class="number">2.</span> 如果它表示一个 T 的消费者，就使用 &lt; ? <span class="built_in">super</span> T&gt;；</span><br><span class="line"><span class="number">3.</span> 如果既是生产又是消费，那使用通配符就没什么意义了，因为你需要的是精确的参数类型。</span><br></pre></td></tr></table></figure>
+
+<h2 id="如何理解Java中的泛型是伪泛型"><a href="#如何理解Java中的泛型是伪泛型" class="headerlink" title="如何理解Java中的泛型是伪泛型"></a>如何理解Java中的泛型是伪泛型</h2><p>Java泛型这个特性是从JDK1.5才开始加入的，因此为了兼容之前的版本，Java泛型的实现采取了“<strong>伪泛型</strong>”的策略，即Java在语法上支持泛型，但是在编译阶段会进行所谓的“<strong>类型擦除</strong>”（Type Erasure），将所有的泛型表示（尖括号中的内容）都替换为具体的类型（其对应的原生态类型），就像完全没有泛型一样。</p>
+<p>泛型的类型擦除的原则是：</p>
+<ul>
+<li>消除类型参数声明，即删除<code>&lt;&gt;</code>及其包围的部分。</li>
+<li>根据类型参数的上下界推断并替换所有的类型参数为原生态类型：如果类型参数是无限制通配符或没有上下界限定则替换为Object，如果存在上下界限定则根据子类替换原则取类型参数的最左边限定类型（即父类）。</li>
+<li>为了保证类型安全，必要时插入强制类型转换代码。</li>
+<li>自动产生“桥接方法”以保证擦除类型后的代码仍然具有泛型的“多态性”。</li>
+</ul>
+</article><div class="post-copyright"><div class="copyright-cc-box"><i class="anzhiyufont anzhiyu-icon-copyright"></i></div><div class="post-copyright__author_box"><a class="post-copyright__author_img" href="/" title="头像"><img class="post-copyright__author_img_back" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://bu.dusays.com/2023/04/27/64496e511b09c.jpg" title="头像" alt="头像"><img class="post-copyright__author_img_front" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://bu.dusays.com/2023/04/27/64496e511b09c.jpg" title="头像" alt="头像"></a><div class="post-copyright__author_name">小奥</div><div class="post-copyright__author_desc">浮生若梦 为欢几何</div></div><div class="post-copyright__post__info"><a class="post-copyright__original" title="该文章为原创文章，注意版权协议" href="http://example.com/2023/12/26/Java%E9%9D%A2%E7%BB%8F%E7%AF%87/">原创</a><a class="post-copyright-title"><span onclick="rm.copyPageUrl('http://example.com/2023/12/26/Java%E9%9D%A2%E7%BB%8F%E7%AF%87/')">Java面经篇</span></a></div><div class="post-tools" id="post-tools"><div class="post-tools-left"><div class="rewardLeftButton"></div><div class="shareRight"><div class="share-link mobile"><div class="share-qrcode"><div class="share-button" title="使用手机访问这篇文章"><i class="anzhiyufont anzhiyu-icon-qrcode"></i></div><div class="share-main"><div class="share-main-all"><div id="qrcode" title="http://example.com/2023/12/26/Java%E9%9D%A2%E7%BB%8F%E7%AF%87/"></div><div class="reward-dec">使用手机访问这篇文章</div></div></div></div></div><div class="share-link weibo"><a class="share-button" target="_blank" href="https://service.weibo.com/share/share.php?title=Java面经篇&amp;url=http://example.com/2023/12/26/Java%E9%9D%A2%E7%BB%8F%E7%AF%87/&amp;pic=/img/default_cover.jpg" rel="external nofollow noreferrer noopener"><i class="anzhiyufont anzhiyu-icon-weibo"></i></a></div><script>function copyCurrentPageUrl() {
+  var currentPageUrl = window.location.href;
+  var input = document.createElement("input");
+  input.setAttribute("value", currentPageUrl);
+  document.body.appendChild(input);
+  input.select();
+  input.setSelectionRange(0, 99999);
+  document.execCommand("copy");
+  document.body.removeChild(input);
+}</script><div class="share-link copyurl"><div class="share-button" id="post-share-url" title="复制链接" onclick="copyCurrentPageUrl()"><i class="anzhiyufont anzhiyu-icon-link"></i></div></div></div></div></div><div class="post-copyright__notice"><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">小奥</a>！</span></div></div><div class="post-tools-right"><div class="tag_share"><div class="post-meta__box"><div class="post-meta__box__category-list"><a class="post-meta__box__categoryes" href="/categories/Java/"><span class="categoryes-punctuation"> <i class="anzhiyufont anzhiyu-icon-inbox"></i></span>Java<span class="categoryesPageCount">2</span></a></div><div class="post-meta__box__tag-list"><a class="post-meta__box__tags" href="/tags/%E2%80%9CJava%E9%9D%A2%E7%BB%8F%E2%80%9D/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>“Java面经”<span class="tagsPageCount">1</span></a></div></div><div class="post_share"><div class="social-share" data-image="/img/default_cover.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.cbd.int/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"/><script src="https://cdn.cbd.int/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer="defer"></script></div></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/12/26/MySQL%E9%9D%A2%E7%BB%8F%E7%AF%87/"><img class="prev-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/default_cover.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">MySQL面经篇</div></div></a></div><div class="next-post pull-right"><a href="/2023/12/26/Java%E5%9F%BA%E7%A1%80%E7%AF%87/"><img class="next-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/default_cover.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Java基础篇</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-content"><div class="author-info__sayhi" id="author-info__sayhi" onclick="anzhiyu.changeSayHelloText()"></div><div class="author-info-avatar"><img class="avatar-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://bu.dusays.com/2023/04/27/64496e511b09c.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-status"><img class="g-status" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://bu.dusays.com/2023/08/24/64e6ce9c507bb.png" alt="status"/></div></div><div class="author-info__description"><div style="line-height:1.38;margin:0.6rem 0;text-align:justify;color:rgba(255, 255, 255, 0.8);">这有关于<b style="color:#fff">Java、数据库、中间件</b>相关的学习笔记，还有<b style="color:#fff">面试题总结</b>和<b style="color:#fff">分享</b>。</div><div style="line-height:1.38;margin:0.6rem 0;text-align:justify;color:rgba(255, 255, 255, 0.8);">相信你可以在这里找到对你有用的<b style="color:#fff">知识</b>和<b style="color:#fff">教程</b>。</div></div><div class="author-info__bottom-group"><a class="author-info__bottom-group-left" href="/"><h1 class="author-info__name">小奥</h1><div class="author-info__desc">浮生若梦 为欢几何</div></a><div class="card-info-social-icons is-center"><a class="social-icon faa-parent animated-hover" href="https://github.com/xiaoaozz" target="_blank" title="Github"><i class="anzhiyufont anzhiyu-icon-github"></i></a></div></div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-bars"></i><span>文章目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Java%E5%9F%BA%E7%A1%80%E9%9D%A2%E8%AF%95%E9%A2%98%E6%B1%87%E6%80%BB"><span class="toc-number">1.</span> <span class="toc-text">Java基础面试题汇总</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-number">2.</span> <span class="toc-text">概述</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%B4%E4%B8%80%E4%B8%8B%E5%AF%B9Java%E7%9A%84%E4%BA%86%E8%A7%A3"><span class="toc-number">2.1.</span> <span class="toc-text">说一下对Java的了解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JVM%E3%80%81JRE%E3%80%81JDK"><span class="toc-number">2.2.</span> <span class="toc-text">JVM、JRE、JDK</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88Java%E4%BB%A3%E7%A0%81%E5%8F%AF%E4%BB%A5%E5%AE%9E%E7%8E%B0%E4%B8%80%E6%AC%A1%E7%BC%96%E8%AF%91%EF%BC%8C%E5%88%B0%E5%A4%84%E8%BF%90%E8%A1%8C"><span class="toc-number">2.3.</span> <span class="toc-text">为什么Java代码可以实现一次编译，到处运行</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%AD%97%E8%8A%82%E7%A0%81%EF%BC%9F%E4%BD%BF%E7%94%A8%E5%AD%97%E8%8A%82%E7%A0%81%E7%9A%84%E5%A5%BD%E5%A4%84%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-number">2.4.</span> <span class="toc-text">什么是字节码？使用字节码的好处是什么？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%AF%B4Java%E8%AF%AD%E8%A8%80-%E2%80%9C%E7%BC%96%E8%AF%91%E4%B8%8E%E8%A7%A3%E9%87%8A%E5%B9%B6%E5%AD%98%E2%80%9D"><span class="toc-number">2.5.</span> <span class="toc-text">为什么说Java语言 “编译与解释并存”</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E5%92%8C%E9%9D%A2%E5%90%91%E8%BF%87%E7%A8%8B%E7%9A%84%E7%90%86%E8%A7%A3"><span class="toc-number">2.6.</span> <span class="toc-text">对面向对象和面向过程的理解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E4%B8%89%E5%A4%A7%E7%89%B9%E5%BE%81"><span class="toc-number">2.7.</span> <span class="toc-text">面向对象的三大特征</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Java%E5%92%8CC-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">2.8.</span> <span class="toc-text">Java和C++的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E4%B8%AD%E5%93%AA%E9%87%8C%E4%BD%93%E7%8E%B0%E4%BA%86%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%89%B9%E7%82%B9"><span class="toc-number">2.9.</span> <span class="toc-text">项目中哪里体现了面向对象的特点</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">3.</span> <span class="toc-text">数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D%E4%B8%80%E4%B8%8BJava%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">3.1.</span> <span class="toc-text">介绍一下Java的数据类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E6%9C%89%E5%8C%85%E8%A3%85%E7%B1%BB"><span class="toc-number">3.2.</span> <span class="toc-text">为什么要有包装类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B%E4%B8%8E%E5%8C%85%E8%A3%85%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">3.3.</span> <span class="toc-text">基本类型与包装类型的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8C%85%E8%A3%85%E7%B1%BB%E5%9E%8B%E7%9A%84%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6"><span class="toc-number">3.4.</span> <span class="toc-text">包装类型的缓存机制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E8%87%AA%E5%8A%A8%E8%A3%85%E7%AE%B1%E5%92%8C%E6%8B%86%E7%AE%B1"><span class="toc-number">3.5.</span> <span class="toc-text">什么是自动装箱和拆箱</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B3%9B%E5%9E%8B"><span class="toc-number">4.</span> <span class="toc-text">泛型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E6%B3%9B%E5%9E%8B"><span class="toc-number">4.1.</span> <span class="toc-text">什么是泛型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E6%B3%9B%E5%9E%8B%E7%9A%84%E6%84%8F%E4%B9%89"><span class="toc-number">4.2.</span> <span class="toc-text">使用泛型的意义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%E6%B3%9B%E5%9E%8B"><span class="toc-number">4.3.</span> <span class="toc-text">如何使用泛型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E7%90%86%E8%A7%A3Java%E4%B8%AD%E7%9A%84%E6%B3%9B%E5%9E%8B%E6%98%AF%E4%BC%AA%E6%B3%9B%E5%9E%8B"><span class="toc-number">4.4.</span> <span class="toc-text">如何理解Java中的泛型是伪泛型</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-history"></i><span>最近发布</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2023/12/26/Java%E5%9F%BA%E7%A1%80%E7%AF%87/" title="Java基础篇"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/default_cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Java基础篇"/></a><div class="content"><a class="title" href="/2023/12/26/Java%E5%9F%BA%E7%A1%80%E7%AF%87/" title="Java基础篇">Java基础篇</a><time datetime="2023-12-26T13:18:11.000Z" title="发表于 2023-12-26 21:18:11">2023-12-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/12/26/Java%E9%9D%A2%E7%BB%8F%E7%AF%87/" title="Java面经篇"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/default_cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Java面经篇"/></a><div class="content"><a class="title" href="/2023/12/26/Java%E9%9D%A2%E7%BB%8F%E7%AF%87/" title="Java面经篇">Java面经篇</a><time datetime="2023-12-26T12:33:48.000Z" title="发表于 2023-12-26 20:33:48">2023-12-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/12/26/MySQL%E9%9D%A2%E7%BB%8F%E7%AF%87/" title="MySQL面经篇"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/default_cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="MySQL面经篇"/></a><div class="content"><a class="title" href="/2023/12/26/MySQL%E9%9D%A2%E7%BB%8F%E7%AF%87/" title="MySQL面经篇">MySQL面经篇</a><time datetime="2023-12-26T12:31:19.000Z" title="发表于 2023-12-26 20:31:19">2023-12-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/12/25/MySQL%E8%81%94%E5%90%88%E7%B4%A2%E5%BC%95%E6%9C%80%E5%B7%A6%E5%8C%B9%E9%85%8D%E5%8E%9F%E5%88%99%E8%AF%A6%E8%A7%A3/" title="MySQL联合索引最左匹配原则详解"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/default_cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="MySQL联合索引最左匹配原则详解"/></a><div class="content"><a class="title" href="/2023/12/25/MySQL%E8%81%94%E5%90%88%E7%B4%A2%E5%BC%95%E6%9C%80%E5%B7%A6%E5%8C%B9%E9%85%8D%E5%8E%9F%E5%88%99%E8%AF%A6%E8%A7%A3/" title="MySQL联合索引最左匹配原则详解">MySQL联合索引最左匹配原则详解</a><time datetime="2023-12-25T06:08:16.000Z" title="发表于 2023-12-25 14:08:16">2023-12-25</time></div></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"></div><div id="footer-bar"><div class="footer-bar-links"><div class="footer-bar-left"><div id="footer-bar-tips"><div class="copyright">&copy;2020 - 2023 By <a class="footer-bar-link" href="/" title="小奥" target="_blank">小奥</a></div></div><div id="footer-type-tips"></div></div><div class="footer-bar-right"><a class="footer-bar-link" target="_blank" rel="noopener" href="https://github.com/anzhiyu-c/hexo-theme-anzhiyu" title="主题">主题</a></div></div></div></footer></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="sidebar-site-data site-data is-center"><a href="/archives/" title="archive"><div class="headline">文章</div><div class="length-num">4</div></a><a href="/tags/" title="tag"><div class="headline">标签</div><div class="length-num">4</div></a><a href="/categories/" title="category"><div class="headline">分类</div><div class="length-num">2</div></a></div><span class="sidebar-menu-item-title">功能</span><div class="sidebar-menu-item"><a class="darkmode_switchbutton menu-child" href="javascript:void(0);" title="显示模式"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span>显示模式</span></a></div><div class="back-menu-list-groups"><div class="back-menu-list-group"><div class="back-menu-list-title">网页</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://blog.anheyu.com/" title="个人博客"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/favicon.ico" alt="个人博客"/><span class="back-menu-item-text">个人博客</span></a></div></div><div class="back-menu-list-group"><div class="back-menu-list-title">项目</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://github.com/xiaoaozz" title="Github"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://avatars.githubusercontent.com/u/104616274?v=4" alt="Github"/><span class="back-menu-item-text">Github</span></a></div></div></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 文章</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/archives/"><i class="anzhiyufont anzhiyu-icon-box-archive faa-tada" style="font-size: 0.9em;"></i><span> 隧道</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/categories/"><i class="anzhiyufont anzhiyu-icon-shapes faa-tada" style="font-size: 0.9em;"></i><span> 分类</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags faa-tada" style="font-size: 0.9em;"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 友链</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/link/"><i class="anzhiyufont anzhiyu-icon-link faa-tada" style="font-size: 0.9em;"></i><span> 友人帐</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/fcircle/"><i class="anzhiyufont anzhiyu-icon-artstation faa-tada" style="font-size: 0.9em;"></i><span> 朋友圈</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/comments/"><i class="anzhiyufont anzhiyu-icon-envelope faa-tada" style="font-size: 0.9em;"></i><span> 留言板</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 我的</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/music/"><i class="anzhiyufont anzhiyu-icon-music faa-tada" style="font-size: 0.9em;"></i><span> 音乐馆</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/bangumis/"><i class="anzhiyufont anzhiyu-icon-bilibili faa-tada" style="font-size: 0.9em;"></i><span> 追番页</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/album/"><i class="anzhiyufont anzhiyu-icon-images faa-tada" style="font-size: 0.9em;"></i><span> 相册集</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/air-conditioner/"><i class="anzhiyufont anzhiyu-icon-fan faa-tada" style="font-size: 0.9em;"></i><span> 小空调</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 关于</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/about/"><i class="anzhiyufont anzhiyu-icon-paper-plane faa-tada" style="font-size: 0.9em;"></i><span> 关于本人</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/essay/"><i class="anzhiyufont anzhiyu-icon-lightbulb faa-tada" style="font-size: 0.9em;"></i><span> 闲言碎语</span></a></li><li><a class="site-page child faa-parent animated-hover" href="javascript:toRandomPost()"><i class="anzhiyufont anzhiyu-icon-shoe-prints1 faa-tada" style="font-size: 0.9em;"></i><span> 随便逛逛</span></a></li></ul></div></div><span class="sidebar-menu-item-title">标签</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/Java%E5%9F%BA%E7%A1%80/" style="font-size: 0.88rem;">Java基础<sup>1</sup></a><a href="/tags/%E2%80%9CJava%E9%9D%A2%E7%BB%8F%E2%80%9D/" style="font-size: 0.88rem;">“Java面经”<sup>1</sup></a><a href="/tags/%E2%80%9CMySQL%E5%BA%94%E7%94%A8%E2%80%9D/" style="font-size: 0.88rem;">“MySQL应用”<sup>1</sup></a><a href="/tags/%E2%80%9DMySQL%E9%9D%A2%E7%BB%8F%E2%80%9C/" style="font-size: 0.88rem;">”MySQL面经“<sup>1</sup></a></div></div><hr/></div></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="anzhiyufont anzhiyu-icon-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="anzhiyufont anzhiyu-icon-gear"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="anzhiyufont anzhiyu-icon-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></button></div></div><div id="nav-music"><a id="nav-music-hoverTips" onclick="anzhiyu.musicToggle()" accesskey="m">播放音乐</a><div id="console-music-bg"></div><meting-js id="8152976493" server="netease" type="playlist" mutex="true" preload="none" theme="var(--anzhiyu-main)" data-lrctype="0" order="random" volume="0.7"></meting-js></div><div id="rightMenu"><div class="rightMenu-group rightMenu-small"><div class="rightMenu-item" id="menu-backward"><i class="anzhiyufont anzhiyu-icon-arrow-left"></i></div><div class="rightMenu-item" id="menu-forward"><i class="anzhiyufont anzhiyu-icon-arrow-right"></i></div><div class="rightMenu-item" id="menu-refresh"><i class="anzhiyufont anzhiyu-icon-arrow-rotate-right" style="font-size: 1rem;"></i></div><div class="rightMenu-item" id="menu-top"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></div></div><div class="rightMenu-group rightMenu-line rightMenuPlugin"><div class="rightMenu-item" id="menu-copytext"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制选中文本</span></div><div class="rightMenu-item" id="menu-pastetext"><i class="anzhiyufont anzhiyu-icon-paste"></i><span>粘贴文本</span></div><a class="rightMenu-item" id="menu-commenttext"><i class="anzhiyufont anzhiyu-icon-comment-medical"></i><span>引用到评论</span></a><div class="rightMenu-item" id="menu-newwindow"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开</span></div><div class="rightMenu-item" id="menu-copylink"><i class="anzhiyufont anzhiyu-icon-link"></i><span>复制链接地址</span></div><div class="rightMenu-item" id="menu-copyimg"><i class="anzhiyufont anzhiyu-icon-images"></i><span>复制此图片</span></div><div class="rightMenu-item" id="menu-downloadimg"><i class="anzhiyufont anzhiyu-icon-download"></i><span>下载此图片</span></div><div class="rightMenu-item" id="menu-newwindowimg"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开图片</span></div><div class="rightMenu-item" id="menu-search"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>站内搜索</span></div><div class="rightMenu-item" id="menu-searchBaidu"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>百度搜索</span></div><div class="rightMenu-item" id="menu-music-toggle"><i class="anzhiyufont anzhiyu-icon-play"></i><span>播放音乐</span></div><div class="rightMenu-item" id="menu-music-back"><i class="anzhiyufont anzhiyu-icon-backward"></i><span>切换到上一首</span></div><div class="rightMenu-item" id="menu-music-forward"><i class="anzhiyufont anzhiyu-icon-forward"></i><span>切换到下一首</span></div><div class="rightMenu-item" id="menu-music-playlist" onclick="window.open(&quot;https://y.qq.com/n/ryqq/playlist/8956954060&quot;, &quot;_blank&quot;);" style="display: none;"><i class="anzhiyufont anzhiyu-icon-radio"></i><span>查看所有歌曲</span></div><div class="rightMenu-item" id="menu-music-copyMusicName"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制歌名</span></div></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item menu-link" id="menu-randomPost"><i class="anzhiyufont anzhiyu-icon-shuffle"></i><span>随便逛逛</span></a><a class="rightMenu-item menu-link" href="/categories/"><i class="anzhiyufont anzhiyu-icon-cube"></i><span>博客分类</span></a><a class="rightMenu-item menu-link" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags"></i><span>文章标签</span></a></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item" id="menu-copy" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制地址</span></a><a class="rightMenu-item" id="menu-commentBarrage" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-message"></i><span class="menu-commentBarrage-text">关闭热评</span></a><a class="rightMenu-item" id="menu-darkmode" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span class="menu-darkmode-text">深色模式</span></a><a class="rightMenu-item" id="menu-translate" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-language"></i><span>轉為繁體</span></a></div></div><div id="rightmenu-mask"></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.cbd.int/@fancyapps/ui@5.0.28/dist/fancybox/fancybox.umd.js"></script><script src="https://cdn.cbd.int/instant.page@5.2.0/instantpage.js" type="module"></script><script src="https://cdn.cbd.int/vanilla-lazyload@17.8.5/dist/lazyload.iife.min.js"></script><script src="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.js"></script><canvas id="universe"></canvas><script async src="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/dark/dark.js"></script><script>// 消除控制台打印
+var HoldLog = console.log;
+console.log = function () {};
+let now1 = new Date();
+queueMicrotask(() => {
+  const Log = function () {
+    HoldLog.apply(console, arguments);
+  }; //在恢复前输出日志
+  const grt = new Date("04/01/2021 00:00:00"); //此处修改你的建站时间或者网站上线时间
+  now1.setTime(now1.getTime() + 250);
+  const days = (now1 - grt) / 1000 / 60 / 60 / 24;
+  const dnum = Math.floor(days);
+  const ascll = [
+    `欢迎使用安知鱼!`,
+    `生活明朗, 万物可爱`,
+    `
+        
+       █████╗ ███╗   ██╗███████╗██╗  ██╗██╗██╗   ██╗██╗   ██╗
+      ██╔══██╗████╗  ██║╚══███╔╝██║  ██║██║╚██╗ ██╔╝██║   ██║
+      ███████║██╔██╗ ██║  ███╔╝ ███████║██║ ╚████╔╝ ██║   ██║
+      ██╔══██║██║╚██╗██║ ███╔╝  ██╔══██║██║  ╚██╔╝  ██║   ██║
+      ██║  ██║██║ ╚████║███████╗██║  ██║██║   ██║   ╚██████╔╝
+      ╚═╝  ╚═╝╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝╚═╝   ╚═╝    ╚═════╝
+        
+        `,
+    "已上线",
+    dnum,
+    "天",
+    "©2020 By 安知鱼 V1.6.12",
+  ];
+  const ascll2 = [`NCC2-036`, `调用前置摄像头拍照成功，识别为【小笨蛋】.`, `Photo captured: `, `🤪`];
+
+  setTimeout(
+    Log.bind(
+      console,
+      `\n%c${ascll[0]} %c ${ascll[1]} %c ${ascll[2]} %c${ascll[3]}%c ${ascll[4]}%c ${ascll[5]}\n\n%c ${ascll[6]}\n`,
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      ""
+    )
+  );
+  setTimeout(
+    Log.bind(
+      console,
+      `%c ${ascll2[0]} %c ${ascll2[1]} %c \n${ascll2[2]} %c\n${ascll2[3]}\n`,
+      "color:white; background-color:#4fd953",
+      "",
+      "",
+      'background:url("https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/tinggge.gif") no-repeat;font-size:450%'
+    )
+  );
+
+  setTimeout(Log.bind(console, "%c WELCOME %c 你好，小笨蛋.", "color:white; background-color:#4f90d9", ""));
+
+  setTimeout(
+    console.warn.bind(
+      console,
+      "%c ⚡ Powered by 安知鱼 %c 你正在访问 小奥 的博客.",
+      "color:white; background-color:#f0ad4e",
+      ""
+    )
+  );
+
+  setTimeout(Log.bind(console, "%c W23-12 %c 你已打开控制台.", "color:white; background-color:#4f90d9", ""));
+
+  setTimeout(
+    console.warn.bind(console, "%c S013-782 %c 你现在正处于监控中.", "color:white; background-color:#d9534f", "")
+  );
+});</script><script async src="/anzhiyu/random.js"></script><div class="js-pjax"><input type="hidden" name="page-type" id="page-type" value="post"></div><script>var visitorMail = "";
+</script><script async data-pjax src="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/waterfall/waterfall.js"></script><script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/qrcodejs/1.0.0/qrcode.min.js"></script><script src="/js/anzhiyu/right_click_menu.js"></script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.1.9/icon/ali_iconfont_css.css"><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/aplayer/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.cbd.int/anzhiyu-blog-static@1.0.1/js/APlayer.min.js"></script><script src="https://cdn.cbd.int/hexo-anzhiyu-music@1.0.1/assets/js/Meting2.min.js"></script><script src="https://cdn.cbd.int/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+  // removeEventListener scroll 
+  anzhiyu.removeGlobalFnEvent('pjax')
+  anzhiyu.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script charset="UTF-8" src="https://cdn.cbd.int/anzhiyu-theme-static@1.1.5/accesskey/accesskey.js"></script></div><div id="popup-window"><div class="popup-window-title">通知</div><div class="popup-window-divider"></div><div class="popup-window-content"><div class="popup-tip">你好呀</div><div class="popup-link"><i class="anzhiyufont anzhiyu-icon-arrow-circle-right"></i></div></div></div></body></html>
