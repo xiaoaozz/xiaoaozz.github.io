@@ -1,0 +1,516 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"><title>算法模板 | 小奥</title><meta name="keywords" content="算法模板"><meta name="author" content="小奥,3189137314@qq.com"><meta name="copyright" content="小奥"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#f7f9fe"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-touch-fullscreen" content="yes"><meta name="apple-mobile-web-app-title" content="算法模板"><meta name="application-name" content="算法模板"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="#f7f9fe"><meta property="og:type" content="article"><meta property="og:title" content="算法模板"><meta property="og:url" content="http://example.com/2024/01/12/%E7%AE%97%E6%B3%95%E6%A8%A1%E6%9D%BF/index.html"><meta property="og:site_name" content="小奥"><meta property="og:description" content="算法模板排序算法十大排序算法指的是在计算机科学中被广泛使用，效率较高且实现简单的十个排序算法。下面是这十种排序算法的简要介绍： （1）冒泡排序（Bubble Sort）：交换相邻元素，最大或最小的元素经过n-1次比较后，就会排在数组的最后一位。 （2）选择排序（Selection Sort）：每次寻"><meta property="og:locale" content="zh-CN"><meta property="og:image" content="http://example.com/img/png/18.png"><meta property="article:author" content="小奥"><meta property="article:tag"><meta name="twitter:card" content="summary"><meta name="twitter:image" content="http://example.com/img/png/18.png"><meta name="description" content="算法模板排序算法十大排序算法指的是在计算机科学中被广泛使用，效率较高且实现简单的十个排序算法。下面是这十种排序算法的简要介绍： （1）冒泡排序（Bubble Sort）：交换相邻元素，最大或最小的元素经过n-1次比较后，就会排在数组的最后一位。 （2）选择排序（Selection Sort）：每次寻"><link rel="shortcut icon" href="/favicon.ico"><link rel="canonical" href="http://example.com/2024/01/12/%E7%AE%97%E6%B3%95%E6%A8%A1%E6%9D%BF/"><link rel="preconnect" href="//cdn.cbd.int"/><meta name="google-site-verification" content="xxx"/><meta name="baidu-site-verification" content="code-xxx"/><meta name="msvalidate.01" content="xxx"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.cbd.int/@fancyapps/ui@5.0.28/dist/fancybox/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  linkPageTop: undefined,
+  peoplecanvas: {"enable":true,"img":"https://upload-bbs.miyoushe.com/upload/2023/09/03/125766904/ee23df8517f3c3e3efc4145658269c06_5714860933110284659.png"},
+  postHeadAiDescription: undefined,
+  diytitle: {"enable":true,"leaveTitle":"w(ﾟДﾟ)w 不要走！再看看嘛！","backTitle":"♪(^∇^*)欢迎肥来！"},
+  LA51: undefined,
+  greetingBox: {"enable":true,"default":"晚上好👋","list":[{"greeting":"晚安😴","startTime":0,"endTime":5},{"greeting":"早上好鸭👋, 祝你一天好心情！","startTime":6,"endTime":9},{"greeting":"上午好👋, 状态很好，鼓励一下～","startTime":10,"endTime":10},{"greeting":"11点多啦, 在坚持一下就吃饭啦～","startTime":11,"endTime":11},{"greeting":"午安👋, 宝贝","startTime":12,"endTime":14},{"greeting":"🌈充实的一天辛苦啦！","startTime":14,"endTime":18},{"greeting":"19点喽, 奖励一顿丰盛的大餐吧🍔。","startTime":19,"endTime":19},{"greeting":"晚上好👋, 在属于自己的时间好好放松😌~","startTime":20,"endTime":24}]},
+  twikooEnvId: '',
+  commentBarrageConfig:undefined,
+  root: '/',
+  preloader: {"source":3},
+  friends_vue_info: undefined,
+  navMusic: true,
+  mainTone: undefined,
+  authorStatus: {"skills":["🤖️ 编程知识爱好者","🔍 分享与热心帮助","🏠 面试总结小能手","🔨 设计开发一条龙","🤝 源码阅读与解析","🏃 脚踏实地行动派","🧱 团队小组发动机","💢 壮汉人狠话不多"]},
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简","rightMenuMsgToTraditionalChinese":"转为繁体","rightMenuMsgToSimplifiedChinese":"转为简体"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    simplehomepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"copy":true,"copyrightEbable":false,"limitCount":50,"languages":{"author":"作者: 小奥","link":"链接: ","source":"来源: 小奥","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。","copySuccess":"复制成功，复制和转载请标注本文地址"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#425AEF","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.cbd.int/flickr-justified-gallery@2.1.2/dist/fjGallery.min.js',
+      css: 'https://cdn.cbd.int/flickr-justified-gallery@2.1.2/dist/fjGallery.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  shortcutKey: undefined,
+  autoDarkmode: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  configTitle: '小奥',
+  title: '算法模板',
+  postAI: '',
+  pageFillDescription: '算法模板, 排序算法, 冒泡排序, 选择排序, 插入排序, 希尔排序, 归并排序, 快速排序, 堆排序, 计数排序, 基数排序, 桶排序, 二分查找, 二分搜索的三种写法, 二分搜索左边界和右边界, 二分答案, 最小化最大值, 最大化最小值, TOP K问题算法模板排序算法十大排序算法指的是在计算机科学中被广泛使用效率较高且实现简单的十个排序算法下面是这十种排序算法的简要介绍冒泡排序交换相邻元素最大或最小的元素经过次比较后就会排在数组的最后一位选择排序每次寻找未排序序列中的最小值并将其放在已排序序列的末尾插入排序对于未排序序列中的每一个元素将其插入到已排序序列中的合适位置希尔排序采用分组策略先将待排序序列拆分为个子序列进行插入排序然后逐渐缩小子序列的长度直到子序列长度为即完成排序归并排序将待排序序列不断二分再将两个有序的子序列合并为一个有序序列重复上述步骤直到整个序列有序快速排序选择一个基准元素将序列中小于它的元素放在它的左边大于它的元素放在右边然后递归地对左右子序列进行快速排序堆排序将待排序序列构建成一个堆然后不断从堆顶取出最大值并调整堆直到取完所有元素计数排序统计序列中每个元素出现的次数然后根据统计信息对序列进行重排桶排序将整个区间划分为若干个桶然后将元素按照大小分配到相应的桶中在桶内使用其他的排序算法如插入排序进行排序基数排序将待排序序列拆分为多个关键字按照每个关键字进行排序最终得到有序序列以上十种排序算法都有其独特的优势和适用场景选择合适的排序算法可以提高程序的效率冒泡排序冒泡排序双向冒泡排序选择排序选择排序插入排序插入排序希尔排序希尔排序归并排序借鉴博客链接条消息实现归并排序详解归并排序星辰与晨曦的博客博客介绍归并排序先将待排序的数组不断拆分直到拆分到区间里只剩下一个元素的时候不能再拆分的时候这个时候我们再想办法合并两个有序的数组得到长度更长的有序数组当前合并好的有序数组为下一轮得到更长的有序数组做好了准备一层一层的合并回去直到整个数组有序实现快速排序介绍实现快速排序递归版快速排序非递归版堆排序建堆下移计数排序计数排序基数排序借鉴博客链接条消息实现基数排序基数排序其实我不想摆烂的博客博客介绍属于分配式排序又称桶子法或者顾名思义它是通过键值的各个位的值将要排序的元素分配至某些桶中达到排序的作用基数排序的思想是将所有待比较数值统一为同样的数值长度数位较短的数前面补然后从最低位开始依次进行一次排序这样从最低位排序一直到最高位排序完成以后数列就变成一个有序序列实现基数排序找出数组中的最大值计算最大值的位数桶的表示十个桶处理十个数字防止数据溢出所以定义长度的一维数组来存放每次排序后的序列经典的空间换时间概念记录每个桶中放置数字的个数循环处理第轮对对应的位排序第一次为个位第二次为十位桶排序借鉴博客链接条消息实现桶排序详细解析桶排序信仰的博客博客介绍桶排序是一个排序算法工作的原理是将数组分到有限数量的桶子里每个桶子再个别排序有可能再使用别的排序算法或是以递归方式继续使用桶排序进行排序桶排序是鸽巢排序的一种归纳结果当要被排序的数组内的数值是均匀分配的时候桶排序使用线性时间桶排序的思想是若待排序的记录的关键字在一个明显有限范围内时可设计有限个有序桶每个桶只能装与之对应的值顺序输出各桶的值将得到有序的序列简单来说在我们可以确定需要排列的数组的范围时可以生成该数值范围内有限个桶去对应数组中的数然后我们将扫描的数值放入匹配的桶里的行为可以看作是分类在分类完成后我们需要依次按照桶的顺序输出桶内存放的数值这样就完成了桶排序实现二分查找二分搜索的三种写法左闭右闭区间左闭右闭区间左闭右开区间左闭右开区间左开右开区间开区间二分搜索左边界和右边界搜索左边界别返回锁定左侧边界判断是否存在于中此时比所有数都大返回判断一下是不是搜索右边界别返回锁定右侧边界此时索引越界判断一下是不是二分答案爱吃香蕉的珂珂完成旅途的最少时间每个小孩最多能分到多少糖果最小化最大值最小化数组中的最大值最小化两个数组中的最大值最大化最小值两球之间的磁力礼盒的最大甜蜜度最大化城市的最小供电站数目问题亿个数中如何高效地找到最大的一个数将亿个数据分成份每份每份万个数据找到每份数据中最大的那个数据最后在剩下的个数据里面找出最大的数据从万个数据遍历选择最大的数此方法需要每次的内存空间为一共需要次这样的比较亿个数中如何高效地找到最大的第个数对于类问题通常比较好的方案是分治小顶堆先将数据集按照方法分解成多个小数据集然后用小顶堆求出每个数据集中最大的个数最后在所有中求出最终的如果是词频可以使用分治树小顶堆先将数据集按照方法分解成多个小数据集然后使用树或者统计每个小数据集中的词频之后用小顶堆求出每个数据集中出频率最高的前个数最后在所有中求出最终的时间复杂度建堆时间复杂度是算法的时间复杂度为常用的方法快排选择排序排序后的集合中进行查找时间复杂度时间复杂度为缺点需要比较大的内存且效率低局部淘汰取前个元素并排序然后依次扫描剩余的元素插入到排好序的序列中二分查找并淘汰最小值时间复杂度时间复杂度为为二分查找的复杂度分治法将亿个数据分成份每份万个数据找到每份数据中最大的个最后在剩下的个数据里面找出最大的个万个数据里面查找最大的个数据可以使用的方法时间复杂度时间复杂度为法如果这亿个数里面有很多重复的数先通过法把这亿个数字去重复这样如果重复率很高的话会减少很大的内存用量从而缩小运算空间然后通过分治法或最小堆法查找最大的个数小顶堆首先读入前个数来创建大小为的小顶堆建堆的时间复杂度为然后遍历后续的数字并于堆顶最小数字进行比较如果比最小的数小则继续读取后续数字如果比堆顶数字大则替换堆顶元素并重新调整堆为最小堆时间复杂度时间复杂度为树如果是从亿个重复比较多的单词找高频词汇数据集按照方法分解成多个小数据集然后使用树统计每个小数据集中的词频之后用小顶堆求出每个数据集中出现频率最高的前个数最后在所有中求出最终的适用范围数据量大重复多但是数据种类小可以放入内存时间复杂度为字符串的个数为字符串长度桶排序一个数据表分割成许多然后每个各自排序或用不同的排序算法或者递归的使用算法也是典型的分而治之的策略使用范围如果已知了数据的范围那么可以划分合适大小的桶直接借用桶排序的思路时间复杂度为待排序的元素的个数为桶的个数计数排序计数排序其实是桶排序的一种特殊情况当要排序的个数据所处的范围并不大的时候比如最大值是我们就可以把数据划分成个桶每个桶内的数据值都是相同的省掉了桶内排序的时间适用范围只能用在数据范围不大的场景时间复杂度基数排序将整数按位数切割成不同的数字然后按每个位数分别比较适用范围可以对字符串类型的关键字进行排序时间复杂度为要排序的数据的位数',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-01-12 17:51:54',
+  postMainColor: '',
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#18171d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#f7f9fe')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(e => {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.0.0"></head><body data-type="anzhiyu"><div id="web_bg"></div><div id="an_music_bg"></div><div id="loading-box" onclick="document.getElementById(&quot;loading-box&quot;).classList.add(&quot;loaded&quot;)"><div class="loading-bg"><img class="loading-img nolazyload" alt="加载头像" src="https://npm.elemecdn.com/anzhiyu-blog-static@1.0.4/img/avatar.jpg"/><div class="loading-image-dot"></div></div></div><script>const preloader = {
+  endLoading: () => {
+    document.getElementById('loading-box').classList.add("loaded");
+  },
+  initLoading: () => {
+    document.getElementById('loading-box').classList.remove("loaded")
+  }
+}
+window.addEventListener('load',()=> { preloader.endLoading() })
+setTimeout(function(){preloader.endLoading();},10000)
+
+if (true) {
+  document.addEventListener('pjax:send', () => { preloader.initLoading() })
+  document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+}</script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.1.10/progress_bar/progress_bar.css"/><script async="async" src="https://cdn.cbd.int/pace-js@1.2.4/pace.min.js" data-pace-options="{ &quot;restartOnRequestAfter&quot;:false,&quot;eventLag&quot;:false}"></script><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><div id="nav-group"><span id="blog_name"><div class="back-home-button"><i class="anzhiyufont anzhiyu-icon-grip-vertical"></i><div class="back-menu-list-groups"><div class="back-menu-list-group"><div class="back-menu-list-title">网页</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://xiaoaozz.github.io/" title="个人博客"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/favicon.ico" alt="个人博客"/><span class="back-menu-item-text">个人博客</span></a></div></div><div class="back-menu-list-group"><div class="back-menu-list-title">项目</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://github.com/xiaoaozz" title="Github"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://avatars.githubusercontent.com/u/104616274?v=4" alt="Github"/><span class="back-menu-item-text">Github</span></a></div></div></div></div><a id="site-name" href="/" accesskey="h"><div class="title">小奥</div><i class="anzhiyufont anzhiyu-icon-house-chimney"></i></a><div id="he-plugin-simple"></div><script>var WIDGET = {
+  "CONFIG": {
+    "modules": "0124",
+    "background": "2",
+    "tmpColor": "FFFFFF",
+    "tmpSize": "16",
+    "cityColor": "FFFFFF",
+    "citySize": "16",
+    "aqiColor": "E8D87B",
+    "aqiSize": "16",
+    "weatherIconSize": "24",
+    "alertIconSize": "18",
+    "padding": "10px 10px 10px 10px",
+    "shadow": "0",
+    "language": "auto",
+    "borderRadius": "20",
+    "fixed": "true",
+    "vertical": "top",
+    "horizontal": "left",
+    "left": "20",
+    "top": "7.1",
+    "key": "df245676fb434a0691ead1c63341cd94"
+  }
+}
+</script><link rel="stylesheet" href="https://widget.qweather.net/simple/static/css/he-simple.css?v=1.4.0"/><script src="https://widget.qweather.net/simple/static/js/he-simple.js?v=1.4.0"></script></span><div class="mask-name-container"><div id="name-container"><a id="page-name" href="javascript:anzhiyu.scrollToDest(0, 500)">PAGE_NAME</a></div></div><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 文章</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/archives/"><i class="anzhiyufont anzhiyu-icon-box-archive faa-tada" style="font-size: 0.9em;"></i><span> 隧道</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/categories/"><i class="anzhiyufont anzhiyu-icon-shapes faa-tada" style="font-size: 0.9em;"></i><span> 分类</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags faa-tada" style="font-size: 0.9em;"></i><span> 标签</span></a></li></ul></div></div></div><div id="nav-right"><div class="nav-button" id="randomPost_button"><a class="site-page" onclick="toRandomPost()" title="随机前往一个文章" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-dice"></i></a></div><input id="center-console" type="checkbox"/><label class="widget" for="center-console" title="中控台" onclick="anzhiyu.switchConsole();"><i class="left"></i><i class="widget center"></i><i class="widget right"></i></label><div id="console"><div class="console-card-group-reward"><ul class="reward-all console-card"><li class="reward-item"><a href="/null" target="_blank"><img class="post-qr-code-img" alt="微信" src="/null"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/null" target="_blank"><img class="post-qr-code-img" alt="支付宝" src="/null"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div><div class="console-card-group"><div class="console-card-group-left"><div class="console-card" id="card-newest-comments"><div class="card-content"><div class="author-content-item-tips">互动</div><span class="author-content-item-title"> 最新评论</span></div><div class="aside-list"><span>正在加载中...</span></div></div></div><div class="console-card-group-right"><div class="console-card tags"><div class="card-content"><div class="author-content-item-tips">兴趣点</div><span class="author-content-item-title">寻找你感兴趣的领域</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/ArrayList/" style="font-size: 1.05rem;">ArrayList<sup>1</sup></a><a href="/tags/Feed%E6%B5%81/" style="font-size: 1.05rem;">Feed流<sup>1</sup></a><a href="/tags/Go%E9%9D%A2%E7%BB%8F/" style="font-size: 1.05rem;">Go面经<sup>1</sup></a><a href="/tags/HashMap/" style="font-size: 1.05rem;">HashMap<sup>1</sup></a><a href="/tags/Java%E9%9D%A2%E7%BB%8F/" style="font-size: 1.05rem;">Java面经<sup>1</sup></a><a href="/tags/LinkedList/" style="font-size: 1.05rem;">LinkedList<sup>1</sup></a><a href="/tags/MySQL%E5%BA%94%E7%94%A8/" style="font-size: 1.05rem;">MySQL应用<sup>1</sup></a><a href="/tags/MySQL%E9%9D%A2%E7%BB%8F/" style="font-size: 1.05rem;">MySQL面经<sup>1</sup></a><a href="/tags/Netty%E5%9F%BA%E7%A1%80/" style="font-size: 1.05rem;">Netty基础<sup>1</sup></a><a href="/tags/RabbitMQ/" style="font-size: 1.05rem;">RabbitMQ<sup>1</sup></a><a href="/tags/SpringBoot3/" style="font-size: 1.05rem;">SpringBoot3<sup>1</sup></a><a href="/tags/SpringCloud/" style="font-size: 1.05rem;">SpringCloud<sup>1</sup></a><a href="/tags/StopWatch/" style="font-size: 1.05rem;">StopWatch<sup>1</sup></a><a href="/tags/%E6%8E%A5%E5%8F%A3%E9%99%90%E6%B5%81/" style="font-size: 1.05rem;">接口限流<sup>1</sup></a><a href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" style="font-size: 1.05rem;">文件上传<sup>1</sup></a><a href="/tags/%E7%AE%97%E6%B3%95%E6%A8%A1%E6%9D%BF/" style="font-size: 1.05rem;">算法模板<sup>1</sup></a><a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E9%9D%A2%E7%BB%8F/" style="font-size: 1.05rem;">计算机网络面经<sup>1</sup></a><a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 1.05rem;">设计模式<sup>1</sup></a></div></div><hr/></div></div><div class="console-card history"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-box-archiv"></i><span>文章</span></div><div class="card-archives"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/01/"><span class="card-archive-list-date">一月 2024</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">12</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/12/"><span class="card-archive-list-date">十二月 2023</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">5</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/02/"><span class="card-archive-list-date">二月 2023</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span>篇</span></div></a></li></ul></div><hr/></div></div></div><div class="button-group"><div class="console-btn-item"><a class="darkmode_switchbutton" title="显示模式切换" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-moon"></i></a></div><div class="console-btn-item" id="consoleHideAside" onclick="anzhiyu.hideAsideBtn()" title="边栏显示控制"><a class="asideSwitch"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></a></div><div class="console-btn-item" id="consoleMusic" onclick="anzhiyu.musicToggle()" title="音乐开关"><a class="music-switch"><i class="anzhiyufont anzhiyu-icon-music"></i></a></div></div><div class="console-mask" onclick="anzhiyu.hideConsole()" href="javascript:void(0);"></div></div><div class="nav-button" id="nav-totop"><a class="totopbtn" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i><span id="percent" onclick="anzhiyu.scrollToDest(0,500)">0</span></a></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);" title="切换"><i class="anzhiyufont anzhiyu-icon-bars"></i></a></div></div></div></nav><div id="post-info"><div id="post-firstinfo"><div class="meta-firstline"><a class="post-meta-original">原创</a><span class="post-meta-categories"><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-inbox post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url">算法</a></span><span class="article-meta tags"><a class="article-meta__tags" href="/tags/%E7%AE%97%E6%B3%95%E6%A8%A1%E6%9D%BF/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>算法模板</span></a></span></div></div><h1 class="post-title" itemprop="name headline">算法模板</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="anzhiyufont anzhiyu-icon-calendar-days post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" itemprop="dateCreated datePublished" datetime="2024-01-12T09:22:04.000Z" title="发表于 2024-01-12 17:22:04">2024-01-12</time><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-history post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" itemprop="dateCreated datePublished" datetime="2024-01-12T09:51:54.851Z" title="更新于 2024-01-12 17:51:54">2024-01-12</time></span></div><div class="meta-secondline"><span class="post-meta-separator">       </span><span class="post-meta-position" title="作者IP属地为河南"><i class="anzhiyufont anzhiyu-icon-location-dot"></i>河南</span></div></div></div><section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path></defs><g class="parallax"><use href="#gentle-wave" x="48" y="0"></use><use href="#gentle-wave" x="48" y="3"></use><use href="#gentle-wave" x="48" y="5"></use><use href="#gentle-wave" x="48" y="7"></use></g></svg></section><div id="post-top-cover"><img class="nolazyload" id="post-top-bg" src="/img/png/18.png"></div></header><main id="blog-container"><div class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container" itemscope itemtype="http://example.com/2024/01/12/%E7%AE%97%E6%B3%95%E6%A8%A1%E6%9D%BF/"><header><a class="post-meta-categories" href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url">算法</a><a href="/tags/%E7%AE%97%E6%B3%95%E6%A8%A1%E6%9D%BF/" tabindex="-1" itemprop="url">算法模板</a><h1 id="CrawlerTitle" itemprop="name headline">算法模板</h1><span itemprop="author" itemscope itemtype="http://schema.org/Person">小奥</span><time itemprop="dateCreated datePublished" datetime="2024-01-12T09:22:04.000Z" title="发表于 2024-01-12 17:22:04">2024-01-12</time><time itemprop="dateCreated datePublished" datetime="2024-01-12T09:51:54.851Z" title="更新于 2024-01-12 17:51:54">2024-01-12</time></header><h1 id="算法模板"><a href="#算法模板" class="headerlink" title="算法模板"></a>算法模板</h1><h2 id="排序算法"><a href="#排序算法" class="headerlink" title="排序算法"></a>排序算法</h2><p>十大排序算法指的是在计算机科学中被广泛使用，效率较高且实现简单的十个排序算法。下面是这十种排序算法的简要介绍：</p>
+<p>（1）冒泡排序（Bubble Sort）：交换相邻元素，最大或最小的元素经过n-1次比较后，就会排在数组的最后一位。</p>
+<p>（2）选择排序（Selection Sort）：每次寻找未排序序列中的最小值，并将其放在已排序序列的末尾。</p>
+<p>（3）插入排序（Insertion Sort）：对于未排序序列中的每一个元素，将其插入到已排序序列中的合适位置。</p>
+<p>（4）希尔排序（Shell Sort）：采用分组策略，先将待排序序列拆分为n&#x2F;2个子序列，进行插入排序，然后逐渐缩小子序列的长度，直到子序列长度为1，即完成排序。</p>
+<p>（5）归并排序（Merge Sort）：将待排序序列不断二分，再将两个有序的子序列合并为一个有序序列，重复上述步骤，直到整个序列有序。</p>
+<p>（6）快速排序（Quick Sort）：选择一个基准元素，将序列中小于它的元素放在它的左边，大于它的元素放在右边，然后递归地对左右子序列进行快速排序。</p>
+<p>（7）堆排序（Heap Sort）：将待排序序列构建成一个堆，然后不断从堆顶取出最大值，并调整堆，直到取完所有元素。</p>
+<p>（8）计数排序（Counting Sort）：统计序列中每个元素出现的次数，然后根据统计信息对序列进行重排。</p>
+<p>（9）桶排序（Bucket Sort）：将整个区间划分为若干个桶，然后将元素按照大小分配到相应的桶中，在桶内使用其他的排序算法（如插入排序）进行排序。</p>
+<p>（10）基数排序（Radix Sort）：将待排序序列拆分为多个关键字，按照每个关键字进行排序，最终得到有序序列。</p>
+<p>以上十种排序算法都有其独特的优势和适用场景，选择合适的排序算法可以提高程序的效率。</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.acwing.com/media/article/image/2020/12/05/41924_1a3c844236-sort.png"></p>
+<h3 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 冒泡排序</span></span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">bubblingSort</span><span class="params">(<span class="type">int</span>[] nums)</span> &#123;</span><br><span class="line">       <span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> nums.length;</span><br><span class="line">       <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">           <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> i + <span class="number">1</span>; j &lt; n; j++) &#123;</span><br><span class="line">               <span class="keyword">if</span>(nums[i] &gt; nums[j]) &#123;</span><br><span class="line">                   <span class="type">int</span> <span class="variable">t</span> <span class="operator">=</span> nums[i];</span><br><span class="line">                   nums[i] = nums[j];</span><br><span class="line">                   nums[j] = t;</span><br><span class="line">               &#125;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 双向冒泡排序</span></span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">twoWaySort</span><span class="params">(<span class="type">int</span>[] nums)</span> &#123;</span><br><span class="line">       <span class="type">int</span> <span class="variable">l</span> <span class="operator">=</span> <span class="number">0</span>, r = nums.length - <span class="number">1</span>;</span><br><span class="line">       <span class="keyword">while</span>(l &lt; r) &#123;</span><br><span class="line">           <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> l + <span class="number">1</span>; i &lt;= r; i++) &#123;</span><br><span class="line">               <span class="keyword">if</span>(nums[l] &gt; nums[i]) &#123;</span><br><span class="line">                   nums[l] ^= nums[i];</span><br><span class="line">                   nums[i] ^= nums[l];</span><br><span class="line">                   nums[l] ^= nums[i];</span><br><span class="line">               &#125;</span><br><span class="line">           &#125;</span><br><span class="line">           l++;</span><br><span class="line">           <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> r - <span class="number">1</span>; i &gt;= l; i--) &#123;</span><br><span class="line">               <span class="keyword">if</span>(nums[r] &lt; nums[i]) &#123;</span><br><span class="line">                   nums[r] ^= nums[i];</span><br><span class="line">                   nums[i] ^= nums[r];</span><br><span class="line">                   nums[r] ^= nums[i];</span><br><span class="line">               &#125;</span><br><span class="line">           &#125;</span><br><span class="line">           r--;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 选择排序</span></span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">selectSort</span><span class="params">(<span class="type">int</span>[] nums)</span> &#123;</span><br><span class="line">       <span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> nums.length;</span><br><span class="line">       <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; n - <span class="number">1</span>; i++) &#123;</span><br><span class="line">           <span class="type">int</span> <span class="variable">minVal</span> <span class="operator">=</span> i;</span><br><span class="line">           <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> i + <span class="number">1</span>; j &lt; n; j++) &#123;</span><br><span class="line">               <span class="keyword">if</span>(nums[minVal] &gt; nums[j]) &#123;</span><br><span class="line">                   minVal = j;</span><br><span class="line">               &#125;</span><br><span class="line">           &#125;</span><br><span class="line">           <span class="keyword">if</span>(minVal != i) &#123;</span><br><span class="line">               <span class="type">int</span> <span class="variable">t</span> <span class="operator">=</span> nums[i];</span><br><span class="line">               nums[i] = nums[minVal];</span><br><span class="line">               nums[minVal] = t;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 插入排序</span></span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">insertSort</span><span class="params">(<span class="type">int</span>[] nums)</span> &#123;</span><br><span class="line">       <span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> nums.length;</span><br><span class="line">       <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt; n; i++) &#123;</span><br><span class="line">           <span class="type">int</span> <span class="variable">val</span> <span class="operator">=</span> nums[i], j = i;</span><br><span class="line">           <span class="keyword">while</span>(j &gt; <span class="number">0</span> &amp;&amp; val &lt; nums[j - <span class="number">1</span>]) &#123;</span><br><span class="line">               nums[j] = nums[j - <span class="number">1</span>];</span><br><span class="line">               j--;</span><br><span class="line">           &#125;</span><br><span class="line">           nums[j] = val;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="希尔排序"><a href="#希尔排序" class="headerlink" title="希尔排序"></a>希尔排序</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 希尔排序</span></span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">shellSort</span><span class="params">(<span class="type">int</span>[] nums)</span> &#123;</span><br><span class="line">       <span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> nums.length;</span><br><span class="line">       <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">g</span> <span class="operator">=</span> n &gt;&gt; <span class="number">1</span>; g &gt; <span class="number">0</span>; g &gt;&gt;= <span class="number">1</span>) &#123;</span><br><span class="line">           <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> g; i &lt; n; i++) &#123;</span><br><span class="line">               <span class="type">int</span> <span class="variable">x</span> <span class="operator">=</span> nums[i];</span><br><span class="line">               <span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">               <span class="keyword">for</span>(j = i; j &gt;= g &amp;&amp; nums[j - g] &gt; x; j -= g) &#123;</span><br><span class="line">                   nums[j] = nums[j - g];</span><br><span class="line">               &#125;</span><br><span class="line">               nums[j] = x;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h3><p>借鉴博客链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45970271/article/details/124460317">(9条消息) java实现归并排序（详解）_java 归并排序_星辰与晨曦的博客-CSDN博客</a></p>
+<blockquote>
+<p>介绍</p>
+</blockquote>
+<p>归并排序先将待排序的数组不断拆分，直到拆分到区间里只剩下一个元素的时候。不能再拆分的时候。这个时候我们再想办法合并两个有序的数组，得到长度更长的有序数组。当前合并好的有序数组为下一轮得到更长的有序数组做好了准备。一层一层的合并回去，直到整个数组有序。</p>
+<blockquote>
+<p>实现</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">mergeSort</span><span class="params">(<span class="type">int</span>[] nums, <span class="type">int</span> l, <span class="type">int</span> r, <span class="type">int</span>[] temp)</span> &#123;</span><br><span class="line">       <span class="keyword">if</span>(l &gt;= r) <span class="keyword">return</span>;</span><br><span class="line">       <span class="type">int</span> <span class="variable">mid</span> <span class="operator">=</span> l + r &gt;&gt; <span class="number">1</span>;</span><br><span class="line">       mergeSort(nums, l, mid, temp);</span><br><span class="line">       mergeSort(nums, mid + <span class="number">1</span>, r, temp);</span><br><span class="line">       <span class="type">int</span> <span class="variable">k</span> <span class="operator">=</span> <span class="number">0</span>, i = l, j = mid + <span class="number">1</span>;</span><br><span class="line">       <span class="keyword">while</span>(i &lt;= mid &amp;&amp; j &lt;= r) &#123;</span><br><span class="line">           <span class="keyword">if</span>(nums[i] &lt; nums[j]) &#123;</span><br><span class="line">               temp[k++] = nums[i++];</span><br><span class="line">           &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">               temp[k++] = nums[j++];</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">while</span>(i &lt;= mid) temp[k++] = nums[i++];</span><br><span class="line">       <span class="keyword">while</span>(j &lt;= r) temp[k++] = nums[j++];</span><br><span class="line">       <span class="keyword">for</span>(i = l, j = <span class="number">0</span>; i &lt;= r; i++, j++) &#123;</span><br><span class="line">           nums[i] = temp[j];</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h3><blockquote>
+<p>介绍</p>
+</blockquote>
+<blockquote>
+<p>实现</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">	<span class="comment">// 快速排序 递归版</span></span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">quickSort</span><span class="params">(<span class="type">int</span>[] nums, <span class="type">int</span> l, <span class="type">int</span> r)</span> &#123;</span><br><span class="line">       <span class="keyword">if</span>(l &gt;= r) &#123;</span><br><span class="line">           <span class="keyword">return</span>;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> l - <span class="number">1</span>, j = r + <span class="number">1</span>, x = nums[(l + r) / <span class="number">2</span>];</span><br><span class="line">       <span class="keyword">while</span>(i &lt; j) &#123;</span><br><span class="line">           <span class="keyword">do</span> i++; <span class="keyword">while</span>(nums[i] &lt; x);</span><br><span class="line">           <span class="keyword">do</span> j--; <span class="keyword">while</span>(nums[j] &gt; x);</span><br><span class="line">           <span class="keyword">if</span>(i &lt; j) &#123;</span><br><span class="line">               <span class="type">int</span> <span class="variable">t</span> <span class="operator">=</span> nums[i]; </span><br><span class="line">               nums[i] = nums[j]; </span><br><span class="line">               nums[j] = t;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       quickSort(nums, l, j);</span><br><span class="line">       quickSort(nums, j + <span class="number">1</span>, r);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 快速排序，非递归版</span></span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">quickSortByStack</span><span class="params">(<span class="type">int</span>[] nums, <span class="type">int</span> l, <span class="type">int</span> r)</span> &#123;</span><br><span class="line">       Stack&lt;Integer&gt; s = <span class="keyword">new</span> <span class="title class_">Stack</span>&lt;&gt;();</span><br><span class="line">       s.push(r);</span><br><span class="line">       s.push(l);</span><br><span class="line">       <span class="keyword">while</span>(!s.isEmpty()) &#123;</span><br><span class="line">           <span class="type">int</span> <span class="variable">low</span> <span class="operator">=</span> s.pop(), high = s.pop();</span><br><span class="line">           <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> low, j = high;</span><br><span class="line">           <span class="keyword">if</span>(i &gt;= j) &#123;</span><br><span class="line">               <span class="keyword">continue</span>;</span><br><span class="line">           &#125;</span><br><span class="line">           <span class="type">int</span> <span class="variable">pivot</span> <span class="operator">=</span> nums[i];</span><br><span class="line">           <span class="keyword">while</span>(i &lt; j) &#123;</span><br><span class="line">               <span class="keyword">while</span>(i &lt; j &amp;&amp; nums[j] &gt;= pivot) j--;</span><br><span class="line">               nums[i] = nums[j];</span><br><span class="line">               <span class="keyword">while</span>(i &lt; j &amp;&amp; nums[i] &lt; pivot) i++;</span><br><span class="line">               nums[j] = nums[i];</span><br><span class="line">           &#125;</span><br><span class="line">           nums[i] = pivot;</span><br><span class="line">           s.push(high);</span><br><span class="line">           s.push(i + <span class="number">1</span>);</span><br><span class="line">           s.push(i - <span class="number">1</span>);</span><br><span class="line">           s.push(low);</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Main</span>&#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="type">int</span> <span class="variable">N</span> <span class="operator">=</span> <span class="number">100010</span>;</span><br><span class="line">    <span class="keyword">static</span> <span class="type">int</span>[] h = <span class="keyword">new</span> <span class="title class_">int</span>[N];</span><br><span class="line">    <span class="keyword">static</span> <span class="type">int</span> size;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Scanner</span> <span class="variable">sc</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Scanner</span>(System.in);</span><br><span class="line">        <span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> sc.nextInt();</span><br><span class="line">        <span class="type">int</span> <span class="variable">k</span> <span class="operator">=</span> sc.nextInt();</span><br><span class="line">        size = n;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt; n + <span class="number">1</span>; i++) &#123;</span><br><span class="line">            h[i] = sc.nextInt();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 建堆</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> n / <span class="number">2</span>; i != <span class="number">0</span>; i--)  down(i);</span><br><span class="line">        <span class="keyword">while</span>(k-- &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            System.out.print(h[<span class="number">1</span>] + <span class="string">&quot; &quot;</span>);</span><br><span class="line">            h[<span class="number">1</span>] = h[size];</span><br><span class="line">            size--;</span><br><span class="line">            down(<span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 下移</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">down</span><span class="params">(<span class="type">int</span> u)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">t</span> <span class="operator">=</span> u;</span><br><span class="line">        <span class="keyword">if</span>(<span class="number">2</span> * u &lt;= size &amp;&amp; h[<span class="number">2</span> * u] &lt; h[t]) t = <span class="number">2</span> * u;</span><br><span class="line">        <span class="keyword">if</span>(<span class="number">2</span> * u + <span class="number">1</span> &lt;= size &amp;&amp; h[<span class="number">2</span> * u + <span class="number">1</span>] &lt; h[t]) t = <span class="number">2</span> * u + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span>(t != u) &#123;</span><br><span class="line">            h[u] ^= h[t];</span><br><span class="line">            h[t] ^= h[u];</span><br><span class="line">            h[u] ^= h[t];</span><br><span class="line">            down(t);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;		</span><br></pre></td></tr></table></figure>
+
+<h3 id="计数排序"><a href="#计数排序" class="headerlink" title="计数排序"></a>计数排序</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 计数排序</span></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">countSort</span><span class="params">(<span class="type">int</span>[] nums)</span> &#123;</span><br><span class="line">     <span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> nums.length;</span><br><span class="line">     <span class="type">int</span>[] t = <span class="keyword">new</span> <span class="title class_">int</span>[n];</span><br><span class="line">     <span class="type">int</span> <span class="variable">maxV</span> <span class="operator">=</span> nums[<span class="number">0</span>];</span><br><span class="line">     <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt; n; i++) &#123;</span><br><span class="line">         <span class="keyword">if</span>(maxV &lt; nums[i]) &#123;</span><br><span class="line">             maxV = nums[i];</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br><span class="line">      <span class="type">int</span>[] count = <span class="keyword">new</span> <span class="title class_">int</span>[maxV + <span class="number">1</span>];</span><br><span class="line">      <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; n; i++) count[nums[i]]++;</span><br><span class="line">      <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt;= maxV; i++) count[i] += count[i - <span class="number">1</span>];</span><br><span class="line">      <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> n - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">          t[count[nums[i]] - <span class="number">1</span>] = nums[i];</span><br><span class="line">          count[nums[i]]--;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; n; i++) nums[i] = t[i];</span><br><span class="line">  &#125; </span><br></pre></td></tr></table></figure>
+
+<h3 id="基数排序"><a href="#基数排序" class="headerlink" title="基数排序"></a>基数排序</h3><p>借鉴博客链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_49342830/article/details/125929058">(8条消息) java实现基数排序_基数排序java_其实我不想摆烂的博客-CSDN博客</a></p>
+<blockquote>
+<p>介绍</p>
+</blockquote>
+<p>属于分配式排序，又称桶子法或者bin sort，顾名思义，它是通过键值的各个位的值，将要排序的元素分配至某些“桶”中，达到排序的作用。</p>
+<p>基数排序的思想是，将所有待比较数值统一为同样的数值长度，数位较短的数前面补0，然后，从最低位开始，依次进行一次排序，这样从最低位排序一直到最高位排序完成以后，数列就变成一个有序序列。</p>
+<blockquote>
+<p>实现</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 基数排序</span></span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">radixSort</span><span class="params">(<span class="type">int</span>[] nums)</span> &#123;</span><br><span class="line">       <span class="comment">// 找出数组中的最大值</span></span><br><span class="line">       <span class="type">int</span> <span class="variable">max</span> <span class="operator">=</span> nums[<span class="number">0</span>];</span><br><span class="line">       <span class="keyword">for</span>(<span class="type">int</span> i : nums) max = max &gt; i ? max : i;</span><br><span class="line">       <span class="comment">// 计算最大值的位数</span></span><br><span class="line">       <span class="type">int</span> <span class="variable">len</span> <span class="operator">=</span> (max + <span class="string">&quot;&quot;</span>).length();</span><br><span class="line">       <span class="comment">// 桶的表示。十个桶处理 0-9 十个数字</span></span><br><span class="line">       <span class="comment">// 防止数据溢出，所以定义len长度的一维数组来存放每次排序后的序列</span></span><br><span class="line">       <span class="comment">// 经典的空间换时间概念</span></span><br><span class="line">       <span class="type">int</span>[][] bucket = <span class="keyword">new</span> <span class="title class_">int</span>[<span class="number">10</span>][len];</span><br><span class="line">       <span class="comment">// 记录每个桶中放置数字的个数</span></span><br><span class="line">       <span class="type">int</span>[] bucketCount = <span class="keyword">new</span> <span class="title class_">int</span>[<span class="number">10</span>];</span><br><span class="line">       <span class="comment">// 循环处理</span></span><br><span class="line">       <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>, n = <span class="number">1</span>; i &lt; len; i++, n *= <span class="number">10</span>) &#123;</span><br><span class="line">           <span class="comment">// 第i轮对对应的位排序，第一次为个位，第二次为十位</span></span><br><span class="line">           <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>; j &lt; nums.length; j++) &#123;</span><br><span class="line">               <span class="type">int</span> <span class="variable">digit</span> <span class="operator">=</span> (nums[j] / n) % <span class="number">10</span>;</span><br><span class="line">               bucket[digit][bucketCount[digit]] = nums[j];</span><br><span class="line">               bucketCount[digit]++;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="type">int</span> <span class="variable">idx</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">       <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; bucketCount.length; i++) &#123;</span><br><span class="line">           <span class="keyword">if</span>(bucketCount[i] != <span class="number">0</span>) &#123;</span><br><span class="line">               <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>; j &lt; bucketCount[i]; j++) &#123;</span><br><span class="line">                   nums[idx++] = bucket[i][j];</span><br><span class="line">               &#125;</span><br><span class="line">           &#125;</span><br><span class="line">           bucketCount[i] = <span class="number">0</span>;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="桶排序"><a href="#桶排序" class="headerlink" title="桶排序"></a>桶排序</h3><p>借鉴博客链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/sinat_51673411/article/details/123586187">(8条消息) java实现桶排序（详细解析）_桶排序java_、信仰_的博客-CSDN博客</a></p>
+<blockquote>
+<p>介绍</p>
+</blockquote>
+<p>桶排序 (Bucketsort)，是一个排序算法，工作的原理是将数组分到有限数量的桶子里。每个桶子再个别排序（有可能再使用别的排序算法或是以递归方式继续使用桶排序进行排序）。桶排序是鸽巢排序的一种归纳结果。当要被排序的数组内的数值是均匀分配的时候，桶排序使用线性时间（O(n)）。</p>
+<p>桶排序的思想是，若待排序的记录的关键字在一个明显有限范围内时，可设计有限个有序桶，每个桶只能装与之对应的值，顺序输出各桶的值，将得到有序的序列。简单来说，在我们可以确定需要排列的数组的范围时，可以生成该数值范围内有限个桶去对应数组中的数，然后我们将扫描的数值放入匹配的桶里的行为，可以看作是分类，在分类完成后，我们需要依次按照桶的顺序输出桶内存放的数值，这样就完成了桶排序。</p>
+<blockquote>
+<p>实现</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">bucketSort</span><span class="params">(<span class="type">int</span>[] nums)</span> &#123;</span><br><span class="line">       <span class="type">int</span> <span class="variable">max</span> <span class="operator">=</span> nums[<span class="number">0</span>];</span><br><span class="line">       <span class="keyword">for</span>(<span class="type">int</span> i : nums) max = max &gt; i ? max : i;</span><br><span class="line">       <span class="type">int</span>[] bucket = <span class="keyword">new</span> <span class="title class_">int</span>[max + <span class="number">1</span>];</span><br><span class="line">       <span class="keyword">for</span>(<span class="type">int</span> i : nums) bucket[i]++;</span><br><span class="line">       <span class="type">int</span> <span class="variable">idx</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">       <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; max + <span class="number">1</span>; i++ ) &#123;</span><br><span class="line">           <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>; j &lt; bucket[i]; j++) &#123;</span><br><span class="line">               nums[idx++] = i;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="二分查找"><a href="#二分查找" class="headerlink" title="二分查找"></a>二分查找</h2><h3 id="二分搜索的三种写法"><a href="#二分搜索的三种写法" class="headerlink" title="二分搜索的三种写法"></a>二分搜索的三种写法</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 左闭右闭区间</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">binarySearch</span><span class="params">(<span class="type">int</span>[] nums, <span class="type">int</span> target)</span> &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">l</span> <span class="operator">=</span> <span class="number">0</span>, r = nums.length - <span class="number">1</span>; <span class="comment">// 左闭右闭区间 [0, r]</span></span><br><span class="line">    <span class="keyword">while</span>(l &lt;= r) &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">mid</span> <span class="operator">=</span> l + (r - l) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span>(nums[mid] &lt; target) &#123;</span><br><span class="line">            l = mid + <span class="number">1</span>; <span class="comment">//[mid + 1, right]</span></span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            r = mid - <span class="number">1</span>; <span class="comment">//[l, mid - 1]</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> l; <span class="comment">// l == r + 1</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 左闭右开区间</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">binarySeach</span><span class="params">(<span class="type">int</span>[] nums, <span class="type">int</span> target)</span> &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">l</span> <span class="operator">=</span> <span class="number">0</span>, r = nums.length; <span class="comment">// 左闭右开区间 [l, r)</span></span><br><span class="line">    <span class="keyword">while</span>(l &lt; r) &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">mid</span> <span class="operator">=</span> l + (r - l) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span>(nums[mid] &lt; target) &#123;</span><br><span class="line">            l = mid + <span class="number">1</span>; <span class="comment">// [mid + 1, r)</span></span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            r = mid; <span class="comment">// [l, mid)</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> l; <span class="comment">//  l == r</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 左开右开区间</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">binarySearch</span><span class="params">(<span class="type">int</span>[] nums, <span class="type">int</span> target)</span> &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">l</span> <span class="operator">=</span> -<span class="number">1</span>, r = nums.length; <span class="comment">// 开区间 (-1, r)</span></span><br><span class="line">    <span class="keyword">while</span>(l + <span class="number">1</span> &lt; r) &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">mid</span> <span class="operator">=</span> l + (r - l) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span>(nums[mid] &lt; target) &#123;</span><br><span class="line">            l = mid; <span class="comment">// (mid, r)</span></span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            r = mid; <span class="comment">// (l, mid)</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> r; <span class="comment">// l + 1 = r</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="二分搜索，左边界和右边界"><a href="#二分搜索，左边界和右边界" class="headerlink" title="二分搜索，左边界和右边界"></a>二分搜索，左边界和右边界</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 搜索左边界</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">left_bound</span><span class="params">(<span class="type">int</span>[] nums, <span class="type">int</span> target)</span> &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">left</span> <span class="operator">=</span> <span class="number">0</span>, right = nums.length - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (left &lt;= right) &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">mid</span> <span class="operator">=</span> left + (right - left) / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span> (nums[mid] &lt; target) &#123;</span><br><span class="line">            left = mid + <span class="number">1</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (nums[mid] &gt; target) &#123;</span><br><span class="line">            right = mid - <span class="number">1</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (nums[mid] == target) &#123;</span><br><span class="line">            <span class="comment">// 别返回，锁定左侧边界</span></span><br><span class="line">            right = mid - <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 判断 target 是否存在于 nums 中</span></span><br><span class="line">    <span class="comment">// 此时 target 比所有数都大，返回 -1</span></span><br><span class="line">    <span class="keyword">if</span> (left == nums.length) <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    <span class="comment">// 判断一下 nums[left] 是不是 target</span></span><br><span class="line">    <span class="keyword">return</span> nums[left] == target ? left : -<span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 搜索右边界</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">right_bound</span><span class="params">(<span class="type">int</span>[] nums, <span class="type">int</span> target)</span> &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">left</span> <span class="operator">=</span> <span class="number">0</span>, right = nums.length - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (left &lt;= right) &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">mid</span> <span class="operator">=</span> left + (right - left) / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span> (nums[mid] &lt; target) &#123;</span><br><span class="line">            left = mid + <span class="number">1</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (nums[mid] &gt; target) &#123;</span><br><span class="line">            right = mid - <span class="number">1</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (nums[mid] == target) &#123;</span><br><span class="line">            <span class="comment">// 别返回，锁定右侧边界</span></span><br><span class="line">            left = mid + <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 此时 left - 1 索引越界</span></span><br><span class="line">    <span class="keyword">if</span> (left - <span class="number">1</span> &lt; <span class="number">0</span>) <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    <span class="comment">// 判断一下 nums[right] 是不是 target</span></span><br><span class="line">    <span class="keyword">return</span> nums[right] == target ? right : -<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="二分答案"><a href="#二分答案" class="headerlink" title="二分答案"></a>二分答案</h3><p>:rocket: <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/koko-eating-bananas/">875. 爱吃香蕉的珂珂</a></p>
+<p>:rocket: <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/minimum-time-to-complete-trips/">2187. 完成旅途的最少时间</a></p>
+<p>:rocket: <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/maximum-candies-allocated-to-k-children/">2226. 每个小孩最多能分到多少糖果</a></p>
+<h3 id="最小化最大值"><a href="#最小化最大值" class="headerlink" title="最小化最大值"></a>最小化最大值</h3><p>:rocket:  <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/minimize-maximum-of-array/">2439. 最小化数组中的最大值</a></p>
+<p>:rocket: <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/minimize-the-maximum-of-two-arrays/">2513. 最小化两个数组中的最大值</a></p>
+<h3 id="最大化最小值"><a href="#最大化最小值" class="headerlink" title="最大化最小值"></a>最大化最小值</h3><p>:rocket: <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/magnetic-force-between-two-balls/">1552. 两球之间的磁力</a></p>
+<p>:rocket: <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/maximum-tastiness-of-candy-basket/">2517. 礼盒的最大甜蜜度</a></p>
+<p>:rocket: <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/maximize-the-minimum-powered-city/">2528. 最大化城市的最小供电站数目</a></p>
+<h3 id="TOP-K问题"><a href="#TOP-K问题" class="headerlink" title="TOP K问题"></a>TOP K问题</h3><blockquote>
+<p>10亿个数中如何高效地找到最大的一个数</p>
+</blockquote>
+<p>将10亿个数据分成1000份，每份每份100万个数据，找到每份数据中最大的那个数据，最后在剩下的1000个数据里面找出最大的数据。 从100万个数据遍历选择最大的数，此方法需要每次的内存空间为10^6*4&#x3D;4MB，一共需要1000次这样的比较。</p>
+<blockquote>
+<p>10亿个数中如何高效地找到最大的第 K 个数</p>
+</blockquote>
+<ul>
+<li>对于top K类问题，通常比较好的方案是<strong>分治+hash+小顶堆</strong>：<ul>
+<li>先将数据集按照Hash方法分解成多个小数据集</li>
+<li>然后用小顶堆求出每个数据集中最大的K个数</li>
+<li>最后在所有top K中求出最终的top K。</li>
+</ul>
+</li>
+<li>如果是top词频可以使用<strong>分治+ Trie树&#x2F;hash +小顶堆</strong>：<ul>
+<li>先将数据集按照Hash方法分解成多个小数据集</li>
+<li>然后使用Trie树或者Hash统计每个小数据集中的query词频</li>
+<li>之后用小顶堆求出每个数据集中出频率最高的前K个数</li>
+<li>最后在所有top K中求出最终的top K。</li>
+</ul>
+</li>
+<li>时间复杂度：建堆时间复杂度是O(K),算法的时间复杂度为O(NlogK)。</li>
+</ul>
+<blockquote>
+<p>TOP K常用的方法</p>
+</blockquote>
+<ul>
+<li>快排+选择排序：排序后的集合中进行查找<ul>
+<li>时间复杂度： 时间复杂度为O(NlogN)</li>
+<li>缺点：需要比较大的内存，且效率低</li>
+</ul>
+</li>
+<li>局部淘汰：取前K个元素并排序，然后依次扫描剩余的元素，插入到排好序的序列中(二分查找)，并淘汰最小值。<ul>
+<li>时间复杂度： 时间复杂度为O(NlogK) (logK为二分查找的复杂度)。</li>
+</ul>
+</li>
+<li>分治法：将10亿个数据分成1000份，每份100万个数据，找到每份数据中最大的K个，最后在剩下的1000*K个数据里面找出最大的K个，100万个数据里面查找最大的K个数据可以使用Partition的方法<ul>
+<li>时间复杂度： 时间复杂度为O(N+1000*K)</li>
+</ul>
+</li>
+<li>Hash法： 如果这10亿个数里面有很多重复的数，先通过Hash法，把这10亿个数字去重复，这样如果重复率很高的话，会减少很大的内存用量，从而缩小运算空间，然后通过分治法或最小堆法查找最大的K个数。</li>
+<li>小顶堆： 首先读入前K个数来创建大小为K的小顶堆，建堆的时间复杂度为O(K)，然后遍历后续的数字，并于堆顶（最小）数字进行比较。如果比最小的数小，则继续读取后续数字；如果比堆顶数字大，则替换堆顶元素并重新调整堆为最小堆。<ul>
+<li>时间复杂度： 时间复杂度为O(NlogK)</li>
+</ul>
+</li>
+<li>Trie树： 如果是从10亿个重复比较多的单词找高频词汇，数据集按照Hash方法分解成多个小数据集，然后使用Trie树统计每个小数据集中的query词频，之后用小顶堆求出每个数据集中出现频率最高的前K个数，最后在所有top K中求出最终的top K。<ul>
+<li>适用范围：数据量大，重复多，但是数据种类小可以放入内存</li>
+<li>时间复杂度：O(Len*N)，N为字符串的个数，Len为字符串长度</li>
+</ul>
+</li>
+<li>桶排序：一个数据表分割成许多buckets，然后每个bucket各自排序，或用不同的排序算法，或者递归的使用bucket sort算法。也是典型的divide-and-conquer分而治之的策略。<ul>
+<li>使用范围：如果已知了数据的范围，那么可以划分合适大小的桶，直接借用桶排序的思路</li>
+<li>时间复杂度：O(N*logM)，N 为待排序的元素的个数，M为桶的个数</li>
+</ul>
+</li>
+<li>计数排序：计数排序其实是桶排序的一种特殊情况。当要排序的 n 个数据，所处的范围并不大的时候，比如最大值是 k，我们就可以把数据划分成 k 个桶。每个桶内的数据值都是相同的，省掉了桶内排序的时间。<ul>
+<li>适用范围：只能用在数据范围不大的场景</li>
+<li>时间复杂度：O(N)</li>
+</ul>
+</li>
+<li>基数排序：将整数按位数切割成不同的数字，然后按每个位数分别比较。<ul>
+<li>适用范围：可以对字符串类型的关键字进行排序。</li>
+<li>时间复杂度： O(N*M)，M为要排序的数据的位数</li>
+</ul>
+</li>
+</ul>
+</article><div class="post-copyright"><div class="copyright-cc-box"><i class="anzhiyufont anzhiyu-icon-copyright"></i></div><div class="post-copyright__author_box"><a class="post-copyright__author_img" href="/" title="头像"><img class="post-copyright__author_img_back" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://bu.dusays.com/2023/04/27/64496e511b09c.jpg" title="头像" alt="头像"><img class="post-copyright__author_img_front" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://bu.dusays.com/2023/04/27/64496e511b09c.jpg" title="头像" alt="头像"></a><div class="post-copyright__author_name">小奥</div><div class="post-copyright__author_desc">浮生若梦 为欢几何</div></div><div class="post-copyright__post__info"><a class="post-copyright__original" title="该文章为原创文章，注意版权协议" href="http://example.com/2024/01/12/%E7%AE%97%E6%B3%95%E6%A8%A1%E6%9D%BF/">原创</a><a class="post-copyright-title"><span onclick="rm.copyPageUrl('http://example.com/2024/01/12/%E7%AE%97%E6%B3%95%E6%A8%A1%E6%9D%BF/')">算法模板</span></a></div><div class="post-tools" id="post-tools"><div class="post-tools-left"><div class="rewardLeftButton"></div><div class="shareRight"><div class="share-link mobile"><div class="share-qrcode"><div class="share-button" title="使用手机访问这篇文章"><i class="anzhiyufont anzhiyu-icon-qrcode"></i></div><div class="share-main"><div class="share-main-all"><div id="qrcode" title="http://example.com/2024/01/12/%E7%AE%97%E6%B3%95%E6%A8%A1%E6%9D%BF/"></div><div class="reward-dec">使用手机访问这篇文章</div></div></div></div></div><div class="share-link weibo"><a class="share-button" target="_blank" href="https://service.weibo.com/share/share.php?title=算法模板&amp;url=http://example.com/2024/01/12/%E7%AE%97%E6%B3%95%E6%A8%A1%E6%9D%BF/&amp;pic=/img/png/18.png" rel="external nofollow noreferrer noopener"><i class="anzhiyufont anzhiyu-icon-weibo"></i></a></div><script>function copyCurrentPageUrl() {
+  var currentPageUrl = window.location.href;
+  var input = document.createElement("input");
+  input.setAttribute("value", currentPageUrl);
+  document.body.appendChild(input);
+  input.select();
+  input.setSelectionRange(0, 99999);
+  document.execCommand("copy");
+  document.body.removeChild(input);
+}</script><div class="share-link copyurl"><div class="share-button" id="post-share-url" title="复制链接" onclick="copyCurrentPageUrl()"><i class="anzhiyufont anzhiyu-icon-link"></i></div></div></div></div></div><div class="post-copyright__notice"><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">小奥</a>！</span></div></div><div class="post-tools-right"><div class="tag_share"><div class="post-meta__box"><div class="post-meta__box__category-list"><a class="post-meta__box__categoryes" href="/categories/%E7%AE%97%E6%B3%95/"><span class="categoryes-punctuation"> <i class="anzhiyufont anzhiyu-icon-inbox"></i></span>算法<span class="categoryesPageCount">1</span></a></div><div class="post-meta__box__tag-list"><a class="post-meta__box__tags" href="/tags/%E7%AE%97%E6%B3%95%E6%A8%A1%E6%9D%BF/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>算法模板<span class="tagsPageCount">1</span></a></div></div><div class="post_share"><div class="social-share" data-image="/img/png/7.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.cbd.int/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"/><script src="https://cdn.cbd.int/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer="defer"></script></div></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/01/11/Java%E9%9B%86%E5%90%88%E4%B9%8BArrayList%E6%BA%90%E7%A0%81%E7%AF%87/"><img class="prev-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/png/14.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Java集合之ArrayList源码篇</div></div></a></div><div class="next-post pull-right"><a href="/2024/01/12/%E5%A4%A7%E6%96%87%E4%BB%B6%E5%88%86%E7%89%87%E3%80%81%E7%A7%92%E4%BC%A0%E3%80%81%E6%96%AD%E7%82%B9%E7%BB%AD%E4%BC%A0/"><img class="next-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/png/20.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">大文件分片、秒传、断点续传</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-content"><div class="author-info__sayhi" id="author-info__sayhi" onclick="anzhiyu.changeSayHelloText()"></div><div class="author-info-avatar"><img class="avatar-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://bu.dusays.com/2023/04/27/64496e511b09c.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-status"><img class="g-status" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://bu.dusays.com/2023/08/24/64e6ce9c507bb.png" alt="status"/></div></div><div class="author-info__description"><div style="line-height:1.38;margin:0.6rem 0;text-align:justify;color:rgba(255, 255, 255, 0.8);">这有关于<b style="color:#fff">Java、数据库、中间件</b>相关的学习笔记，还有<b style="color:#fff">面试题总结</b>和<b style="color:#fff">分享</b>。</div><div style="line-height:1.38;margin:0.6rem 0;text-align:justify;color:rgba(255, 255, 255, 0.8);">相信你可以在这里找到对你有用的<b style="color:#fff">知识</b>和<b style="color:#fff">教程</b>。</div></div><div class="author-info__bottom-group"><a class="author-info__bottom-group-left" href="/"><h1 class="author-info__name">小奥</h1><div class="author-info__desc">浮生若梦 为欢几何</div></a><div class="card-info-social-icons is-center"><a class="social-icon faa-parent animated-hover" href="https://github.com/xiaoaozz" target="_blank" title="Github"><i class="anzhiyufont anzhiyu-icon-github"></i></a></div></div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-bars"></i><span>文章目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AE%97%E6%B3%95%E6%A8%A1%E6%9D%BF"><span class="toc-number">1.</span> <span class="toc-text">算法模板</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95"><span class="toc-number">1.1.</span> <span class="toc-text">排序算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F"><span class="toc-number">1.1.1.</span> <span class="toc-text">冒泡排序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F"><span class="toc-number">1.1.2.</span> <span class="toc-text">选择排序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F"><span class="toc-number">1.1.3.</span> <span class="toc-text">插入排序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%8C%E5%B0%94%E6%8E%92%E5%BA%8F"><span class="toc-number">1.1.4.</span> <span class="toc-text">希尔排序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F"><span class="toc-number">1.1.5.</span> <span class="toc-text">归并排序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F"><span class="toc-number">1.1.6.</span> <span class="toc-text">快速排序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A0%86%E6%8E%92%E5%BA%8F"><span class="toc-number">1.1.7.</span> <span class="toc-text">堆排序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%A1%E6%95%B0%E6%8E%92%E5%BA%8F"><span class="toc-number">1.1.8.</span> <span class="toc-text">计数排序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%95%B0%E6%8E%92%E5%BA%8F"><span class="toc-number">1.1.9.</span> <span class="toc-text">基数排序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A1%B6%E6%8E%92%E5%BA%8F"><span class="toc-number">1.1.10.</span> <span class="toc-text">桶排序</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE"><span class="toc-number">1.2.</span> <span class="toc-text">二分查找</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E5%88%86%E6%90%9C%E7%B4%A2%E7%9A%84%E4%B8%89%E7%A7%8D%E5%86%99%E6%B3%95"><span class="toc-number">1.2.1.</span> <span class="toc-text">二分搜索的三种写法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E5%88%86%E6%90%9C%E7%B4%A2%EF%BC%8C%E5%B7%A6%E8%BE%B9%E7%95%8C%E5%92%8C%E5%8F%B3%E8%BE%B9%E7%95%8C"><span class="toc-number">1.2.2.</span> <span class="toc-text">二分搜索，左边界和右边界</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E5%88%86%E7%AD%94%E6%A1%88"><span class="toc-number">1.2.3.</span> <span class="toc-text">二分答案</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%80%E5%B0%8F%E5%8C%96%E6%9C%80%E5%A4%A7%E5%80%BC"><span class="toc-number">1.2.4.</span> <span class="toc-text">最小化最大值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%80%E5%A4%A7%E5%8C%96%E6%9C%80%E5%B0%8F%E5%80%BC"><span class="toc-number">1.2.5.</span> <span class="toc-text">最大化最小值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TOP-K%E9%97%AE%E9%A2%98"><span class="toc-number">1.2.6.</span> <span class="toc-text">TOP K问题</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-history"></i><span>最近发布</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/01/14/StopWatch%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3/" title="StopWatch使用详解"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/png/7.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="StopWatch使用详解"/></a><div class="content"><a class="title" href="/2024/01/14/StopWatch%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3/" title="StopWatch使用详解">StopWatch使用详解</a><time datetime="2024-01-14T14:36:52.000Z" title="发表于 2024-01-14 22:36:52">2024-01-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/01/14/RabbitMQ%E4%BD%BF%E7%94%A8%E7%AF%87/" title="RabbitMQ使用篇"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/png/6.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="RabbitMQ使用篇"/></a><div class="content"><a class="title" href="/2024/01/14/RabbitMQ%E4%BD%BF%E7%94%A8%E7%AF%87/" title="RabbitMQ使用篇">RabbitMQ使用篇</a><time datetime="2024-01-14T08:29:24.000Z" title="发表于 2024-01-14 16:29:24">2024-01-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/01/13/Java%E9%9B%86%E5%90%88%E4%B9%8BLinkedList%E6%BA%90%E7%A0%81%E7%AF%87/" title="Java集合之LinkedList源码篇"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/png/10.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Java集合之LinkedList源码篇"/></a><div class="content"><a class="title" href="/2024/01/13/Java%E9%9B%86%E5%90%88%E4%B9%8BLinkedList%E6%BA%90%E7%A0%81%E7%AF%87/" title="Java集合之LinkedList源码篇">Java集合之LinkedList源码篇</a><time datetime="2024-01-13T11:48:08.000Z" title="发表于 2024-01-13 19:48:08">2024-01-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/01/13/Netty%E5%9F%BA%E7%A1%80%E7%AF%87/" title="Netty基础篇"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/png/4.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Netty基础篇"/></a><div class="content"><a class="title" href="/2024/01/13/Netty%E5%9F%BA%E7%A1%80%E7%AF%87/" title="Netty基础篇">Netty基础篇</a><time datetime="2024-01-13T07:26:56.000Z" title="发表于 2024-01-13 15:26:56">2024-01-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/01/12/Java%E9%9B%86%E5%90%88%E4%B9%8BHashMap%E6%BA%90%E7%A0%81%E7%AF%87/" title="Java集合之HashMap源码篇"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/png/8.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Java集合之HashMap源码篇"/></a><div class="content"><a class="title" href="/2024/01/12/Java%E9%9B%86%E5%90%88%E4%B9%8BHashMap%E6%BA%90%E7%A0%81%E7%AF%87/" title="Java集合之HashMap源码篇">Java集合之HashMap源码篇</a><time datetime="2024-01-12T12:13:56.000Z" title="发表于 2024-01-12 20:13:56">2024-01-12</time></div></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"></div><div id="footer-bar"><div class="footer-bar-links"><div class="footer-bar-left"><div id="footer-bar-tips"><div class="copyright">&copy;2020 - 2024 By <a class="footer-bar-link" href="/" title="小奥" target="_blank">小奥</a></div></div><div id="footer-type-tips"></div></div><div class="footer-bar-right"><a class="footer-bar-link" target="_blank" rel="noopener" href="https://github.com/anzhiyu-c/hexo-theme-anzhiyu" title="主题">主题</a></div></div></div></footer></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="sidebar-site-data site-data is-center"><a href="/archives/" title="archive"><div class="headline">文章</div><div class="length-num">18</div></a><a href="/tags/" title="tag"><div class="headline">标签</div><div class="length-num">18</div></a><a href="/categories/" title="category"><div class="headline">分类</div><div class="length-num">11</div></a></div><span class="sidebar-menu-item-title">功能</span><div class="sidebar-menu-item"><a class="darkmode_switchbutton menu-child" href="javascript:void(0);" title="显示模式"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span>显示模式</span></a></div><div class="back-menu-list-groups"><div class="back-menu-list-group"><div class="back-menu-list-title">网页</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://xiaoaozz.github.io/" title="个人博客"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/favicon.ico" alt="个人博客"/><span class="back-menu-item-text">个人博客</span></a></div></div><div class="back-menu-list-group"><div class="back-menu-list-title">项目</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://github.com/xiaoaozz" title="Github"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://avatars.githubusercontent.com/u/104616274?v=4" alt="Github"/><span class="back-menu-item-text">Github</span></a></div></div></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 文章</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/archives/"><i class="anzhiyufont anzhiyu-icon-box-archive faa-tada" style="font-size: 0.9em;"></i><span> 隧道</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/categories/"><i class="anzhiyufont anzhiyu-icon-shapes faa-tada" style="font-size: 0.9em;"></i><span> 分类</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags faa-tada" style="font-size: 0.9em;"></i><span> 标签</span></a></li></ul></div></div><span class="sidebar-menu-item-title">标签</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/ArrayList/" style="font-size: 0.88rem;">ArrayList<sup>1</sup></a><a href="/tags/Feed%E6%B5%81/" style="font-size: 0.88rem;">Feed流<sup>1</sup></a><a href="/tags/Go%E9%9D%A2%E7%BB%8F/" style="font-size: 0.88rem;">Go面经<sup>1</sup></a><a href="/tags/HashMap/" style="font-size: 0.88rem;">HashMap<sup>1</sup></a><a href="/tags/Java%E9%9D%A2%E7%BB%8F/" style="font-size: 0.88rem;">Java面经<sup>1</sup></a><a href="/tags/LinkedList/" style="font-size: 0.88rem;">LinkedList<sup>1</sup></a><a href="/tags/MySQL%E5%BA%94%E7%94%A8/" style="font-size: 0.88rem;">MySQL应用<sup>1</sup></a><a href="/tags/MySQL%E9%9D%A2%E7%BB%8F/" style="font-size: 0.88rem;">MySQL面经<sup>1</sup></a><a href="/tags/Netty%E5%9F%BA%E7%A1%80/" style="font-size: 0.88rem;">Netty基础<sup>1</sup></a><a href="/tags/RabbitMQ/" style="font-size: 0.88rem;">RabbitMQ<sup>1</sup></a><a href="/tags/SpringBoot3/" style="font-size: 0.88rem;">SpringBoot3<sup>1</sup></a><a href="/tags/SpringCloud/" style="font-size: 0.88rem;">SpringCloud<sup>1</sup></a><a href="/tags/StopWatch/" style="font-size: 0.88rem;">StopWatch<sup>1</sup></a><a href="/tags/%E6%8E%A5%E5%8F%A3%E9%99%90%E6%B5%81/" style="font-size: 0.88rem;">接口限流<sup>1</sup></a><a href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" style="font-size: 0.88rem;">文件上传<sup>1</sup></a><a href="/tags/%E7%AE%97%E6%B3%95%E6%A8%A1%E6%9D%BF/" style="font-size: 0.88rem;">算法模板<sup>1</sup></a><a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E9%9D%A2%E7%BB%8F/" style="font-size: 0.88rem;">计算机网络面经<sup>1</sup></a><a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 0.88rem;">设计模式<sup>1</sup></a></div></div><hr/></div></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="anzhiyufont anzhiyu-icon-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="anzhiyufont anzhiyu-icon-gear"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="anzhiyufont anzhiyu-icon-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></button></div></div><div id="nav-music"><a id="nav-music-hoverTips" onclick="anzhiyu.musicToggle()" accesskey="m">播放音乐</a><div id="console-music-bg"></div><meting-js id="8152976493" server="netease" type="playlist" mutex="true" preload="none" theme="var(--anzhiyu-main)" data-lrctype="0" order="random" volume="0.7"></meting-js></div><div id="rightMenu"><div class="rightMenu-group rightMenu-small"><div class="rightMenu-item" id="menu-backward"><i class="anzhiyufont anzhiyu-icon-arrow-left"></i></div><div class="rightMenu-item" id="menu-forward"><i class="anzhiyufont anzhiyu-icon-arrow-right"></i></div><div class="rightMenu-item" id="menu-refresh"><i class="anzhiyufont anzhiyu-icon-arrow-rotate-right" style="font-size: 1rem;"></i></div><div class="rightMenu-item" id="menu-top"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></div></div><div class="rightMenu-group rightMenu-line rightMenuPlugin"><div class="rightMenu-item" id="menu-copytext"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制选中文本</span></div><div class="rightMenu-item" id="menu-pastetext"><i class="anzhiyufont anzhiyu-icon-paste"></i><span>粘贴文本</span></div><a class="rightMenu-item" id="menu-commenttext"><i class="anzhiyufont anzhiyu-icon-comment-medical"></i><span>引用到评论</span></a><div class="rightMenu-item" id="menu-newwindow"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开</span></div><div class="rightMenu-item" id="menu-copylink"><i class="anzhiyufont anzhiyu-icon-link"></i><span>复制链接地址</span></div><div class="rightMenu-item" id="menu-copyimg"><i class="anzhiyufont anzhiyu-icon-images"></i><span>复制此图片</span></div><div class="rightMenu-item" id="menu-downloadimg"><i class="anzhiyufont anzhiyu-icon-download"></i><span>下载此图片</span></div><div class="rightMenu-item" id="menu-newwindowimg"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开图片</span></div><div class="rightMenu-item" id="menu-search"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>站内搜索</span></div><div class="rightMenu-item" id="menu-searchBaidu"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>百度搜索</span></div><div class="rightMenu-item" id="menu-music-toggle"><i class="anzhiyufont anzhiyu-icon-play"></i><span>播放音乐</span></div><div class="rightMenu-item" id="menu-music-back"><i class="anzhiyufont anzhiyu-icon-backward"></i><span>切换到上一首</span></div><div class="rightMenu-item" id="menu-music-forward"><i class="anzhiyufont anzhiyu-icon-forward"></i><span>切换到下一首</span></div><div class="rightMenu-item" id="menu-music-playlist" onclick="window.open(&quot;https://y.qq.com/n/ryqq/playlist/8956954060&quot;, &quot;_blank&quot;);" style="display: none;"><i class="anzhiyufont anzhiyu-icon-radio"></i><span>查看所有歌曲</span></div><div class="rightMenu-item" id="menu-music-copyMusicName"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制歌名</span></div></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item menu-link" id="menu-randomPost"><i class="anzhiyufont anzhiyu-icon-shuffle"></i><span>随便逛逛</span></a><a class="rightMenu-item menu-link" href="/categories/"><i class="anzhiyufont anzhiyu-icon-cube"></i><span>博客分类</span></a><a class="rightMenu-item menu-link" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags"></i><span>文章标签</span></a></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item" id="menu-copy" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制地址</span></a><a class="rightMenu-item" id="menu-commentBarrage" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-message"></i><span class="menu-commentBarrage-text">关闭热评</span></a><a class="rightMenu-item" id="menu-darkmode" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span class="menu-darkmode-text">深色模式</span></a><a class="rightMenu-item" id="menu-translate" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-language"></i><span>轉為繁體</span></a></div></div><div id="rightmenu-mask"></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.cbd.int/@fancyapps/ui@5.0.28/dist/fancybox/fancybox.umd.js"></script><script src="https://cdn.cbd.int/instant.page@5.2.0/instantpage.js" type="module"></script><script src="https://cdn.cbd.int/vanilla-lazyload@17.8.5/dist/lazyload.iife.min.js"></script><script src="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.js"></script><canvas id="universe"></canvas><script async src="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/dark/dark.js"></script><script>// 消除控制台打印
+var HoldLog = console.log;
+console.log = function () {};
+let now1 = new Date();
+queueMicrotask(() => {
+  const Log = function () {
+    HoldLog.apply(console, arguments);
+  }; //在恢复前输出日志
+  const grt = new Date("04/01/2021 00:00:00"); //此处修改你的建站时间或者网站上线时间
+  now1.setTime(now1.getTime() + 250);
+  const days = (now1 - grt) / 1000 / 60 / 60 / 24;
+  const dnum = Math.floor(days);
+  const ascll = [
+    `欢迎使用安知鱼!`,
+    `生活明朗, 万物可爱`,
+    `
+        
+       █████╗ ███╗   ██╗███████╗██╗  ██╗██╗██╗   ██╗██╗   ██╗
+      ██╔══██╗████╗  ██║╚══███╔╝██║  ██║██║╚██╗ ██╔╝██║   ██║
+      ███████║██╔██╗ ██║  ███╔╝ ███████║██║ ╚████╔╝ ██║   ██║
+      ██╔══██║██║╚██╗██║ ███╔╝  ██╔══██║██║  ╚██╔╝  ██║   ██║
+      ██║  ██║██║ ╚████║███████╗██║  ██║██║   ██║   ╚██████╔╝
+      ╚═╝  ╚═╝╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝╚═╝   ╚═╝    ╚═════╝
+        
+        `,
+    "已上线",
+    dnum,
+    "天",
+    "©2020 By 安知鱼 V1.6.12",
+  ];
+  const ascll2 = [`NCC2-036`, `调用前置摄像头拍照成功，识别为【小笨蛋】.`, `Photo captured: `, `🤪`];
+
+  setTimeout(
+    Log.bind(
+      console,
+      `\n%c${ascll[0]} %c ${ascll[1]} %c ${ascll[2]} %c${ascll[3]}%c ${ascll[4]}%c ${ascll[5]}\n\n%c ${ascll[6]}\n`,
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      ""
+    )
+  );
+  setTimeout(
+    Log.bind(
+      console,
+      `%c ${ascll2[0]} %c ${ascll2[1]} %c \n${ascll2[2]} %c\n${ascll2[3]}\n`,
+      "color:white; background-color:#4fd953",
+      "",
+      "",
+      'background:url("https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/tinggge.gif") no-repeat;font-size:450%'
+    )
+  );
+
+  setTimeout(Log.bind(console, "%c WELCOME %c 你好，小笨蛋.", "color:white; background-color:#4f90d9", ""));
+
+  setTimeout(
+    console.warn.bind(
+      console,
+      "%c ⚡ Powered by 安知鱼 %c 你正在访问 小奥 的博客.",
+      "color:white; background-color:#f0ad4e",
+      ""
+    )
+  );
+
+  setTimeout(Log.bind(console, "%c W23-12 %c 你已打开控制台.", "color:white; background-color:#4f90d9", ""));
+
+  setTimeout(
+    console.warn.bind(console, "%c S013-782 %c 你现在正处于监控中.", "color:white; background-color:#d9534f", "")
+  );
+});</script><script async src="/anzhiyu/random.js"></script><div class="js-pjax"><input type="hidden" name="page-type" id="page-type" value="post"></div><script>var visitorMail = "";
+</script><script async data-pjax src="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/waterfall/waterfall.js"></script><script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/qrcodejs/1.0.0/qrcode.min.js"></script><script src="/js/anzhiyu/right_click_menu.js"></script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.1.9/icon/ali_iconfont_css.css"><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/aplayer/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.cbd.int/anzhiyu-blog-static@1.0.1/js/APlayer.min.js"></script><script src="https://cdn.cbd.int/hexo-anzhiyu-music@1.0.1/assets/js/Meting2.min.js"></script><script src="https://cdn.cbd.int/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+  // removeEventListener scroll 
+  anzhiyu.removeGlobalFnEvent('pjax')
+  anzhiyu.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script charset="UTF-8" src="https://cdn.cbd.int/anzhiyu-theme-static@1.1.5/accesskey/accesskey.js"></script></div><div id="popup-window"><div class="popup-window-title">通知</div><div class="popup-window-divider"></div><div class="popup-window-content"><div class="popup-tip">你好呀</div><div class="popup-link"><i class="anzhiyufont anzhiyu-icon-arrow-circle-right"></i></div></div></div></body></html>

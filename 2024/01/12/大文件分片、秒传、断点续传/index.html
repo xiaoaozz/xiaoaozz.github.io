@@ -1,0 +1,453 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"><title>大文件分片、秒传、断点续传 | 小奥</title><meta name="keywords" content="文件上传"><meta name="author" content="小奥,3189137314@qq.com"><meta name="copyright" content="小奥"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#f7f9fe"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-touch-fullscreen" content="yes"><meta name="apple-mobile-web-app-title" content="大文件分片、秒传、断点续传"><meta name="application-name" content="大文件分片、秒传、断点续传"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="#f7f9fe"><meta property="og:type" content="article"><meta property="og:title" content="大文件分片、秒传、断点续传"><meta property="og:url" content="http://example.com/2024/01/12/%E5%A4%A7%E6%96%87%E4%BB%B6%E5%88%86%E7%89%87%E3%80%81%E7%A7%92%E4%BC%A0%E3%80%81%E6%96%AD%E7%82%B9%E7%BB%AD%E4%BC%A0/index.html"><meta property="og:site_name" content="小奥"><meta property="og:description" content="大文件分片、秒传、断点续传对于文件上传来说，如果是一个小文件，那么可以直接把文件转化为字节流上传到服务器，但是在文件比较大的情况下，用普通的方式进行上传、下载，都是不可取的，很容易导致内存问题。所以对于大文件来说，采用分片上传，利用多线程并发上传能够达到最大的效率。 具体实现这里不再介绍，有很多优秀"><meta property="og:locale" content="zh-CN"><meta property="og:image" content="http://example.com/img/png/20.png"><meta property="article:author" content="小奥"><meta property="article:tag"><meta name="twitter:card" content="summary"><meta name="twitter:image" content="http://example.com/img/png/20.png"><meta name="description" content="大文件分片、秒传、断点续传对于文件上传来说，如果是一个小文件，那么可以直接把文件转化为字节流上传到服务器，但是在文件比较大的情况下，用普通的方式进行上传、下载，都是不可取的，很容易导致内存问题。所以对于大文件来说，采用分片上传，利用多线程并发上传能够达到最大的效率。 具体实现这里不再介绍，有很多优秀"><link rel="shortcut icon" href="/favicon.ico"><link rel="canonical" href="http://example.com/2024/01/12/%E5%A4%A7%E6%96%87%E4%BB%B6%E5%88%86%E7%89%87%E3%80%81%E7%A7%92%E4%BC%A0%E3%80%81%E6%96%AD%E7%82%B9%E7%BB%AD%E4%BC%A0/"><link rel="preconnect" href="//cdn.cbd.int"/><meta name="google-site-verification" content="xxx"/><meta name="baidu-site-verification" content="code-xxx"/><meta name="msvalidate.01" content="xxx"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.cbd.int/@fancyapps/ui@5.0.28/dist/fancybox/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  linkPageTop: undefined,
+  peoplecanvas: {"enable":true,"img":"https://upload-bbs.miyoushe.com/upload/2023/09/03/125766904/ee23df8517f3c3e3efc4145658269c06_5714860933110284659.png"},
+  postHeadAiDescription: undefined,
+  diytitle: {"enable":true,"leaveTitle":"w(ﾟДﾟ)w 不要走！再看看嘛！","backTitle":"♪(^∇^*)欢迎肥来！"},
+  LA51: undefined,
+  greetingBox: {"enable":true,"default":"晚上好👋","list":[{"greeting":"晚安😴","startTime":0,"endTime":5},{"greeting":"早上好鸭👋, 祝你一天好心情！","startTime":6,"endTime":9},{"greeting":"上午好👋, 状态很好，鼓励一下～","startTime":10,"endTime":10},{"greeting":"11点多啦, 在坚持一下就吃饭啦～","startTime":11,"endTime":11},{"greeting":"午安👋, 宝贝","startTime":12,"endTime":14},{"greeting":"🌈充实的一天辛苦啦！","startTime":14,"endTime":18},{"greeting":"19点喽, 奖励一顿丰盛的大餐吧🍔。","startTime":19,"endTime":19},{"greeting":"晚上好👋, 在属于自己的时间好好放松😌~","startTime":20,"endTime":24}]},
+  twikooEnvId: '',
+  commentBarrageConfig:undefined,
+  root: '/',
+  preloader: {"source":3},
+  friends_vue_info: undefined,
+  navMusic: true,
+  mainTone: undefined,
+  authorStatus: {"skills":["🤖️ 编程知识爱好者","🔍 分享与热心帮助","🏠 面试总结小能手","🔨 设计开发一条龙","🤝 源码阅读与解析","🏃 脚踏实地行动派","🧱 团队小组发动机","💢 壮汉人狠话不多"]},
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简","rightMenuMsgToTraditionalChinese":"转为繁体","rightMenuMsgToSimplifiedChinese":"转为简体"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    simplehomepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"copy":true,"copyrightEbable":false,"limitCount":50,"languages":{"author":"作者: 小奥","link":"链接: ","source":"来源: 小奥","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。","copySuccess":"复制成功，复制和转载请标注本文地址"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#425AEF","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.cbd.int/flickr-justified-gallery@2.1.2/dist/fjGallery.min.js',
+      css: 'https://cdn.cbd.int/flickr-justified-gallery@2.1.2/dist/fjGallery.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  shortcutKey: undefined,
+  autoDarkmode: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  configTitle: '小奥',
+  title: '大文件分片、秒传、断点续传',
+  postAI: '',
+  pageFillDescription: '大文件分片、秒传、断点续传, 分片上传, 秒传, 断点续传, 存在的问题, 如何设置文件分片的唯一标识, 文件上传耗费资源在哪里, 如何评估分片上传时间, 如何确定文件分片大小, 如果分片过多应该如何处理, 分片上传一半出现问题如何处理, 分片信息应该如何存储大文件分片秒传断点续传对于文件上传来说如果是一个小文件那么可以直接把文件转化为字节流上传到服务器但是在文件比较大的情况下用普通的方式进行上传下载都是不可取的很容易导致内存问题所以对于大文件来说采用分片上传利用多线程并发上传能够达到最大的效率具体实现这里不再介绍有很多优秀的文章可以参考如下大文件上传分片秒传断点续传实战篇断点续传文件秒传手撸大文件上传掘金下面我们简要介绍实现功能的逻辑以及存在的问题如何解决分片上传将大文件切分为多个小的数据块通常大小为然后将这些小数据块分别上传至服务器最后由服务器将这些小块组合成完整的文件这种方式可以避免由于网络中断或超时而导致上传失败并且能够更好地控制上传进度分片上传逻辑客户端将文件切成固定大小的块例如每个块的大小为并为每个块生成唯一的标识符客户端逐个上传每个块到服务器上传时客户端将块的标识符和块数据一起发送给服务器服务器接收到每个块后会将块数据存储到临时文件中并在服务器端记录每个块的标识符和位置当所有块都上传完成后客户端向服务器发送一个合并请求请求服务器将所有块合并成一个完整的文件服务器接收到合并请求后根据之前记录的块标识符和位置信息将所有块合并成一个完整的文件服务器将合并后的文件存储到指定的位置并返回上传成功的响应给客户端客户端收到上传成功的响应后通知用户上传已完成秒传用户上传一个已存在于服务器上的文件时可以通过秒传技术来快速完成上传过程具体实现方式是客户端计算文件的哈希值如然后向服务器发送这个哈希值如果服务器已经存在这个哈希值对应的文件那么服务器会直接返回已存在的文件从而实现秒传这种方式可以节省上传时间并且减少网络带宽的使用核心逻辑利用将文件分片的信息存储到中首先检查文件是否已经被上传过为为文件名大小文件地址等检查在磁盘中是否存在通过指定的名称格式查询文件路径检查在中是否存在并且所有分片都已经上传完成如果文件存在则直接返回上传成功如果文件不存在则进行断点续传逻辑返回已经上传的分片断点续传当上传过程中网络中断或上传过程被用户取消时可以通过断点续传技术来恢复上传过程具体实现方式是记录已上传的文件块和上传进度当用户重新上传时从上次中断的地方继续上传这种方式能够提高上传的效率并且避免重复上传已上传的文件块逻辑客户端与服务端重新建立连接之后客户端发送请求文件信息如果存在未上传完成的分片信息会向服务端发送上次传输的字节数和文件位置信息服务端根据该信息返回当前传输的位置客户端会从当前位置继续上传文件使用可以将已上传的数据块存储在一个的有序集合数据结构中其中每个数据块的键值为一个特定的前缀加上一个唯一的有序集合的分值为数据块的序号上传文件时每上传一个数据块就将它添加到有序集合中如果上传中断可以查询有序集合中已上传的数据块然后从最后一个已上传的数据块处继续上传即可存在的问题如何设置文件分片的唯一标识每个数据块的唯一标识通常是一个随机生成的字符串或数字用于在客户端和服务器之间唯一标识每个数据块这个唯一标识可以是文件名文件大小块序号当前时间等信息的组合生成的哈希值也可以是使用等算法生成的唯一标识符在上传过程中客户端需要将每个数据块的唯一标识和数据内容一同上传到服务器以便服务器能够将每个数据块存储到正确的位置服务器会将每个数据块的唯一标识和对应位置信息记录下来以便在最后将所有数据块合并成完整的文件时能够找到每个数据块的正确位置文件上传耗费资源在哪里网络带宽消耗大文件上传会占用服务器与客户端之间的网络带宽如果多个用户同时上传大文件服务器的总带宽使用量可能会增加导致慢速的响应或其他用户体验问题存储消耗大文件需要占用服务器的存储空间如果服务器的存储容量不足或者存储速度较慢可能会影响其他服务器功能和性能使用率服务器需要对上传的文件进行处理例如验证解析或存储大文件可能需要更多的资源来处理特别是在进行一些复杂的操作时内存消耗在文件上传的过程中服务器可能需要将文件的部分或整个内容加载到内存中进行处理大文件可能需要更多的内存如果服务器的内存资源有限可能导致性能下降文件操作将大文件写入磁盘或从磁盘读取文件都涉及到操作如果服务器的磁盘速度较慢或者磁盘负载较高可能会成为性能瓶颈如何评估分片上传时间分片生成时间通过对每个分片生成所花费的时间进行评估包括文件读取分片切割和压缩如果存在的过程可以简单使用时间戳的方式来计算时间分片上传时间如果分片上传到服务器那么就评估每个分片上传到服务器的时间这会涉及到网络传输时间整体上传时间考虑整个大文件上传的总时间包括生成分片上传分片服务器处理以及合并分片的时间并发上传时间如果支持并发上传多个文件分片那么可以通过线程池或者并发机制来模拟多个分片同时上传然后测量整体时间网络延迟和带宽评估网络传输的性能包括延迟和带宽这可以通过测量文件分片的传输速度和服务器响应时间来实现监控和日志可以在代码中添加适当的监控和日志记录文件分片生成和上传的关键步骤的时间戳这样可以方便后续分析日志排查耗时模块以便进行优化在评估时要考虑网络波动服务器负载等因素以更准确地估计实际部署环境下的性能如何确定文件分片大小确定大文件分片大小需要综合考虑多个因素以确保在上传过程中达到最佳性能以下是一些影响分片大小选择的关键因素网络传输性能较小的分片可以提高对网络的利用率尤其是在高延迟或低带宽的网络环境中然而如果分片太小可能会导致上传过程中的开销增加因此需要权衡网络传输性能和分片数量服务器处理能力服务器需要处理接收到的分片较小的分片可能导致服务器面临更多的请求从而增加服务器负载在选择分片大小时要考虑服务器的处理能力以确保服务器可以有效地处理分片客户端资源较小的分片可能会增加客户端的处理负担包括文件读取和分片生成的开销要确保客户端能够有效地生成和上传分片文件系统和操作系统的限制操作系统和文件系统可能对文件大小有限制因此要确保选择的分片大小在这些限制范围内并发上传如果支持并发上传多个文件较小的分片可能有助于更好地利用服务器和网络资源提高并发性能重试机制较大的分片可能导致在传输过程中发生错误时需要重新上传较大的数据块选择适当的分片大小可以最小化因错误而需要重新上传的数据量应用场景和需求具体应用场景和需求也是影响分片大小的因素例如对实时性要求较高的应用可能会选择较小的分片而对于批量上传的应用可以选择较大的分片安全性如果安全性是一个重要考虑因素较小的分片可能更容易管理和控制此外可以考虑对分片进行加密以增强安全性网络请求成本每个分片通常都需要一个独立的网络请求因此选择适当的分片大小还应该考虑减小网络请求的成本尽量减少不必要的开销在实际应用中需要进行一些实验和性能测试通过不断调整分片大小并观察性能表现找到最佳的分片大小综合考虑上述因素根据具体情况选择一个平衡性能资源利用率和系统复杂性的分片大小如果分片过多应该如何处理当大文件分片上传的过程中分片过多时可能会引发一些问题包括网络负载增加服务器负担过重上传速度下降等为了处理这些问题可以考虑以下策略调整分片大小如果分片过多可以考虑增加每个分片的大小较大的分片数量更少减少了网络请求的次数从而减轻了服务器的负担然而分片大小的选择仍需要平衡上述提到的因素限制并发上传数实施并发上传的限制限制同时上传的分片数量这可以通过使用线程池或其他并发机制来实现限制并发上传可以减缓上传速度但有助于维持系统的稳定性使用流式上传考虑实施流式上传即在生成和上传分片的同时不必等待整个文件的所有分片生成完毕这样可以减小整体上传时间同时降低服务器负担服务器负载均衡如果分片上传负载分布不均匀可以考虑使用负载均衡机制将上传请求分配到多个服务器上以提高系统整体的处理能力自动调整分片数量实施自动调整分片数量的策略根据系统负载动态调整分片大小或数量这可以通过监控系统性能自动调整上传参数以适应当前负载情况断点续传和重试机制支持断点续传和重试机制以防止上传过程中的失败这样即使有大量分片需要上传也能够在失败后恢复上传过程减少数据的重传量优化上传算法使用高效的上传算法和协议例如或其他支持多路复用的协议以提高分片上传的效率压缩和加密在分片生成时进行压缩和加密以减小分片的大小从而减少上传的数据量但要注意压缩和加密也会增加分片生成的计算开销综合考虑这些策略可以根据具体情况采取不同的措施来处理分片过多的问题以保证大文件分片上传的效率和稳定性分片上传一半出现问题如何处理如果在分片上传的过程中由于网络的原因导致某个分片只上传了一半那么该如何处理在大文件分片上传的过程中如果一个分片只上传了一半通常情况下上传程序应该能够自动检测到上传失败并且重新上传该分片如果程序支持断点续传则它会尝试恢复上次中断的进度从上次传输失败的位置继续上传也就是只会传输剩下部分的数据而不是整个分片如果程序不支持断点续传那么必须重新上传整个整个分片分片信息应该如何存储在大文件分片上传场景中我们可以使用来存储上传分片的信息以方便查重和断点续传具体来说我们可以将每个分片的唯一标识作为的将分片数据的校验值和其他元数据作为存储在中在上传每个分片时客户端可以通过判断该分片是否已经上传过并校验分片的完整性在合并分片时服务器端可以通过读取每个分片的元数据并将它们按顺序合并成完整的文件或对象',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-01-12 19:13:49',
+  postMainColor: '',
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#18171d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#f7f9fe')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(e => {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.0.0"></head><body data-type="anzhiyu"><div id="web_bg"></div><div id="an_music_bg"></div><div id="loading-box" onclick="document.getElementById(&quot;loading-box&quot;).classList.add(&quot;loaded&quot;)"><div class="loading-bg"><img class="loading-img nolazyload" alt="加载头像" src="https://npm.elemecdn.com/anzhiyu-blog-static@1.0.4/img/avatar.jpg"/><div class="loading-image-dot"></div></div></div><script>const preloader = {
+  endLoading: () => {
+    document.getElementById('loading-box').classList.add("loaded");
+  },
+  initLoading: () => {
+    document.getElementById('loading-box').classList.remove("loaded")
+  }
+}
+window.addEventListener('load',()=> { preloader.endLoading() })
+setTimeout(function(){preloader.endLoading();},10000)
+
+if (true) {
+  document.addEventListener('pjax:send', () => { preloader.initLoading() })
+  document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+}</script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.1.10/progress_bar/progress_bar.css"/><script async="async" src="https://cdn.cbd.int/pace-js@1.2.4/pace.min.js" data-pace-options="{ &quot;restartOnRequestAfter&quot;:false,&quot;eventLag&quot;:false}"></script><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><div id="nav-group"><span id="blog_name"><div class="back-home-button"><i class="anzhiyufont anzhiyu-icon-grip-vertical"></i><div class="back-menu-list-groups"><div class="back-menu-list-group"><div class="back-menu-list-title">网页</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://xiaoaozz.github.io/" title="个人博客"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/favicon.ico" alt="个人博客"/><span class="back-menu-item-text">个人博客</span></a></div></div><div class="back-menu-list-group"><div class="back-menu-list-title">项目</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://github.com/xiaoaozz" title="Github"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://avatars.githubusercontent.com/u/104616274?v=4" alt="Github"/><span class="back-menu-item-text">Github</span></a></div></div></div></div><a id="site-name" href="/" accesskey="h"><div class="title">小奥</div><i class="anzhiyufont anzhiyu-icon-house-chimney"></i></a><div id="he-plugin-simple"></div><script>var WIDGET = {
+  "CONFIG": {
+    "modules": "0124",
+    "background": "2",
+    "tmpColor": "FFFFFF",
+    "tmpSize": "16",
+    "cityColor": "FFFFFF",
+    "citySize": "16",
+    "aqiColor": "E8D87B",
+    "aqiSize": "16",
+    "weatherIconSize": "24",
+    "alertIconSize": "18",
+    "padding": "10px 10px 10px 10px",
+    "shadow": "0",
+    "language": "auto",
+    "borderRadius": "20",
+    "fixed": "true",
+    "vertical": "top",
+    "horizontal": "left",
+    "left": "20",
+    "top": "7.1",
+    "key": "df245676fb434a0691ead1c63341cd94"
+  }
+}
+</script><link rel="stylesheet" href="https://widget.qweather.net/simple/static/css/he-simple.css?v=1.4.0"/><script src="https://widget.qweather.net/simple/static/js/he-simple.js?v=1.4.0"></script></span><div class="mask-name-container"><div id="name-container"><a id="page-name" href="javascript:anzhiyu.scrollToDest(0, 500)">PAGE_NAME</a></div></div><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 文章</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/archives/"><i class="anzhiyufont anzhiyu-icon-box-archive faa-tada" style="font-size: 0.9em;"></i><span> 隧道</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/categories/"><i class="anzhiyufont anzhiyu-icon-shapes faa-tada" style="font-size: 0.9em;"></i><span> 分类</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags faa-tada" style="font-size: 0.9em;"></i><span> 标签</span></a></li></ul></div></div></div><div id="nav-right"><div class="nav-button" id="randomPost_button"><a class="site-page" onclick="toRandomPost()" title="随机前往一个文章" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-dice"></i></a></div><input id="center-console" type="checkbox"/><label class="widget" for="center-console" title="中控台" onclick="anzhiyu.switchConsole();"><i class="left"></i><i class="widget center"></i><i class="widget right"></i></label><div id="console"><div class="console-card-group-reward"><ul class="reward-all console-card"><li class="reward-item"><a href="/null" target="_blank"><img class="post-qr-code-img" alt="微信" src="/null"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/null" target="_blank"><img class="post-qr-code-img" alt="支付宝" src="/null"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div><div class="console-card-group"><div class="console-card-group-left"><div class="console-card" id="card-newest-comments"><div class="card-content"><div class="author-content-item-tips">互动</div><span class="author-content-item-title"> 最新评论</span></div><div class="aside-list"><span>正在加载中...</span></div></div></div><div class="console-card-group-right"><div class="console-card tags"><div class="card-content"><div class="author-content-item-tips">兴趣点</div><span class="author-content-item-title">寻找你感兴趣的领域</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/ArrayList/" style="font-size: 1.05rem;">ArrayList<sup>1</sup></a><a href="/tags/Feed%E6%B5%81/" style="font-size: 1.05rem;">Feed流<sup>1</sup></a><a href="/tags/Go%E9%9D%A2%E7%BB%8F/" style="font-size: 1.05rem;">Go面经<sup>1</sup></a><a href="/tags/HashMap/" style="font-size: 1.05rem;">HashMap<sup>1</sup></a><a href="/tags/Java%E9%9D%A2%E7%BB%8F/" style="font-size: 1.05rem;">Java面经<sup>1</sup></a><a href="/tags/LinkedList/" style="font-size: 1.05rem;">LinkedList<sup>1</sup></a><a href="/tags/MySQL%E5%BA%94%E7%94%A8/" style="font-size: 1.05rem;">MySQL应用<sup>1</sup></a><a href="/tags/MySQL%E9%9D%A2%E7%BB%8F/" style="font-size: 1.05rem;">MySQL面经<sup>1</sup></a><a href="/tags/Netty%E5%9F%BA%E7%A1%80/" style="font-size: 1.05rem;">Netty基础<sup>1</sup></a><a href="/tags/RabbitMQ/" style="font-size: 1.05rem;">RabbitMQ<sup>1</sup></a><a href="/tags/SpringBoot3/" style="font-size: 1.05rem;">SpringBoot3<sup>1</sup></a><a href="/tags/SpringCloud/" style="font-size: 1.05rem;">SpringCloud<sup>1</sup></a><a href="/tags/StopWatch/" style="font-size: 1.05rem;">StopWatch<sup>1</sup></a><a href="/tags/%E6%8E%A5%E5%8F%A3%E9%99%90%E6%B5%81/" style="font-size: 1.05rem;">接口限流<sup>1</sup></a><a href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" style="font-size: 1.05rem;">文件上传<sup>1</sup></a><a href="/tags/%E7%AE%97%E6%B3%95%E6%A8%A1%E6%9D%BF/" style="font-size: 1.05rem;">算法模板<sup>1</sup></a><a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E9%9D%A2%E7%BB%8F/" style="font-size: 1.05rem;">计算机网络面经<sup>1</sup></a><a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 1.05rem;">设计模式<sup>1</sup></a></div></div><hr/></div></div><div class="console-card history"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-box-archiv"></i><span>文章</span></div><div class="card-archives"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/01/"><span class="card-archive-list-date">一月 2024</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">12</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/12/"><span class="card-archive-list-date">十二月 2023</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">5</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/02/"><span class="card-archive-list-date">二月 2023</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span>篇</span></div></a></li></ul></div><hr/></div></div></div><div class="button-group"><div class="console-btn-item"><a class="darkmode_switchbutton" title="显示模式切换" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-moon"></i></a></div><div class="console-btn-item" id="consoleHideAside" onclick="anzhiyu.hideAsideBtn()" title="边栏显示控制"><a class="asideSwitch"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></a></div><div class="console-btn-item" id="consoleMusic" onclick="anzhiyu.musicToggle()" title="音乐开关"><a class="music-switch"><i class="anzhiyufont anzhiyu-icon-music"></i></a></div></div><div class="console-mask" onclick="anzhiyu.hideConsole()" href="javascript:void(0);"></div></div><div class="nav-button" id="nav-totop"><a class="totopbtn" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i><span id="percent" onclick="anzhiyu.scrollToDest(0,500)">0</span></a></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);" title="切换"><i class="anzhiyufont anzhiyu-icon-bars"></i></a></div></div></div></nav><div id="post-info"><div id="post-firstinfo"><div class="meta-firstline"><a class="post-meta-original">原创</a><span class="post-meta-categories"><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-inbox post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/" itemprop="url">系统设计</a></span><span class="article-meta tags"><a class="article-meta__tags" href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>文件上传</span></a></span></div></div><h1 class="post-title" itemprop="name headline">大文件分片、秒传、断点续传</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="anzhiyufont anzhiyu-icon-calendar-days post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" itemprop="dateCreated datePublished" datetime="2024-01-12T10:05:13.000Z" title="发表于 2024-01-12 18:05:13">2024-01-12</time><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-history post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" itemprop="dateCreated datePublished" datetime="2024-01-12T11:13:49.126Z" title="更新于 2024-01-12 19:13:49">2024-01-12</time></span></div><div class="meta-secondline"><span class="post-meta-separator">       </span><span class="post-meta-position" title="作者IP属地为河南"><i class="anzhiyufont anzhiyu-icon-location-dot"></i>河南</span></div></div></div><section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path></defs><g class="parallax"><use href="#gentle-wave" x="48" y="0"></use><use href="#gentle-wave" x="48" y="3"></use><use href="#gentle-wave" x="48" y="5"></use><use href="#gentle-wave" x="48" y="7"></use></g></svg></section><div id="post-top-cover"><img class="nolazyload" id="post-top-bg" src="/img/png/20.png"></div></header><main id="blog-container"><div class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container" itemscope itemtype="http://example.com/2024/01/12/%E5%A4%A7%E6%96%87%E4%BB%B6%E5%88%86%E7%89%87%E3%80%81%E7%A7%92%E4%BC%A0%E3%80%81%E6%96%AD%E7%82%B9%E7%BB%AD%E4%BC%A0/"><header><a class="post-meta-categories" href="/categories/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/" itemprop="url">系统设计</a><a href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" tabindex="-1" itemprop="url">文件上传</a><h1 id="CrawlerTitle" itemprop="name headline">大文件分片、秒传、断点续传</h1><span itemprop="author" itemscope itemtype="http://schema.org/Person">小奥</span><time itemprop="dateCreated datePublished" datetime="2024-01-12T10:05:13.000Z" title="发表于 2024-01-12 18:05:13">2024-01-12</time><time itemprop="dateCreated datePublished" datetime="2024-01-12T11:13:49.126Z" title="更新于 2024-01-12 19:13:49">2024-01-12</time></header><h1 id="大文件分片、秒传、断点续传"><a href="#大文件分片、秒传、断点续传" class="headerlink" title="大文件分片、秒传、断点续传"></a>大文件分片、秒传、断点续传</h1><p>对于文件上传来说，如果是一个小文件，那么可以直接把文件转化为字节流上传到服务器，但是在文件比较大的情况下，用普通的方式进行上传、下载，都是不可取的，很容易导致内存问题。所以对于大文件来说，采用分片上传，利用多线程并发上传能够达到最大的效率。</p>
+<p>具体实现这里不再介绍，有很多优秀的文章可以参考，如下：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://doc.bulkall.top/spring/big-file/">大文件上传-分片-秒传-断点续传</a></li>
+<li><a target="_blank" rel="noopener" href="https://juejin.cn/post/7095534329123569677">实战篇：断点续传？文件秒传？手撸大文件上传 - 掘金 (juejin.cn)</a></li>
+</ul>
+<p>下面我们简要介绍实现功能的逻辑以及存在的问题如何解决。</p>
+<h2 id="分片上传"><a href="#分片上传" class="headerlink" title="分片上传"></a>分片上传</h2><p>将大文件切分为多个小的数据块（通常大小为1MB~10MB），然后将这些小数据块分别上传至服务器，最后由服务器将这些小块组合成完整的文件。这种方式可以避免由于网络中断或超时而导致上传失败，并且能够更好地控制上传进度。</p>
+<blockquote>
+<p>分片上传逻辑</p>
+</blockquote>
+<ul>
+<li>客户端将文件切成固定大小的块（例如每个块的大小为1MB），并为每个块生成唯一的标识符。</li>
+<li>客户端逐个上传每个块到服务器。上传时，客户端将块的标识符和块数据一起发送给服务器。</li>
+<li>服务器接收到每个块后，会将块数据存储到临时文件中，并在服务器端记录每个块的标识符和位置。</li>
+<li>当所有块都上传完成后，客户端向服务器发送一个“合并请求”，请求服务器将所有块合并成一个完整的文件。</li>
+<li>服务器接收到“合并请求”后，根据之前记录的块标识符和位置信息，将所有块合并成一个完整的文件。</li>
+<li>服务器将合并后的文件存储到指定的位置，并返回上传成功的响应给客户端。</li>
+<li>客户端收到上传成功的响应后，通知用户上传已完成。</li>
+</ul>
+<h2 id="秒传"><a href="#秒传" class="headerlink" title="秒传"></a>秒传</h2><p>用户上传一个已存在于服务器上的文件时，可以通过秒传技术来快速完成上传过程。具体实现方式是，客户端计算文件的哈希值（如MD5），然后向服务器发送这个哈希值。如果服务器已经存在这个哈希值对应的文件，那么服务器会直接返回已存在的文件，从而实现秒传。这种方式可以节省上传时间，并且减少网络带宽的使用。</p>
+<p>核心逻辑：</p>
+<ul>
+<li>利用redis将文件分片的信息存储到hash中</li>
+<li>首先检查文件是否已经被上传过 （key为md5，value为文件名、大小、文件地址等）<ul>
+<li>（1）检查在磁盘中是否存在 –&gt; 通过指定的名称格式查询文件路径</li>
+<li>（2）检查在Redis中是否存在，并且所有分片都已经上传完成</li>
+</ul>
+</li>
+<li>如果文件存在，则直接返回true，上传成功</li>
+<li>如果文件不存在，则进行断点续传逻辑，返回已经上传的分片</li>
+</ul>
+<h2 id="断点续传"><a href="#断点续传" class="headerlink" title="断点续传"></a>断点续传</h2><p>当上传过程中网络中断或上传过程被用户取消时，可以通过断点续传技术来恢复上传过程。具体实现方式是记录已上传的文件块和上传进度，当用户重新上传时，从上次中断的地方继续上传。这种方式能够提高上传的效率，并且避免重复上传已上传的文件块。</p>
+<blockquote>
+<p>逻辑</p>
+</blockquote>
+<p>客户端与服务端重新建立连接之后，客户端发送请求文件信息，如果存在未上传完成的分片信息，会向服务端发送上次传输的字节数和文件位置信息，服务端根据该信息返回当前传输的位置，客户端会从当前位置继续上传文件。</p>
+<p>使用Redis可以将已上传的数据块存储在一个Redis的有序集合数据结构中，其中每个数据块的键值为一个特定的前缀加上一个唯一的ID，有序集合的分值为数据块的序号。上传文件时，每上传一个数据块就将它添加到有序集合中。如果上传中断，可以查询有序集合中已上传的数据块，然后从最后一个已上传的数据块处继续上传即可。</p>
+<h1 id="存在的问题"><a href="#存在的问题" class="headerlink" title="存在的问题"></a>存在的问题</h1><h2 id="如何设置文件分片的唯一标识"><a href="#如何设置文件分片的唯一标识" class="headerlink" title="如何设置文件分片的唯一标识"></a>如何设置文件分片的唯一标识</h2><p>每个数据块的唯一标识通常是一个<strong>随机生成的字符串或数字</strong>，用于在客户端和服务器之间唯一标识每个数据块。这个唯一标识可以是<strong>文件名、文件大小、块序号、当前时间等信息的组合生成的哈希值</strong>，也可以是使用UUID等算法生成的唯一标识符。在上传过程中，客户端需要将每个数据块的唯一标识和数据内容一同上传到服务器，以便服务器能够将每个数据块存储到正确的位置。服务器会将每个数据块的唯一标识和对应位置信息记录下来，以便在最后将所有数据块合并成完整的文件时，能够找到每个数据块的正确位置。</p>
+<h2 id="文件上传耗费资源在哪里"><a href="#文件上传耗费资源在哪里" class="headerlink" title="文件上传耗费资源在哪里"></a>文件上传耗费资源在哪里</h2><p>（1）<strong>网络带宽消耗：</strong> 大文件上传会占用服务器与客户端之间的网络带宽。如果多个用户同时上传大文件，服务器的总带宽使用量可能会增加，导致慢速的响应或其他用户体验问题。</p>
+<p>（2）<strong>存储消耗：</strong> 大文件需要占用服务器的存储空间。如果服务器的存储容量不足，或者存储速度较慢，可能会影响其他服务器功能和性能。</p>
+<p>（3）<strong>CPU 使用率：</strong> 服务器需要对上传的文件进行处理，例如验证、解析或存储。大文件可能需要更多的CPU资源来处理，特别是在进行一些复杂的操作时。</p>
+<p>（4）<strong>内存消耗：</strong> 在文件上传的过程中，服务器可能需要将文件的部分或整个内容加载到内存中进行处理。大文件可能需要更多的内存，如果服务器的内存资源有限，可能导致性能下降。</p>
+<p>（5）<strong>文件IO操作：</strong> 将大文件写入磁盘或从磁盘读取文件都涉及到IO操作。如果服务器的磁盘速度较慢或者磁盘负载较高，可能会成为性能瓶颈。</p>
+<h2 id="如何评估分片上传时间"><a href="#如何评估分片上传时间" class="headerlink" title="如何评估分片上传时间"></a>如何评估分片上传时间</h2><p>（1）<strong>分片生成时间</strong>。通过对每个分片生成所花费的时间进行评估。包括<strong>文件读取、分片切割（和压缩，如果存在）</strong>的过程。可以简单使用时间戳的方式来计算时间。</p>
+<p>（2）<strong>分片上传时间</strong>。如果分片上传到服务器，那么就评估每个分片上传到服务器的时间。这会涉及到网络传输时间。</p>
+<p>（3）<strong>整体上传时间</strong>。考虑整个大文件上传的总时间。包括生成分片、上传分片、服务器处理以及合并分片的时间。</p>
+<p>（4）<strong>并发上传时间</strong>。如果支持并发上传多个文件分片，那么可以通过<strong>线程池</strong>或者<strong>并发机制</strong>来模拟多个分片同时上传，然后测量整体时间。</p>
+<p>（5）<strong>网络延迟和带宽</strong>。评估网络传输的性能，包括延迟和带宽，这可以通过测量<strong>文件分片的传输速度</strong>和<strong>服务器响应时间</strong>来实现。</p>
+<p>（6）<strong>监控和日志</strong>。可以在代码中添加适当的监控和日志，<strong>记录文件分片生成和上传的关键步骤的时间戳</strong>，这样可以方便后续分析日志，排查耗时模块以便进行优化。</p>
+<p>在评估时，要考虑网络波动、服务器负载等因素，以更准确地估计实际部署环境下的性能。</p>
+<h2 id="如何确定文件分片大小"><a href="#如何确定文件分片大小" class="headerlink" title="如何确定文件分片大小"></a>如何确定文件分片大小</h2><p>确定大文件分片大小需要综合考虑多个因素，以确保在上传过程中达到最佳性能。以下是一些影响分片大小选择的关键因素：</p>
+<p>（1）<strong>网络传输性能</strong>。较小的分片可以提高对网络的利用率，尤其是在高延迟或低带宽的网络环境中。然而，如果分片太小，可能会导致上传过程中的开销增加。因此，需要权衡网络传输性能和分片数量。</p>
+<p>（2）<strong>服务器处理能力</strong>。服务器需要处理接收到的分片，较小的分片可能导致服务器面临更多的请求，从而增加服务器负载。在选择分片大小时，要考虑服务器的处理能力，以确保服务器可以有效地处理分片。</p>
+<p>（3）<strong>客户端资源</strong>。较小的分片可能会增加客户端的处理负担，包括文件读取和分片生成的开销。要确保客户端能够有效地生成和上传分片。</p>
+<p>（4）<strong>文件系统和操作系统的限制</strong>。操作系统和文件系统可能对文件大小有限制，因此要确保选择的分片大小在这些限制范围内。</p>
+<p>（5）<strong>并发上传</strong>。如果支持并发上传多个文件，较小的分片可能有助于更好地利用服务器和网络资源，提高并发性能。</p>
+<p>（6）<strong>重试机制</strong>。较大的分片可能导致在传输过程中发生错误时需要重新上传较大的数据块。选择适当的分片大小可以最小化因错误而需要重新上传的数据量。</p>
+<p>（7）<strong>应用场景和需求</strong>。具体应用场景和需求也是影响分片大小的因素。例如，对实时性要求较高的应用可能会选择较小的分片，而对于批量上传的应用，可以选择较大的分片。</p>
+<p>（8）<strong>安全性</strong>。如果安全性是一个重要考虑因素，较小的分片可能更容易管理和控制。此外，可以考虑对分片进行加密以增强安全性。</p>
+<p>（9）<strong>网络请求成本</strong>。每个分片通常都需要一个独立的网络请求。因此，选择适当的分片大小还应该考虑减小网络请求的成本，尽量减少不必要的开销。</p>
+<p>在实际应用中，需要进行一些实验和性能测试，通过不断调整分片大小并观察性能表现，找到最佳的分片大小。综合考虑上述因素，根据具体情况选择一个平衡性能、资源利用率和系统复杂性的分片大小。</p>
+<h2 id="如果分片过多应该如何处理"><a href="#如果分片过多应该如何处理" class="headerlink" title="如果分片过多应该如何处理"></a>如果分片过多应该如何处理</h2><p>当大文件分片上传的过程中分片过多时，可能会引发一些问题，包括网络负载增加、服务器负担过重、上传速度下降等。为了处理这些问题，可以考虑以下策略：</p>
+<p>（1）<strong>调整分片大小</strong>：如果分片过多，可以考虑增加每个分片的大小。较大的分片数量更少，减少了网络请求的次数，从而减轻了服务器的负担。然而，分片大小的选择仍需要平衡上述提到的因素。</p>
+<p>（2）<strong>限制并发上传数</strong>：实施并发上传的限制，限制同时上传的分片数量。这可以通过使用线程池或其他并发机制来实现。限制并发上传可以减缓上传速度，但有助于维持系统的稳定性。</p>
+<p>（3）<strong>使用流式上传</strong>：考虑实施流式上传，即在生成和上传分片的同时，不必等待整个文件的所有分片生成完毕。这样可以减小整体上传时间，同时降低服务器负担。</p>
+<p>（4）<strong>服务器负载均衡</strong>：如果分片上传负载分布不均匀，可以考虑使用负载均衡机制，将上传请求分配到多个服务器上，以提高系统整体的处理能力。</p>
+<p>（5）<strong>自动调整分片数量</strong>：实施自动调整分片数量的策略，根据系统负载动态调整分片大小或数量。这可以通过监控系统性能，自动调整上传参数以适应当前负载情况。</p>
+<p>（6）<strong>断点续传和重试机制</strong>：支持断点续传和重试机制，以防止上传过程中的失败。这样即使有大量分片需要上传，也能够在失败后恢复上传过程，减少数据的重传量。</p>
+<p>（7）<strong>优化上传算法</strong>：使用高效的上传算法和协议，例如HTTP&#x2F;2或其他支持多路复用的协议，以提高分片上传的效率。</p>
+<p>（8）<strong>压缩和加密</strong>：在分片生成时进行压缩和加密，以减小分片的大小，从而减少上传的数据量。但要注意，压缩和加密也会增加分片生成的计算开销。</p>
+<p>综合考虑这些策略，可以根据具体情况采取不同的措施来处理分片过多的问题，以保证大文件分片上传的效率和稳定性。</p>
+<h2 id="分片上传一半出现问题如何处理"><a href="#分片上传一半出现问题如何处理" class="headerlink" title="分片上传一半出现问题如何处理"></a>分片上传一半出现问题如何处理</h2><p>如果在分片上传的过程中，由于网络的原因导致某个分片只上传了一半，那么该如何处理？</p>
+<p>在大文件分片上传的过程中，如果一个分片只上传了一半，通常情况下，上传程序应该能够<strong>自动检测</strong>到上传失败，并且<strong>重新上传</strong>该分片。</p>
+<ul>
+<li>如果程序支持断点续传，则它会尝试恢复上次中断的进度，从上次传输失败的位置继续上传，也就是只会传输剩下部分的数据，而不是整个分片。</li>
+<li>如果程序不支持断点续传，那么必须重新上传整个整个分片。</li>
+</ul>
+<h2 id="分片信息应该如何存储"><a href="#分片信息应该如何存储" class="headerlink" title="分片信息应该如何存储"></a>分片信息应该如何存储</h2><p>在大文件分片上传场景中，我们可以使用Redis来存储上传分片的信息，以方便查重和断点续传。</p>
+<p>具体来说，我们可以将<strong>每个分片的唯一标识</strong>作为Redis的key，将<strong>分片数据的校验值和其他元数据</strong>作为value存储在Redis中。在上传每个分片时，客户端可以通过Redis判断该分片是否已经上传过，并校验分片的完整性；在合并分片时，服务器端可以通过Redis读取每个分片的元数据，并将它们按顺序合并成完整的文件或对象。</p>
+</article><div class="post-copyright"><div class="copyright-cc-box"><i class="anzhiyufont anzhiyu-icon-copyright"></i></div><div class="post-copyright__author_box"><a class="post-copyright__author_img" href="/" title="头像"><img class="post-copyright__author_img_back" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://bu.dusays.com/2023/04/27/64496e511b09c.jpg" title="头像" alt="头像"><img class="post-copyright__author_img_front" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://bu.dusays.com/2023/04/27/64496e511b09c.jpg" title="头像" alt="头像"></a><div class="post-copyright__author_name">小奥</div><div class="post-copyright__author_desc">浮生若梦 为欢几何</div></div><div class="post-copyright__post__info"><a class="post-copyright__original" title="该文章为原创文章，注意版权协议" href="http://example.com/2024/01/12/%E5%A4%A7%E6%96%87%E4%BB%B6%E5%88%86%E7%89%87%E3%80%81%E7%A7%92%E4%BC%A0%E3%80%81%E6%96%AD%E7%82%B9%E7%BB%AD%E4%BC%A0/">原创</a><a class="post-copyright-title"><span onclick="rm.copyPageUrl('http://example.com/2024/01/12/%E5%A4%A7%E6%96%87%E4%BB%B6%E5%88%86%E7%89%87%E3%80%81%E7%A7%92%E4%BC%A0%E3%80%81%E6%96%AD%E7%82%B9%E7%BB%AD%E4%BC%A0/')">大文件分片、秒传、断点续传</span></a></div><div class="post-tools" id="post-tools"><div class="post-tools-left"><div class="rewardLeftButton"></div><div class="shareRight"><div class="share-link mobile"><div class="share-qrcode"><div class="share-button" title="使用手机访问这篇文章"><i class="anzhiyufont anzhiyu-icon-qrcode"></i></div><div class="share-main"><div class="share-main-all"><div id="qrcode" title="http://example.com/2024/01/12/%E5%A4%A7%E6%96%87%E4%BB%B6%E5%88%86%E7%89%87%E3%80%81%E7%A7%92%E4%BC%A0%E3%80%81%E6%96%AD%E7%82%B9%E7%BB%AD%E4%BC%A0/"></div><div class="reward-dec">使用手机访问这篇文章</div></div></div></div></div><div class="share-link weibo"><a class="share-button" target="_blank" href="https://service.weibo.com/share/share.php?title=大文件分片、秒传、断点续传&amp;url=http://example.com/2024/01/12/%E5%A4%A7%E6%96%87%E4%BB%B6%E5%88%86%E7%89%87%E3%80%81%E7%A7%92%E4%BC%A0%E3%80%81%E6%96%AD%E7%82%B9%E7%BB%AD%E4%BC%A0/&amp;pic=/img/png/20.png" rel="external nofollow noreferrer noopener"><i class="anzhiyufont anzhiyu-icon-weibo"></i></a></div><script>function copyCurrentPageUrl() {
+  var currentPageUrl = window.location.href;
+  var input = document.createElement("input");
+  input.setAttribute("value", currentPageUrl);
+  document.body.appendChild(input);
+  input.select();
+  input.setSelectionRange(0, 99999);
+  document.execCommand("copy");
+  document.body.removeChild(input);
+}</script><div class="share-link copyurl"><div class="share-button" id="post-share-url" title="复制链接" onclick="copyCurrentPageUrl()"><i class="anzhiyufont anzhiyu-icon-link"></i></div></div></div></div></div><div class="post-copyright__notice"><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">小奥</a>！</span></div></div><div class="post-tools-right"><div class="tag_share"><div class="post-meta__box"><div class="post-meta__box__category-list"><a class="post-meta__box__categoryes" href="/categories/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/"><span class="categoryes-punctuation"> <i class="anzhiyufont anzhiyu-icon-inbox"></i></span>系统设计<span class="categoryesPageCount">4</span></a></div><div class="post-meta__box__tag-list"><a class="post-meta__box__tags" href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>文件上传<span class="tagsPageCount">1</span></a></div></div><div class="post_share"><div class="social-share" data-image="/img/png/7.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.cbd.int/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"/><script src="https://cdn.cbd.int/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer="defer"></script></div></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/01/12/%E7%AE%97%E6%B3%95%E6%A8%A1%E6%9D%BF/"><img class="prev-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/png/18.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">算法模板</div></div></a></div><div class="next-post pull-right"><a href="/2024/01/12/Java%E9%9B%86%E5%90%88%E4%B9%8BHashMap%E6%BA%90%E7%A0%81%E7%AF%87/"><img class="next-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/png/8.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Java集合之HashMap源码篇</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-content"><div class="author-info__sayhi" id="author-info__sayhi" onclick="anzhiyu.changeSayHelloText()"></div><div class="author-info-avatar"><img class="avatar-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://bu.dusays.com/2023/04/27/64496e511b09c.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-status"><img class="g-status" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://bu.dusays.com/2023/08/24/64e6ce9c507bb.png" alt="status"/></div></div><div class="author-info__description"><div style="line-height:1.38;margin:0.6rem 0;text-align:justify;color:rgba(255, 255, 255, 0.8);">这有关于<b style="color:#fff">Java、数据库、中间件</b>相关的学习笔记，还有<b style="color:#fff">面试题总结</b>和<b style="color:#fff">分享</b>。</div><div style="line-height:1.38;margin:0.6rem 0;text-align:justify;color:rgba(255, 255, 255, 0.8);">相信你可以在这里找到对你有用的<b style="color:#fff">知识</b>和<b style="color:#fff">教程</b>。</div></div><div class="author-info__bottom-group"><a class="author-info__bottom-group-left" href="/"><h1 class="author-info__name">小奥</h1><div class="author-info__desc">浮生若梦 为欢几何</div></a><div class="card-info-social-icons is-center"><a class="social-icon faa-parent animated-hover" href="https://github.com/xiaoaozz" target="_blank" title="Github"><i class="anzhiyufont anzhiyu-icon-github"></i></a></div></div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-bars"></i><span>文章目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A4%A7%E6%96%87%E4%BB%B6%E5%88%86%E7%89%87%E3%80%81%E7%A7%92%E4%BC%A0%E3%80%81%E6%96%AD%E7%82%B9%E7%BB%AD%E4%BC%A0"><span class="toc-number">1.</span> <span class="toc-text">大文件分片、秒传、断点续传</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E7%89%87%E4%B8%8A%E4%BC%A0"><span class="toc-number">1.1.</span> <span class="toc-text">分片上传</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A7%92%E4%BC%A0"><span class="toc-number">1.2.</span> <span class="toc-text">秒传</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%AD%E7%82%B9%E7%BB%AD%E4%BC%A0"><span class="toc-number">1.3.</span> <span class="toc-text">断点续传</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AD%98%E5%9C%A8%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-number">2.</span> <span class="toc-text">存在的问题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E8%AE%BE%E7%BD%AE%E6%96%87%E4%BB%B6%E5%88%86%E7%89%87%E7%9A%84%E5%94%AF%E4%B8%80%E6%A0%87%E8%AF%86"><span class="toc-number">2.1.</span> <span class="toc-text">如何设置文件分片的唯一标识</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E8%80%97%E8%B4%B9%E8%B5%84%E6%BA%90%E5%9C%A8%E5%93%AA%E9%87%8C"><span class="toc-number">2.2.</span> <span class="toc-text">文件上传耗费资源在哪里</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E8%AF%84%E4%BC%B0%E5%88%86%E7%89%87%E4%B8%8A%E4%BC%A0%E6%97%B6%E9%97%B4"><span class="toc-number">2.3.</span> <span class="toc-text">如何评估分片上传时间</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E7%A1%AE%E5%AE%9A%E6%96%87%E4%BB%B6%E5%88%86%E7%89%87%E5%A4%A7%E5%B0%8F"><span class="toc-number">2.4.</span> <span class="toc-text">如何确定文件分片大小</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E6%9E%9C%E5%88%86%E7%89%87%E8%BF%87%E5%A4%9A%E5%BA%94%E8%AF%A5%E5%A6%82%E4%BD%95%E5%A4%84%E7%90%86"><span class="toc-number">2.5.</span> <span class="toc-text">如果分片过多应该如何处理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E7%89%87%E4%B8%8A%E4%BC%A0%E4%B8%80%E5%8D%8A%E5%87%BA%E7%8E%B0%E9%97%AE%E9%A2%98%E5%A6%82%E4%BD%95%E5%A4%84%E7%90%86"><span class="toc-number">2.6.</span> <span class="toc-text">分片上传一半出现问题如何处理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E7%89%87%E4%BF%A1%E6%81%AF%E5%BA%94%E8%AF%A5%E5%A6%82%E4%BD%95%E5%AD%98%E5%82%A8"><span class="toc-number">2.7.</span> <span class="toc-text">分片信息应该如何存储</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-history"></i><span>最近发布</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/01/14/StopWatch%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3/" title="StopWatch使用详解"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/png/7.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="StopWatch使用详解"/></a><div class="content"><a class="title" href="/2024/01/14/StopWatch%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3/" title="StopWatch使用详解">StopWatch使用详解</a><time datetime="2024-01-14T14:36:52.000Z" title="发表于 2024-01-14 22:36:52">2024-01-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/01/14/RabbitMQ%E4%BD%BF%E7%94%A8%E7%AF%87/" title="RabbitMQ使用篇"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/png/6.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="RabbitMQ使用篇"/></a><div class="content"><a class="title" href="/2024/01/14/RabbitMQ%E4%BD%BF%E7%94%A8%E7%AF%87/" title="RabbitMQ使用篇">RabbitMQ使用篇</a><time datetime="2024-01-14T08:29:24.000Z" title="发表于 2024-01-14 16:29:24">2024-01-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/01/13/Java%E9%9B%86%E5%90%88%E4%B9%8BLinkedList%E6%BA%90%E7%A0%81%E7%AF%87/" title="Java集合之LinkedList源码篇"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/png/10.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Java集合之LinkedList源码篇"/></a><div class="content"><a class="title" href="/2024/01/13/Java%E9%9B%86%E5%90%88%E4%B9%8BLinkedList%E6%BA%90%E7%A0%81%E7%AF%87/" title="Java集合之LinkedList源码篇">Java集合之LinkedList源码篇</a><time datetime="2024-01-13T11:48:08.000Z" title="发表于 2024-01-13 19:48:08">2024-01-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/01/13/Netty%E5%9F%BA%E7%A1%80%E7%AF%87/" title="Netty基础篇"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/png/4.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Netty基础篇"/></a><div class="content"><a class="title" href="/2024/01/13/Netty%E5%9F%BA%E7%A1%80%E7%AF%87/" title="Netty基础篇">Netty基础篇</a><time datetime="2024-01-13T07:26:56.000Z" title="发表于 2024-01-13 15:26:56">2024-01-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/01/12/Java%E9%9B%86%E5%90%88%E4%B9%8BHashMap%E6%BA%90%E7%A0%81%E7%AF%87/" title="Java集合之HashMap源码篇"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/png/8.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Java集合之HashMap源码篇"/></a><div class="content"><a class="title" href="/2024/01/12/Java%E9%9B%86%E5%90%88%E4%B9%8BHashMap%E6%BA%90%E7%A0%81%E7%AF%87/" title="Java集合之HashMap源码篇">Java集合之HashMap源码篇</a><time datetime="2024-01-12T12:13:56.000Z" title="发表于 2024-01-12 20:13:56">2024-01-12</time></div></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"></div><div id="footer-bar"><div class="footer-bar-links"><div class="footer-bar-left"><div id="footer-bar-tips"><div class="copyright">&copy;2020 - 2024 By <a class="footer-bar-link" href="/" title="小奥" target="_blank">小奥</a></div></div><div id="footer-type-tips"></div></div><div class="footer-bar-right"><a class="footer-bar-link" target="_blank" rel="noopener" href="https://github.com/anzhiyu-c/hexo-theme-anzhiyu" title="主题">主题</a></div></div></div></footer></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="sidebar-site-data site-data is-center"><a href="/archives/" title="archive"><div class="headline">文章</div><div class="length-num">18</div></a><a href="/tags/" title="tag"><div class="headline">标签</div><div class="length-num">18</div></a><a href="/categories/" title="category"><div class="headline">分类</div><div class="length-num">11</div></a></div><span class="sidebar-menu-item-title">功能</span><div class="sidebar-menu-item"><a class="darkmode_switchbutton menu-child" href="javascript:void(0);" title="显示模式"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span>显示模式</span></a></div><div class="back-menu-list-groups"><div class="back-menu-list-group"><div class="back-menu-list-title">网页</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://xiaoaozz.github.io/" title="个人博客"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/favicon.ico" alt="个人博客"/><span class="back-menu-item-text">个人博客</span></a></div></div><div class="back-menu-list-group"><div class="back-menu-list-title">项目</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://github.com/xiaoaozz" title="Github"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://avatars.githubusercontent.com/u/104616274?v=4" alt="Github"/><span class="back-menu-item-text">Github</span></a></div></div></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 文章</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/archives/"><i class="anzhiyufont anzhiyu-icon-box-archive faa-tada" style="font-size: 0.9em;"></i><span> 隧道</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/categories/"><i class="anzhiyufont anzhiyu-icon-shapes faa-tada" style="font-size: 0.9em;"></i><span> 分类</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags faa-tada" style="font-size: 0.9em;"></i><span> 标签</span></a></li></ul></div></div><span class="sidebar-menu-item-title">标签</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/ArrayList/" style="font-size: 0.88rem;">ArrayList<sup>1</sup></a><a href="/tags/Feed%E6%B5%81/" style="font-size: 0.88rem;">Feed流<sup>1</sup></a><a href="/tags/Go%E9%9D%A2%E7%BB%8F/" style="font-size: 0.88rem;">Go面经<sup>1</sup></a><a href="/tags/HashMap/" style="font-size: 0.88rem;">HashMap<sup>1</sup></a><a href="/tags/Java%E9%9D%A2%E7%BB%8F/" style="font-size: 0.88rem;">Java面经<sup>1</sup></a><a href="/tags/LinkedList/" style="font-size: 0.88rem;">LinkedList<sup>1</sup></a><a href="/tags/MySQL%E5%BA%94%E7%94%A8/" style="font-size: 0.88rem;">MySQL应用<sup>1</sup></a><a href="/tags/MySQL%E9%9D%A2%E7%BB%8F/" style="font-size: 0.88rem;">MySQL面经<sup>1</sup></a><a href="/tags/Netty%E5%9F%BA%E7%A1%80/" style="font-size: 0.88rem;">Netty基础<sup>1</sup></a><a href="/tags/RabbitMQ/" style="font-size: 0.88rem;">RabbitMQ<sup>1</sup></a><a href="/tags/SpringBoot3/" style="font-size: 0.88rem;">SpringBoot3<sup>1</sup></a><a href="/tags/SpringCloud/" style="font-size: 0.88rem;">SpringCloud<sup>1</sup></a><a href="/tags/StopWatch/" style="font-size: 0.88rem;">StopWatch<sup>1</sup></a><a href="/tags/%E6%8E%A5%E5%8F%A3%E9%99%90%E6%B5%81/" style="font-size: 0.88rem;">接口限流<sup>1</sup></a><a href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" style="font-size: 0.88rem;">文件上传<sup>1</sup></a><a href="/tags/%E7%AE%97%E6%B3%95%E6%A8%A1%E6%9D%BF/" style="font-size: 0.88rem;">算法模板<sup>1</sup></a><a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E9%9D%A2%E7%BB%8F/" style="font-size: 0.88rem;">计算机网络面经<sup>1</sup></a><a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 0.88rem;">设计模式<sup>1</sup></a></div></div><hr/></div></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="anzhiyufont anzhiyu-icon-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="anzhiyufont anzhiyu-icon-gear"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="anzhiyufont anzhiyu-icon-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></button></div></div><div id="nav-music"><a id="nav-music-hoverTips" onclick="anzhiyu.musicToggle()" accesskey="m">播放音乐</a><div id="console-music-bg"></div><meting-js id="8152976493" server="netease" type="playlist" mutex="true" preload="none" theme="var(--anzhiyu-main)" data-lrctype="0" order="random" volume="0.7"></meting-js></div><div id="rightMenu"><div class="rightMenu-group rightMenu-small"><div class="rightMenu-item" id="menu-backward"><i class="anzhiyufont anzhiyu-icon-arrow-left"></i></div><div class="rightMenu-item" id="menu-forward"><i class="anzhiyufont anzhiyu-icon-arrow-right"></i></div><div class="rightMenu-item" id="menu-refresh"><i class="anzhiyufont anzhiyu-icon-arrow-rotate-right" style="font-size: 1rem;"></i></div><div class="rightMenu-item" id="menu-top"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></div></div><div class="rightMenu-group rightMenu-line rightMenuPlugin"><div class="rightMenu-item" id="menu-copytext"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制选中文本</span></div><div class="rightMenu-item" id="menu-pastetext"><i class="anzhiyufont anzhiyu-icon-paste"></i><span>粘贴文本</span></div><a class="rightMenu-item" id="menu-commenttext"><i class="anzhiyufont anzhiyu-icon-comment-medical"></i><span>引用到评论</span></a><div class="rightMenu-item" id="menu-newwindow"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开</span></div><div class="rightMenu-item" id="menu-copylink"><i class="anzhiyufont anzhiyu-icon-link"></i><span>复制链接地址</span></div><div class="rightMenu-item" id="menu-copyimg"><i class="anzhiyufont anzhiyu-icon-images"></i><span>复制此图片</span></div><div class="rightMenu-item" id="menu-downloadimg"><i class="anzhiyufont anzhiyu-icon-download"></i><span>下载此图片</span></div><div class="rightMenu-item" id="menu-newwindowimg"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开图片</span></div><div class="rightMenu-item" id="menu-search"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>站内搜索</span></div><div class="rightMenu-item" id="menu-searchBaidu"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>百度搜索</span></div><div class="rightMenu-item" id="menu-music-toggle"><i class="anzhiyufont anzhiyu-icon-play"></i><span>播放音乐</span></div><div class="rightMenu-item" id="menu-music-back"><i class="anzhiyufont anzhiyu-icon-backward"></i><span>切换到上一首</span></div><div class="rightMenu-item" id="menu-music-forward"><i class="anzhiyufont anzhiyu-icon-forward"></i><span>切换到下一首</span></div><div class="rightMenu-item" id="menu-music-playlist" onclick="window.open(&quot;https://y.qq.com/n/ryqq/playlist/8956954060&quot;, &quot;_blank&quot;);" style="display: none;"><i class="anzhiyufont anzhiyu-icon-radio"></i><span>查看所有歌曲</span></div><div class="rightMenu-item" id="menu-music-copyMusicName"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制歌名</span></div></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item menu-link" id="menu-randomPost"><i class="anzhiyufont anzhiyu-icon-shuffle"></i><span>随便逛逛</span></a><a class="rightMenu-item menu-link" href="/categories/"><i class="anzhiyufont anzhiyu-icon-cube"></i><span>博客分类</span></a><a class="rightMenu-item menu-link" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags"></i><span>文章标签</span></a></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item" id="menu-copy" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制地址</span></a><a class="rightMenu-item" id="menu-commentBarrage" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-message"></i><span class="menu-commentBarrage-text">关闭热评</span></a><a class="rightMenu-item" id="menu-darkmode" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span class="menu-darkmode-text">深色模式</span></a><a class="rightMenu-item" id="menu-translate" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-language"></i><span>轉為繁體</span></a></div></div><div id="rightmenu-mask"></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.cbd.int/@fancyapps/ui@5.0.28/dist/fancybox/fancybox.umd.js"></script><script src="https://cdn.cbd.int/instant.page@5.2.0/instantpage.js" type="module"></script><script src="https://cdn.cbd.int/vanilla-lazyload@17.8.5/dist/lazyload.iife.min.js"></script><script src="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.js"></script><canvas id="universe"></canvas><script async src="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/dark/dark.js"></script><script>// 消除控制台打印
+var HoldLog = console.log;
+console.log = function () {};
+let now1 = new Date();
+queueMicrotask(() => {
+  const Log = function () {
+    HoldLog.apply(console, arguments);
+  }; //在恢复前输出日志
+  const grt = new Date("04/01/2021 00:00:00"); //此处修改你的建站时间或者网站上线时间
+  now1.setTime(now1.getTime() + 250);
+  const days = (now1 - grt) / 1000 / 60 / 60 / 24;
+  const dnum = Math.floor(days);
+  const ascll = [
+    `欢迎使用安知鱼!`,
+    `生活明朗, 万物可爱`,
+    `
+        
+       █████╗ ███╗   ██╗███████╗██╗  ██╗██╗██╗   ██╗██╗   ██╗
+      ██╔══██╗████╗  ██║╚══███╔╝██║  ██║██║╚██╗ ██╔╝██║   ██║
+      ███████║██╔██╗ ██║  ███╔╝ ███████║██║ ╚████╔╝ ██║   ██║
+      ██╔══██║██║╚██╗██║ ███╔╝  ██╔══██║██║  ╚██╔╝  ██║   ██║
+      ██║  ██║██║ ╚████║███████╗██║  ██║██║   ██║   ╚██████╔╝
+      ╚═╝  ╚═╝╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝╚═╝   ╚═╝    ╚═════╝
+        
+        `,
+    "已上线",
+    dnum,
+    "天",
+    "©2020 By 安知鱼 V1.6.12",
+  ];
+  const ascll2 = [`NCC2-036`, `调用前置摄像头拍照成功，识别为【小笨蛋】.`, `Photo captured: `, `🤪`];
+
+  setTimeout(
+    Log.bind(
+      console,
+      `\n%c${ascll[0]} %c ${ascll[1]} %c ${ascll[2]} %c${ascll[3]}%c ${ascll[4]}%c ${ascll[5]}\n\n%c ${ascll[6]}\n`,
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      ""
+    )
+  );
+  setTimeout(
+    Log.bind(
+      console,
+      `%c ${ascll2[0]} %c ${ascll2[1]} %c \n${ascll2[2]} %c\n${ascll2[3]}\n`,
+      "color:white; background-color:#4fd953",
+      "",
+      "",
+      'background:url("https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/tinggge.gif") no-repeat;font-size:450%'
+    )
+  );
+
+  setTimeout(Log.bind(console, "%c WELCOME %c 你好，小笨蛋.", "color:white; background-color:#4f90d9", ""));
+
+  setTimeout(
+    console.warn.bind(
+      console,
+      "%c ⚡ Powered by 安知鱼 %c 你正在访问 小奥 的博客.",
+      "color:white; background-color:#f0ad4e",
+      ""
+    )
+  );
+
+  setTimeout(Log.bind(console, "%c W23-12 %c 你已打开控制台.", "color:white; background-color:#4f90d9", ""));
+
+  setTimeout(
+    console.warn.bind(console, "%c S013-782 %c 你现在正处于监控中.", "color:white; background-color:#d9534f", "")
+  );
+});</script><script async src="/anzhiyu/random.js"></script><div class="js-pjax"><input type="hidden" name="page-type" id="page-type" value="post"></div><script>var visitorMail = "";
+</script><script async data-pjax src="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/waterfall/waterfall.js"></script><script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/qrcodejs/1.0.0/qrcode.min.js"></script><script src="/js/anzhiyu/right_click_menu.js"></script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.1.9/icon/ali_iconfont_css.css"><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/aplayer/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.cbd.int/anzhiyu-blog-static@1.0.1/js/APlayer.min.js"></script><script src="https://cdn.cbd.int/hexo-anzhiyu-music@1.0.1/assets/js/Meting2.min.js"></script><script src="https://cdn.cbd.int/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+  // removeEventListener scroll 
+  anzhiyu.removeGlobalFnEvent('pjax')
+  anzhiyu.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script charset="UTF-8" src="https://cdn.cbd.int/anzhiyu-theme-static@1.1.5/accesskey/accesskey.js"></script></div><div id="popup-window"><div class="popup-window-title">通知</div><div class="popup-window-divider"></div><div class="popup-window-content"><div class="popup-tip">你好呀</div><div class="popup-link"><i class="anzhiyufont anzhiyu-icon-arrow-circle-right"></i></div></div></div></body></html>
